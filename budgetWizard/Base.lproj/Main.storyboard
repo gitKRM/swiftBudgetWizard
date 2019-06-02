@@ -78,7 +78,30 @@
                     <view key="view" contentMode="scaleToFill" id="vzB-DM-ukA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Budget Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="meu-hw-N7Z">
+                                <rect key="frame" x="20" y="108" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6x-5Q-fuy">
+                                <rect key="frame" x="20" y="527" width="374" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <state key="normal" title="Add Expense"/>
+                                <connections>
+                                    <segue destination="Nnn-l9-aoa" kind="presentation" id="h7r-pI-FvL"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Plp-jd-bx8" firstAttribute="trailing" secondItem="meu-hw-N7Z" secondAttribute="trailing" constant="20" id="AZc-lm-HjS"/>
+                            <constraint firstItem="meu-hw-N7Z" firstAttribute="leading" secondItem="Plp-jd-bx8" secondAttribute="leading" constant="20" id="KBI-Oo-9e6"/>
+                            <constraint firstItem="meu-hw-N7Z" firstAttribute="top" secondItem="Plp-jd-bx8" secondAttribute="top" constant="20" id="Kuw-jq-cYi"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Plp-jd-bx8"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Edit Budget" id="irA-Hw-LFp">
@@ -87,16 +110,16 @@
                                 <action selector="cancel:" destination="6XC-JP-xdz" id="70x-no-uQW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add Expense" id="NeN-q5-wwR">
-                            <connections>
-                                <segue destination="Nnn-l9-aoa" kind="presentation" id="E0M-mc-hGv"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NeN-q5-wwR"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="meu-hw-N7Z" id="lvu-F4-Bk0"/>
+                        <outlet property="saveButton" destination="NeN-q5-wwR" id="JSv-iC-5Nn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbK-Br-ezh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="428" y="-668"/>
+            <point key="canvasLocation" x="427.536231884058" y="-668.30357142857144"/>
         </scene>
         <!--Add Expense-->
         <scene sceneID="jSc-u4-gWs">
