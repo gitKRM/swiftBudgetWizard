@@ -17,6 +17,7 @@
 		3634D4C922A2740F002B0339 /* budgetWizardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4C822A2740F002B0339 /* budgetWizardUITests.swift */; };
 		3634D4DB22A2A1DD002B0339 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4DA22A2A1DD002B0339 /* BudgetViewController.swift */; };
 		3651169722A34E4A00827CA8 /* BudgetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */; };
+		3651169922A354F800827CA8 /* ExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651169822A354F800827CA8 /* ExpenseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		3634D4CA22A2740F002B0339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3634D4DA22A2A1DD002B0339 /* BudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
 		3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewController.swift; sourceTree = "<group>"; };
+		3651169822A354F800827CA8 /* ExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +108,9 @@
 				3634D4A522A2740C002B0339 /* AppDelegate.swift */,
 				3634D4A722A2740C002B0339 /* ViewController.swift */,
 				3634D4DA22A2A1DD002B0339 /* BudgetViewController.swift */,
-				3634D4A922A2740C002B0339 /* Main.storyboard */,
 				3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */,
+				3651169822A354F800827CA8 /* ExpenseViewController.swift */,
+				3634D4A922A2740C002B0339 /* Main.storyboard */,
 				3634D4AF22A2740E002B0339 /* Assets.xcassets */,
 				3634D4B122A2740E002B0339 /* LaunchScreen.storyboard */,
 				3634D4B422A2740E002B0339 /* Info.plist */,
@@ -270,6 +273,7 @@
 				3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */,
 				3634D4DB22A2A1DD002B0339 /* BudgetViewController.swift in Sources */,
 				3651169722A34E4A00827CA8 /* BudgetTableViewController.swift in Sources */,
+				3651169922A354F800827CA8 /* ExpenseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,7 +29,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2703" y="-668"/>
+            <point key="canvasLocation" x="-3119" y="-668"/>
         </scene>
         <!--View Budgets-->
         <scene sceneID="9eg-Wy-Rhx">
@@ -69,7 +69,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhb-dY-7Ga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-41" y="-668"/>
+            <point key="canvasLocation" x="-1377" y="-668"/>
         </scene>
         <!--Add Edit Budget-->
         <scene sceneID="8as-7T-i6t">
@@ -87,11 +87,38 @@
                                 <action selector="cancel:" destination="6XC-JP-xdz" id="70x-no-uQW"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add Expense" id="NeN-q5-wwR">
+                            <connections>
+                                <segue destination="Nnn-l9-aoa" kind="presentation" id="E0M-mc-hGv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbK-Br-ezh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1651" y="-668"/>
+            <point key="canvasLocation" x="428" y="-668"/>
+        </scene>
+        <!--Add Expense-->
+        <scene sceneID="jSc-u4-gWs">
+            <objects>
+                <viewController id="LfO-kM-vR9" customClass="ExpenseViewController" customModule="budgetWizard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iAF-DQ-oN5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="yhk-P0-v2k"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Expense" id="gKI-5Z-2eu">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Doi-L9-rTA">
+                            <connections>
+                                <action selector="cancel:" destination="LfO-kM-vR9" id="oC3-y5-7gx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Wi-MT-MVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2286.9565217391305" y="-670.3125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Qk-ng-L7v">
@@ -127,7 +154,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RKq-66-FW2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1094" y="-668"/>
+            <point key="canvasLocation" x="-2233" y="-668"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bm6-mp-rSs">
@@ -145,7 +172,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5P-nt-k27" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="830" y="-668"/>
+            <point key="canvasLocation" x="-519" y="-668"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="k9Y-uy-1OR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nnn-l9-aoa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bne-JP-HLq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LfO-kM-vR9" kind="relationship" relationship="rootViewController" id="1le-Uh-Kqj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4PN-pV-Ppz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1376.8115942028987" y="-670.3125"/>
         </scene>
     </scenes>
 </document>
