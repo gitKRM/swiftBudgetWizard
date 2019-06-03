@@ -8,15 +8,47 @@
 
 import UIKit
 
-class ExpenseViewController: UIViewController {
-
+class ExpenseViewController: UIViewController{
+    
+    //MARK: Properties
+    @IBOutlet weak var categoryTextField: UITextField!
+    let categories = ["Credit Cards", "Food", "Future Bill", "Future Goal", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
+    var selectedCategory: String?
+    
+    //MARK: Private Properties
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        createCategoryPickerView()
+        createCategoryPickerToolBar()
+        categoryTextField.delegate = self
     }
     
 
+    //MARK: UIPickerView
+    func createCategoryPickerView(){
+        
+        let categoryPicker = UIPickerView()
+        categoryPicker.delegate = self
+        categoryPicker.dataSource = self
+        categoryTextField.inputView = categoryPicker
+    }
+    
+    func createCategoryPickerToolBar(){
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ExpenseViewController.closeCategoryPicker))
+        
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        categoryTextField.inputAccessoryView = toolBar
+    }
+    
+    @objc func closeCategoryPicker(){
+        view.endEditing(true)
+    }
+    
     
     // MARK: - Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
@@ -32,4 +64,24 @@ class ExpenseViewController: UIViewController {
     }
     */
 
+}
+
+extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categories.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categories[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedCategory = categories[row]
+        categoryTextField.text = selectedCategory
+    }
 }

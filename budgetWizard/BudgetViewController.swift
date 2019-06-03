@@ -25,18 +25,11 @@ class BudgetViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //initialise date pickers for start / end date in code -- this hides the date picker once a date is selected
-        startDatePicker = UIDatePicker()
-        startDatePicker?.datePickerMode = .date
-        startDatePicker?.addTarget(self, action: #selector(BudgetViewController.startDateChanged(startDatePicker:)), for: .valueChanged)
-        startDate.inputView = startDatePicker
-        
-        endDatePicker = UIDatePicker()
-        endDatePicker?.datePickerMode = .date
-        endDatePicker?.addTarget(self, action: #selector(BudgetViewController.endDateChanged(endDatePicker:)), for: .valueChanged)
-        endDate.inputView = endDatePicker
-        
+        createStartDatePicker()
+        createStartDatePickerToolBar()
+        createEndDatePicker()
+        createEndDatePickerToolBar()
+        //--Gesture recogniser associated to full view, closes of any keyboards when tapped
         let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(BudgetViewController.viewTapped(gestureRecogniser:)))
         
         view.addGestureRecognizer(gestureRecogniser)
@@ -46,6 +39,47 @@ class BudgetViewController: UIViewController, UITextFieldDelegate {
         incomingCashFlow.delegate = self
         updateSaveButton()
     }
+    
+    //MARK: UIDatePickerView
+    func createStartDatePicker(){
+        startDatePicker = UIDatePicker()
+        startDatePicker?.datePickerMode = .date
+        startDatePicker?.addTarget(self, action: #selector(BudgetViewController.startDateChanged(startDatePicker:)), for: .valueChanged)
+        startDate.inputView = startDatePicker
+    }
+    
+    func createStartDatePickerToolBar(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closePicker))
+        
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        startDate.inputAccessoryView = toolBar
+    }
+    
+    func createEndDatePicker(){
+        endDatePicker = UIDatePicker()
+        endDatePicker?.datePickerMode = .date
+        endDatePicker?.addTarget(self, action: #selector(BudgetViewController.endDateChanged(endDatePicker:)), for: .valueChanged)
+        endDate.inputView = endDatePicker
+    }
+    
+    func createEndDatePickerToolBar(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closePicker))
+        
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        endDate.inputAccessoryView = toolBar
+    }
+    
+    
+    @objc func closePicker(){
+        view.endEditing(true)
+    }
+    
     
     //MARK UITextfieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -59,12 +93,15 @@ class BudgetViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         navigationItem.title = nameTextField.text
-        if (textField == incomingCashFlow){
+        if (textField == incomingCashFlow && !textField.text!.isEmpty){
+            let amount:Double? = Double(textField.text!)
+            
             let formatter = NumberFormatter()
             formatter.locale = Locale.autoupdatingCurrent
             formatter.numberStyle = .currency
-            
-            
+            if let formattedAmount = formatter.string(from: amount! as NSNumber){
+                textField.text = formattedAmount
+            }
         }
         updateSaveButton()
     }

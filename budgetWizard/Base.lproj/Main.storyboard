@@ -137,9 +137,6 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="o4S-kT-sUx" firstAttribute="top" secondItem="VB8-cL-npe" secondAttribute="bottom" constant="60" id="GH8-Ek-c4W"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -181,7 +178,32 @@
                     <view key="view" contentMode="scaleToFill" id="iAF-DQ-oN5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="ui2-WV-E1a">
+                                <rect key="frame" x="0.0" y="88" width="414" height="788"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zfB-KY-lO7">
+                                <rect key="frame" x="20" y="108" width="374" height="33"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Expense Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CEK-ZL-XDJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="33"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ui2-WV-E1a" firstAttribute="top" secondItem="yhk-P0-v2k" secondAttribute="top" id="D7O-fI-iQq"/>
+                            <constraint firstItem="zfB-KY-lO7" firstAttribute="top" secondItem="yhk-P0-v2k" secondAttribute="top" constant="20" id="GbB-nD-Ub7"/>
+                            <constraint firstAttribute="bottom" secondItem="ui2-WV-E1a" secondAttribute="bottom" constant="20" id="Jhm-rM-qC0"/>
+                            <constraint firstItem="yhk-P0-v2k" firstAttribute="trailing" secondItem="zfB-KY-lO7" secondAttribute="trailing" constant="20" id="LcR-as-397"/>
+                            <constraint firstItem="zfB-KY-lO7" firstAttribute="leading" secondItem="yhk-P0-v2k" secondAttribute="leading" constant="20" id="WXR-wz-xrx"/>
+                            <constraint firstItem="ui2-WV-E1a" firstAttribute="leading" secondItem="yhk-P0-v2k" secondAttribute="leading" id="jdN-IH-g5w"/>
+                            <constraint firstItem="ui2-WV-E1a" firstAttribute="trailing" secondItem="yhk-P0-v2k" secondAttribute="trailing" id="tAC-lV-gei"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="yhk-P0-v2k"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Expense" id="gKI-5Z-2eu">
@@ -191,6 +213,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="categoryTextField" destination="CEK-ZL-XDJ" id="lZO-iL-WAn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wi-MT-MVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
