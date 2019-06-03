@@ -12,6 +12,8 @@ class ExpenseViewController: UIViewController{
     
     //MARK: Properties
     @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var expenseName: UITextField!
+    @IBOutlet weak var amount: UITextField!
     let categories = ["Credit Cards", "Food", "Future Bill", "Future Goal", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
     var selectedCategory: String?
     
@@ -22,6 +24,13 @@ class ExpenseViewController: UIViewController{
         createCategoryPickerView()
         createCategoryPickerToolBar()
         categoryTextField.delegate = self
+        expenseName.delegate = self
+        amount.delegate = self
+        
+        //--Gesture recogniser associated to full view, closes of any keyboards when tapped
+        let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(ExpenseViewController.viewTapped(gestureRecogniser:)))
+        
+        view.addGestureRecognizer(gestureRecogniser)
     }
     
 
@@ -63,11 +72,17 @@ class ExpenseViewController: UIViewController{
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //MARK: Gesture Recogniser view Tapped
+    @objc func viewTapped(gestureRecogniser: UITapGestureRecognizer){
+        view.endEditing(true)
+    }
 
 }
 
 extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    //MARK: Picker Functionss
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -84,4 +99,30 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
         selectedCategory = categories[row]
         categoryTextField.text = selectedCategory
     }
+    
+    
+    //MARK: Text field functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        expenseName.resignFirstResponder()
+        return true
+    }
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        
+//    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        navigationItem.title = expenseName.text
+        if (textField == amount && !textField.text!.isEmpty){
+            let newAmount:Double? = Double(textField.text!)
+            
+            let formatter = NumberFormatter()
+            formatter.locale = Locale.autoupdatingCurrent
+            formatter.numberStyle = .currency
+            if let formattedAmount = formatter.string(from: newAmount! as NSNumber){
+                textField.text = formattedAmount
+            }
+        }
+    }
+    
 }
