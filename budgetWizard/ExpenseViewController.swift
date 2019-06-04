@@ -8,16 +8,50 @@
 
 import UIKit
 
-class ExpenseViewController: UIViewController {
-
+class ExpenseViewController: UIViewController{
+    
+    //MARK: Properties
+    @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var expenseName: UITextField!
+    @IBOutlet weak var amount: UITextField!
+    @IBOutlet weak var expenseDate: UITextField!
+    let categories = ["Credit Cards", "Food", "Future Bill", "Future Goal", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
+    var selectedCategory: String?
+    
+    //MARK: Private Properties
+    private var expenseDatePicker: UIDatePicker?
+    
+    //MARK: View loading
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        initPickers()
+        initDelegates()
+        initGestureRecogniser()
     }
     
-
+    //MARK: Set Delegates
+    func initDelegates(){
+        categoryTextField.delegate = self
+        expenseName.delegate = self
+        amount.delegate = self
+    }
     
+    //MARK: Set Gesture recogniser
+    func initGestureRecogniser(){
+        //--Gesture recogniser associated to full view, closes of any keyboards when tapped
+        let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(ExpenseViewController.viewTapped(gestureRecogniser:)))
+        
+        view.addGestureRecognizer(gestureRecogniser)
+    }
+    
+    //MARK: Init Pickers
+    func initPickers(){
+        createCategoryPickerView()
+        createCategoryPickerToolBar()
+        createExpenseDatePicker()
+        createExpenseDatePickerToolBar()
+    }
+
     // MARK: - Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -31,5 +65,104 @@ class ExpenseViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //MARK: Gesture Recogniser view Tapped
+    @objc func viewTapped(gestureRecogniser: UITapGestureRecognizer){
+        view.endEditing(true)
+    }
 
+}
+
+extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+
+    //MARK: Picker Functionss
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categories.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categories[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedCategory = categories[row]
+        categoryTextField.text = selectedCategory
+    }
+    
+    
+    //MARK: Text field functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        expenseName.resignFirstResponder()
+        return true
+    }
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        
+//    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        navigationItem.title = expenseName.text
+        if (textField == amount && !textField.text!.isEmpty){
+            let newAmount:Double? = Double(textField.text!)
+            
+            let formatter = NumberFormatter()
+            formatter.locale = Locale.autoupdatingCurrent
+            formatter.numberStyle = .currency
+            if let formattedAmount = formatter.string(from: newAmount! as NSNumber){
+                textField.text = formattedAmount
+            }
+        }
+    }
+    
+    //MARK: UIPickerView
+    func createCategoryPickerView(){
+        
+        let categoryPicker = UIPickerView()
+        categoryPicker.delegate = self
+        categoryPicker.dataSource = self
+        categoryTextField.inputView = categoryPicker
+    }
+    
+    func createCategoryPickerToolBar(){
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ExpenseViewController.closePicker))
+        
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        categoryTextField.inputAccessoryView = toolBar
+    }
+    
+    //MARK: Expense Date Picker
+    func createExpenseDatePicker(){
+        expenseDatePicker = UIDatePicker()
+        expenseDatePicker?.datePickerMode = .date
+        expenseDatePicker?.addTarget(self, action: #selector(ExpenseViewController.expenseDateChanged(expenseDatePicker:)), for: .valueChanged)
+        expenseDate.inputView = expenseDatePicker
+    }
+    
+    @objc func expenseDateChanged(expenseDatePicker: UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        expenseDate.text = dateFormatter.string(from: expenseDatePicker.date)
+    }
+    
+    func createExpenseDatePickerToolBar(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ExpenseViewController.closePicker))
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        expenseDate.inputAccessoryView = toolBar
+    }
+    
+    @objc func closePicker(){
+        view.endEditing(true)
+    }
+    
 }
