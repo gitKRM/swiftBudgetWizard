@@ -14,51 +14,44 @@ class ExpenseViewController: UIViewController{
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var expenseName: UITextField!
     @IBOutlet weak var amount: UITextField!
+    @IBOutlet weak var expenseDate: UITextField!
     let categories = ["Credit Cards", "Food", "Future Bill", "Future Goal", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
     var selectedCategory: String?
     
     //MARK: Private Properties
+    private var expenseDatePicker: UIDatePicker?
     
+    //MARK: View loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        createCategoryPickerView()
-        createCategoryPickerToolBar()
+        initPickers()
+        initDelegates()
+        initGestureRecogniser()
+    }
+    
+    //MARK: Set Delegates
+    func initDelegates(){
         categoryTextField.delegate = self
         expenseName.delegate = self
         amount.delegate = self
-        
+    }
+    
+    //MARK: Set Gesture recogniser
+    func initGestureRecogniser(){
         //--Gesture recogniser associated to full view, closes of any keyboards when tapped
         let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(ExpenseViewController.viewTapped(gestureRecogniser:)))
         
         view.addGestureRecognizer(gestureRecogniser)
     }
     
+    //MARK: Init Pickers
+    func initPickers(){
+        createCategoryPickerView()
+        createCategoryPickerToolBar()
+        createExpenseDatePicker()
+        createExpenseDatePickerToolBar()
+    }
 
-    //MARK: UIPickerView
-    func createCategoryPickerView(){
-        
-        let categoryPicker = UIPickerView()
-        categoryPicker.delegate = self
-        categoryPicker.dataSource = self
-        categoryTextField.inputView = categoryPicker
-    }
-    
-    func createCategoryPickerToolBar(){
-        
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ExpenseViewController.closeCategoryPicker))
-        
-        toolBar.setItems([doneButton], animated: true)
-        toolBar.isUserInteractionEnabled = true
-        categoryTextField.inputAccessoryView = toolBar
-    }
-    
-    @objc func closeCategoryPicker(){
-        view.endEditing(true)
-    }
-    
-    
     // MARK: - Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -123,6 +116,53 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
                 textField.text = formattedAmount
             }
         }
+    }
+    
+    //MARK: UIPickerView
+    func createCategoryPickerView(){
+        
+        let categoryPicker = UIPickerView()
+        categoryPicker.delegate = self
+        categoryPicker.dataSource = self
+        categoryTextField.inputView = categoryPicker
+    }
+    
+    func createCategoryPickerToolBar(){
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ExpenseViewController.closePicker))
+        
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        categoryTextField.inputAccessoryView = toolBar
+    }
+    
+    //MARK: Expense Date Picker
+    func createExpenseDatePicker(){
+        expenseDatePicker = UIDatePicker()
+        expenseDatePicker?.datePickerMode = .date
+        expenseDatePicker?.addTarget(self, action: #selector(ExpenseViewController.expenseDateChanged(expenseDatePicker:)), for: .valueChanged)
+        expenseDate.inputView = expenseDatePicker
+    }
+    
+    @objc func expenseDateChanged(expenseDatePicker: UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        expenseDate.text = dateFormatter.string(from: expenseDatePicker.date)
+    }
+    
+    func createExpenseDatePickerToolBar(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ExpenseViewController.closePicker))
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        expenseDate.inputAccessoryView = toolBar
+    }
+    
+    @objc func closePicker(){
+        view.endEditing(true)
     }
     
 }

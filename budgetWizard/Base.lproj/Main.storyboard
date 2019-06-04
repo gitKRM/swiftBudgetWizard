@@ -214,8 +214,8 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Recurring Expense:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhg-eL-k44">
                                                 <rect key="frame" x="0.0" y="0.0" width="325" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5hV-2s-uGE">
@@ -248,6 +248,7 @@
                     <connections>
                         <outlet property="amount" destination="NNv-2f-t7W" id="l3N-yY-kk1"/>
                         <outlet property="categoryTextField" destination="CEK-ZL-XDJ" id="lZO-iL-WAn"/>
+                        <outlet property="expenseDate" destination="4gY-iN-zjs" id="QAH-Is-GQ4"/>
                         <outlet property="expenseName" destination="Jy5-uQ-hsW" id="kvk-pu-TK7"/>
                     </connections>
                 </viewController>
