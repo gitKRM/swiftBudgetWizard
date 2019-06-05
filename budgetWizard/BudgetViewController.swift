@@ -30,9 +30,12 @@ class BudgetViewController: UIViewController {
         createStartDatePickerToolBar()
         createEndDatePicker()
         createEndDatePickerToolBar()
+        initGestureRecogniser()
         // Do any additional setup after loading the view.
         nameTextField.delegate = self
         incomingCashFlow.delegate = self
+        startDate.delegate = self
+        endDate.delegate = self
         updateSaveButton()
         
     }
@@ -71,42 +74,86 @@ class BudgetViewController: UIViewController {
         
     }
     
+    //--Swap the logic that directly presents view with a segue and use prepare(segue:)
     //MARK: Save Core Data
-    func SaveData() -> Int{
-        
-        if (validateForSave()){
-            let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-            guard let context = appDelegate?.persistentContainer.viewContext else {
-                os_log("Did not successfully initialise context", log: OSLog.default, type: .error)
-                return 0
-            }
-            //Create entiry
-            guard let entity = NSEntityDescription.entity(forEntityName: "Budgets", in: context)else{
-                os_log("Could not find Budgets Entity", log: OSLog.default, type: .error)
-                return 0
-            }
-            let newBudget = NSManagedObject(entity: entity, insertInto: context)
-            //Add data to newBudget
-            newBudget.setValue(nameTextField.text, forKey: "budgetName")
-            let amount: Decimal? = Decimal(string: incomingCashFlow.text!)
-            newBudget.setValue(amount, forKey: "incomingCashFlow")
-            newBudget.setValue(startDatePicker?.date, forKey: "startDate")
-            newBudget.setValue(endDatePicker?.date, forKey: "emdDate")
-            //Save Data
-            do{
-                try context.save()
-                return 1
-            }catch{
-                os_log("Error saving budget to context", log: OSLog.default, type: .error)
-            }
+    @IBAction func saveBudget(_ sender: UIBarButtonItem) {
+        let validate = validateForSave()
+        if (!validate.isEmpty){
+            let alert = UIAlertController(title: "Validation Error", message: validate, preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+            return
         }
-        return 0
+        let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
+        guard let context = appDelegate?.persistentContainer.viewContext else {
+            os_log("Did not successfully initialise context", log: OSLog.default, type: .error)
+            let alert = UIAlertController(title: "Conext Error", message: "Error attempting to retrieve Database for Saving Data\nA log has been created for this error.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        //Create entiry
+        guard let entity = NSEntityDescription.entity(forEntityName: "Budgets", in: context)else{
+            os_log("Could not find Budgets Entity", log: OSLog.default, type: .error)
+            let alert = UIAlertController(title: "Table Error", message: "There was an error retrieving the database table for saving your budget.\nA log has been created for this error.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        let newBudget = NSManagedObject(entity: entity, insertInto: context)
+        //Add data to newBudget
+        newBudget.setValue(nameTextField.text, forKey: "budgetName")
+        let amount: Decimal? = Decimal(string: incomingCashFlow.text!)
+        newBudget.setValue(amount, forKey: "incomingCashFlow")
+        newBudget.setValue(startDatePicker?.date, forKey: "startDate")
+        newBudget.setValue(endDatePicker?.date, forKey: "endDate")
+        //Save Data
+        do{
+            try context.save()
+            //Navigate to Expense View
+            let expenseController = ExpenseViewController()
+            present(expenseController, animated: true, completion: nil)
+        }catch{
+            os_log("Error saving budget to context", log: OSLog.default, type: .error)
+            let alert = UIAlertController(title: "Save Error", message: "There was an error saving data to the database.\nAn error log has been created.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
-    func validateForSave()-> Bool{
-        return false
+    func validateForSave()-> String{
+        var errorMsg = ""
+        if (nameTextField.text!.isEmpty){
+            errorMsg += "Budget Name Must Be Provided"
+        }
+        let amount: Decimal? = Decimal(string: incomingCashFlow.text!)
+        if (amount == nil){
+            errorMsg += "\nIncoming Cash Flow Must Be Entered"
+        }
+        let startDateFormatter = DateFormatter()
+        startDateFormatter.dateFormat = "dd/MM/yyyy"
+        let validStartDate = startDateFormatter.date(from: startDate.text!)
+        if (validStartDate == nil){
+            errorMsg += "\nInvalid Start Date"
+        }
+        let endDateFormatter = DateFormatter()
+        endDateFormatter.dateFormat = "dd/MM/yyyy"
+        let validEndDate = endDateFormatter.date(from: endDate.text!)
+        if (validEndDate == nil){
+            errorMsg += "\nInvalid End Date"
+        }
+        if (validStartDate != nil && validEndDate != nil){
+            if (validEndDate! < validStartDate!){
+                errorMsg += "\nInvalid End Date"
+            }
+        }
+        
+        return errorMsg
     }
-
 }
 
 extension BudgetViewController: UITextFieldDelegate{
@@ -123,16 +170,16 @@ extension BudgetViewController: UITextFieldDelegate{
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         navigationItem.title = nameTextField.text
-        if (textField == incomingCashFlow && !textField.text!.isEmpty){
-            let amount:Double? = Double(textField.text!)
-
-            let formatter = NumberFormatter()
-            formatter.locale = Locale.autoupdatingCurrent
-            formatter.numberStyle = .currency
-            if let formattedAmount = formatter.string(from: amount! as NSNumber){
-                textField.text = formattedAmount
-            }
-        }
+//        if (textField == incomingCashFlow && !textField.text!.isEmpty){
+//            let amount:Double? = Double(textField.text!)
+//
+//            let formatter = NumberFormatter()
+//            formatter.locale = Locale.autoupdatingCurrent
+//            formatter.numberStyle = .currency
+//            if let formattedAmount = formatter.string(from: amount! as NSNumber){
+//                textField.text = formattedAmount
+//            }
+//        }
         updateSaveButton()
     }
 

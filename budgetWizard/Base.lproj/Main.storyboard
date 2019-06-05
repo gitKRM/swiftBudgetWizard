@@ -157,7 +157,11 @@
                                 <action selector="cancel:" destination="6XC-JP-xdz" id="70x-no-uQW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NeN-q5-wwR"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NeN-q5-wwR">
+                            <connections>
+                                <action selector="saveBudget:" destination="6XC-JP-xdz" id="XtO-3Z-PEa"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="endDate" destination="VB8-cL-npe" id="YKA-0n-KIy"/>

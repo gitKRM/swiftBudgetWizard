@@ -24,8 +24,8 @@ class ExpenseViewController: UIViewController{
     //MARK: View loading
     override func viewDidLoad() {
         super.viewDidLoad()
-        initPickers()
         initDelegates()
+        initPickers()
         initGestureRecogniser()
     }
     
