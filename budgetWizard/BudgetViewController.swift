@@ -206,7 +206,7 @@ extension BudgetViewController: UITextFieldDelegate{
         }
         //check against amount & datees -- amount of 0 will still have a string value
         if (index == 4){
-            //validate fields have been completed, validate that they're correct
+            //fields have been completed, validate that they're correct
             
         }
         updateSaveButton()
