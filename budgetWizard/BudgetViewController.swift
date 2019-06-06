@@ -64,7 +64,6 @@ class BudgetViewController: UIViewController {
     
     
     /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
@@ -136,13 +135,13 @@ class BudgetViewController: UIViewController {
             errorMsg += "\nIncoming Cash Flow Must Be Entered"
         }
         let startDateFormatter = DateFormatter()
-        startDateFormatter.dateFormat = "dd/MM/yyyy"
+            startDateFormatter.dateFormat = "dd/MM/yyyy"
         let validStartDate = startDateFormatter.date(from: startDate.text!)
         if (validStartDate == nil){
             errorMsg += "\nInvalid Start Date"
         }
         let endDateFormatter = DateFormatter()
-        endDateFormatter.dateFormat = "dd/MM/yyyy"
+            endDateFormatter.dateFormat = "dd/MM/yyyy"
         let validEndDate = endDateFormatter.date(from: endDate.text!)
         if (validEndDate == nil){
             errorMsg += "\nInvalid End Date"
@@ -159,7 +158,7 @@ class BudgetViewController: UIViewController {
 
 extension BudgetViewController: UITextFieldDelegate{
     
-//    //MARK UITextfieldDelegate
+    //MARK UITextfieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
         return true
@@ -205,8 +204,9 @@ extension BudgetViewController: UITextFieldDelegate{
             }
             
         }
-        //check against amount & datees
+        //check against amount & datees -- amount of 0 will still have a string value
         if (index == 4){
+            //validate fields have been completed, validate that they're correct
             
         }
         updateSaveButton()
