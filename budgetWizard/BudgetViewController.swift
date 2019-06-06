@@ -26,7 +26,7 @@ class BudgetViewController: UIViewController {
         static let endDateSelected = 4
     }
     
-    var fieldsCompleted = Array(repeating: true, count: 4)
+    var fieldsCompleted = Array(repeating: false, count: 4)
     
     //MARK: Private properties
     private var startDatePicker: UIDatePicker?
@@ -182,28 +182,32 @@ extension BudgetViewController: UITextFieldDelegate{
 //            }
 //        }
         switch textField.tag {
-        case ActiveControl.nameTextFieldSelected:
-            fieldsCompleted[0] = nameTextField.text!.isEmpty
-            break
-        case ActiveControl.incomeCashFlowSelected:
-            fieldsCompleted[1] = incomingCashFlow.text!.isEmpty
-            break
-        case ActiveControl.startDateSelected:
-            fieldsCompleted[2] = startDate.text!.isEmpty
-            break
-        case ActiveControl.endDateSelected:
-            fieldsCompleted[3] = endDate.text!.isEmpty
-            break
-        default:
-            fieldsCompleted[5] = true
-            break
+            case ActiveControl.nameTextFieldSelected:
+                fieldsCompleted[0] = !nameTextField.text!.isEmpty
+                break
+            case ActiveControl.incomeCashFlowSelected:
+                fieldsCompleted[1] = !incomingCashFlow.text!.isEmpty
+                break
+            case ActiveControl.startDateSelected:
+                fieldsCompleted[2] = !startDate.text!.isEmpty
+                break
+            case ActiveControl.endDateSelected:
+                fieldsCompleted[3] = !endDate.text!.isEmpty
+                break
+            default:
+                fieldsCompleted[5] = true
+                break
         }
         var index: Int = 0
         for i in fieldsCompleted{
             if (i){
-                break
+                index += 1
             }
-            index += 1
+            
+        }
+        //check against amount & datees
+        if (index == 4){
+            
         }
         updateSaveButton()
     }
