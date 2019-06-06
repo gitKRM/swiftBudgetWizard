@@ -19,6 +19,15 @@ class BudgetViewController: UIViewController {
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
     
+    struct ActiveControl{
+        static let nameTextFieldSelected = 1
+        static let incomeCashFlowSelected = 2
+        static let startDateSelected = 3
+        static let endDateSelected = 4
+    }
+    
+    var fieldsCompleted = Array(repeating: true, count: 4)
+    
     //MARK: Private properties
     private var startDatePicker: UIDatePicker?
     private var endDatePicker: UIDatePicker?
@@ -61,12 +70,6 @@ class BudgetViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    //MARK: Private functions
-    private func updateSaveButton(){
-        let text = nameTextField.text ?? ""
-        saveButton.isEnabled = !text.isEmpty
-    }
     
     //MARK: Gesture Recogniser view Tapped
     @objc func viewTapped(gestureRecogniser: UITapGestureRecognizer){
@@ -127,9 +130,7 @@ class BudgetViewController: UIViewController {
     
     func validateForSave()-> String{
         var errorMsg = ""
-        if (nameTextField.text!.isEmpty){
-            errorMsg += "Budget Name Must Be Provided"
-        }
+        
         let amount: Decimal? = Decimal(string: incomingCashFlow.text!)
         if (amount == nil){
             errorMsg += "\nIncoming Cash Flow Must Be Entered"
@@ -180,6 +181,30 @@ extension BudgetViewController: UITextFieldDelegate{
 //                textField.text = formattedAmount
 //            }
 //        }
+        switch textField.tag {
+        case ActiveControl.nameTextFieldSelected:
+            fieldsCompleted[0] = nameTextField.text!.isEmpty
+            break
+        case ActiveControl.incomeCashFlowSelected:
+            fieldsCompleted[1] = incomingCashFlow.text!.isEmpty
+            break
+        case ActiveControl.startDateSelected:
+            fieldsCompleted[2] = startDate.text!.isEmpty
+            break
+        case ActiveControl.endDateSelected:
+            fieldsCompleted[3] = endDate.text!.isEmpty
+            break
+        default:
+            fieldsCompleted[5] = true
+            break
+        }
+        var index: Int = 0
+        for i in fieldsCompleted{
+            if (i){
+                break
+            }
+            index += 1
+        }
         updateSaveButton()
     }
 
@@ -233,6 +258,12 @@ extension BudgetViewController: UITextFieldDelegate{
 
     @objc func closePicker(){
         view.endEditing(true)
+    }
+    
+    //MARK: Private functions
+    private func updateSaveButton(){
+        let text = nameTextField.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
     }
     
 }
