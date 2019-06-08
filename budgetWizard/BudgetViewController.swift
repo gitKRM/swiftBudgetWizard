@@ -14,10 +14,12 @@ class BudgetViewController: UIViewController {
     
     //MARK: Properties
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var addExpenseButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var incomingCashFlow: UITextField!
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
+    var budget: Budget?
     
     struct ActiveControl{
         static let nameTextFieldSelected = 1
@@ -46,7 +48,7 @@ class BudgetViewController: UIViewController {
         startDate.delegate = self
         endDate.delegate = self
         updateSaveButton()
-        
+        addExpenseButton.isEnabled = true
     }
     
     //MARK: Init Gesture Recogniser
@@ -63,12 +65,33 @@ class BudgetViewController: UIViewController {
     }
     
     
-    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? ""){
+        case "btnSave":
+            if (validateForSave()){
+                if (!save()){
+                    return
+                }
+                
+                guard let expenseViewController = segue.destination as? ExpenseViewController else{
+                    os_log("Error initialising expense view controller", log: OSLog.default, type: .error)
+                    return
+                }
+                expenseViewController.budget = budget
+            }
+            break
+            
+        case "btnAddExpense":
+            
+            break
+            
+        default:
+            fatalError("Unidentified button")
+        }
     }
-    */
+ 
     
     //MARK: Gesture Recogniser view Tapped
     @objc func viewTapped(gestureRecogniser: UITapGestureRecognizer){
@@ -78,15 +101,7 @@ class BudgetViewController: UIViewController {
     
     //--Swap the logic that directly presents view with a segue and use prepare(segue:)
     //MARK: Save Core Data
-    @IBAction func saveBudget(_ sender: UIBarButtonItem) {
-        let validate = validateForSave()
-        if (!validate.isEmpty){
-            let alert = UIAlertController(title: "Validation Error", message: validate, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
+    func save()-> Bool{
         let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
         guard let context = appDelegate?.persistentContainer.viewContext else {
             os_log("Did not successfully initialise context", log: OSLog.default, type: .error)
@@ -94,7 +109,7 @@ class BudgetViewController: UIViewController {
             let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
-            return
+            return false
         }
         //Create entiry
         guard let entity = NSEntityDescription.entity(forEntityName: "Budgets", in: context)else{
@@ -103,7 +118,7 @@ class BudgetViewController: UIViewController {
             let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
-            return
+            return false
         }
         let newBudget = NSManagedObject(entity: entity, insertInto: context)
         //Add data to newBudget
@@ -115,9 +130,6 @@ class BudgetViewController: UIViewController {
         //Save Data
         do{
             try context.save()
-            //Navigate to Expense View
-            let expenseController = ExpenseViewController()
-            present(expenseController, animated: true, completion: nil)
         }catch{
             os_log("Error saving budget to context", log: OSLog.default, type: .error)
             let alert = UIAlertController(title: "Save Error", message: "There was an error saving data to the database.\nAn error log has been created.", preferredStyle: .alert)
@@ -125,9 +137,11 @@ class BudgetViewController: UIViewController {
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
         }
+        budget = Budget(budgetName: nameTextField.text!, incomingCashFlow: amount!, fromDate: startDate.text!, toDate: endDate.text!)
+        return budget != nil
     }
     
-    func validateForSave()-> String{
+    func validateForSave()-> Bool{
         var errorMsg = ""
         
         let amount: Decimal? = Decimal(string: incomingCashFlow.text!)
@@ -151,8 +165,13 @@ class BudgetViewController: UIViewController {
                 errorMsg += "\nInvalid End Date"
             }
         }
-        
-        return errorMsg
+        if (!errorMsg.isEmpty){
+            let alert = UIAlertController(title: "Validation Error", message: errorMsg, preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        }
+        return errorMsg.isEmpty
     }
 }
 
@@ -207,9 +226,9 @@ extension BudgetViewController: UITextFieldDelegate{
         //check against amount & datees -- amount of 0 will still have a string value
         if (index == 4){
             //fields have been completed, validate that they're correct
-            
+            updateSaveButton()
         }
-        updateSaveButton()
+        
     }
 
     //MARK: UIDatePickerView
@@ -268,6 +287,7 @@ extension BudgetViewController: UITextFieldDelegate{
     private func updateSaveButton(){
         let text = nameTextField.text ?? ""
         saveButton.isEnabled = !text.isEmpty
+        addExpenseButton.isEnabled = false
     }
     
 }

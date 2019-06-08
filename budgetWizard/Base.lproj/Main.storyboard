@@ -131,7 +131,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="Nnn-l9-aoa" kind="presentation" id="TLj-ac-hKB"/>
+                                                    <segue destination="Nnn-l9-aoa" kind="presentation" identifier="btnAddExpense" id="TLj-ac-hKB"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -160,10 +160,12 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="NeN-q5-wwR">
                             <connections>
                                 <action selector="saveBudget:" destination="6XC-JP-xdz" id="XtO-3Z-PEa"/>
+                                <segue destination="LfO-kM-vR9" kind="push" identifier="btnSave" id="lR5-qc-lDK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addExpenseButton" destination="jJQ-bV-ETw" id="sBz-Du-XRO"/>
                         <outlet property="endDate" destination="VB8-cL-npe" id="YKA-0n-KIy"/>
                         <outlet property="incomingCashFlow" destination="C0Q-eh-hFq" id="HgP-Rj-JJP"/>
                         <outlet property="nameTextField" destination="ZHG-Q1-GMI" id="sNa-kT-eXO"/>
@@ -330,10 +332,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PN-pV-Ppz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1376.8115942028987" y="-670.3125"/>
+            <point key="canvasLocation" x="1400" y="-314"/>
         </scene>
     </scenes>
     <resources>
         <image name="BackgroundImage" width="200" height="208.66667175292969"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lR5-qc-lDK"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -17,6 +17,7 @@ class ExpenseViewController: UIViewController{
     @IBOutlet weak var expenseDate: UITextField!
     let categories = ["Credit Cards", "Food", "Future Bill", "Future Goal", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
     var selectedCategory: String?
+    var budget: Budget?
     
     //MARK: Private Properties
     private var expenseDatePicker: UIDatePicker?
@@ -27,6 +28,9 @@ class ExpenseViewController: UIViewController{
         initDelegates()
         initPickers()
         initGestureRecogniser()
+        if let budget = budget{
+            navigationItem.title = budget.budgetName
+        }
     }
     
     //MARK: Set Delegates
@@ -34,6 +38,7 @@ class ExpenseViewController: UIViewController{
         categoryTextField.delegate = self
         expenseName.delegate = self
         amount.delegate = self
+        
     }
     
     //MARK: Set Gesture recogniser
