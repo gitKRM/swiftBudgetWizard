@@ -17,7 +17,8 @@ class ExpenseViewController: UIViewController{
     @IBOutlet weak var expenseDate: UITextField!
     let categories = ["Credit Cards", "Food", "Future Bill", "Future Goal", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
     var selectedCategory: String?
-    var budget: Budget?
+    var budget = Budget(context: PersistenceService.context)?
+    let expense = Expense(context: PersistenceService.context)
     
     //MARK: Private Properties
     private var expenseDatePicker: UIDatePicker?
@@ -28,9 +29,7 @@ class ExpenseViewController: UIViewController{
         initDelegates()
         initPickers()
         initGestureRecogniser()
-        if let budget = budget{
-            navigationItem.title = budget.budgetName
-        }
+       
     }
     
     //MARK: Set Delegates

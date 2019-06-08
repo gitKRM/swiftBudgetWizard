@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Budgets" representedClassName="Budgets" syncable="YES" codeGenerationType="class">
+    <entity name="Budget" representedClassName="Budget" syncable="YES">
         <attribute name="budgetName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="incomingCashFlow" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="expenseRel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expenses" syncable="YES"/>
+        <relationship name="expense" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expenses" inverseName="budgets" inverseEntity="Expenses" syncable="YES"/>
     </entity>
     <entity name="Expenses" representedClassName="Expenses" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
@@ -13,9 +13,10 @@
         <attribute name="expenseDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="expenseName" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isRecurring" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="budgets" toMany="YES" deletionRule="Nullify" destinationEntity="Budget" inverseName="expense" inverseEntity="Budget" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Budgets" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="Expenses" positionX="156.46875" positionY="-14.73046875" width="128" height="118"/>
+        <element name="Budget" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Expenses" positionX="156.46875" positionY="-14.73046875" width="128" height="133"/>
     </elements>
 </model>

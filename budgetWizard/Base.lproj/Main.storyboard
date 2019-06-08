@@ -250,6 +250,11 @@
                                 <action selector="cancel:" destination="LfO-kM-vR9" id="oC3-y5-7gx"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="OqL-MW-beM">
+                            <connections>
+                                <segue destination="gcB-CE-SY8" kind="unwind" unwindAction="unwindToBudgetViewWithSender:" id="lUs-mq-PbF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="amount" destination="NNv-2f-t7W" id="l3N-yY-kk1"/>
@@ -259,6 +264,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wi-MT-MVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gcB-CE-SY8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2286.9565217391305" y="-670.3125"/>
         </scene>

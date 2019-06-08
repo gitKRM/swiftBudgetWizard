@@ -19,7 +19,7 @@ class BudgetViewController: UIViewController {
     @IBOutlet weak var incomingCashFlow: UITextField!
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
-    var budget: Budget?
+    let budget = Budget(context: PersistenceService.context)
     
     struct ActiveControl{
         static let nameTextFieldSelected = 1
@@ -64,17 +64,13 @@ class BudgetViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
         switch(segue.identifier ?? ""){
         case "btnSave":
             if (validateForSave()){
-                if (!save()){
-                    return
-                }
-                
+               save()
                 guard let expenseViewController = segue.destination as? ExpenseViewController else{
                     os_log("Error initialising expense view controller", log: OSLog.default, type: .error)
                     return
@@ -91,7 +87,13 @@ class BudgetViewController: UIViewController {
             fatalError("Unidentified button")
         }
     }
- 
+    
+    //MARK: Actions
+    @IBAction func unwindToBudgetView(sender : UIStoryboardSegue){
+        if let sourceViewController = sender.sourceViewController as? ExpenseViewController, let expense = sourceViewController.expense{
+            //--Expense should be created, add to table
+        }
+    }
     
     //MARK: Gesture Recogniser view Tapped
     @objc func viewTapped(gestureRecogniser: UITapGestureRecognizer){
@@ -101,44 +103,13 @@ class BudgetViewController: UIViewController {
     
     //--Swap the logic that directly presents view with a segue and use prepare(segue:)
     //MARK: Save Core Data
-    func save()-> Bool{
-        let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-        guard let context = appDelegate?.persistentContainer.viewContext else {
-            os_log("Did not successfully initialise context", log: OSLog.default, type: .error)
-            let alert = UIAlertController(title: "Conext Error", message: "Error attempting to retrieve Database for Saving Data\nA log has been created for this error.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
-            return false
-        }
-        //Create entiry
-        guard let entity = NSEntityDescription.entity(forEntityName: "Budgets", in: context)else{
-            os_log("Could not find Budgets Entity", log: OSLog.default, type: .error)
-            let alert = UIAlertController(title: "Table Error", message: "There was an error retrieving the database table for saving your budget.\nA log has been created for this error.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
-            return false
-        }
-        let newBudget = NSManagedObject(entity: entity, insertInto: context)
-        //Add data to newBudget
-        newBudget.setValue(nameTextField.text, forKey: "budgetName")
-        let amount: Decimal? = Decimal(string: incomingCashFlow.text!)
-        newBudget.setValue(amount, forKey: "incomingCashFlow")
-        newBudget.setValue(startDatePicker?.date, forKey: "startDate")
-        newBudget.setValue(endDatePicker?.date, forKey: "endDate")
+    func save(){
         //Save Data
-        do{
-            try context.save()
-        }catch{
-            os_log("Error saving budget to context", log: OSLog.default, type: .error)
-            let alert = UIAlertController(title: "Save Error", message: "There was an error saving data to the database.\nAn error log has been created.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
-        }
-        budget = Budget(budgetName: nameTextField.text!, incomingCashFlow: amount!, fromDate: startDate.text!, toDate: endDate.text!)
-        return budget != nil
+        budget.budgetName = nameTextField.text
+        budget.incomingCashFlow = Decimal(string: incomingCashFlow.text!) as NSDecimalNumber?
+        budget.startDate = startDatePicker?.date as NSDate?
+        budget.endDate = endDatePicker?.date as NSDate?
+        PersistenceService.saveContext()
     }
     
     func validateForSave()-> Bool{
