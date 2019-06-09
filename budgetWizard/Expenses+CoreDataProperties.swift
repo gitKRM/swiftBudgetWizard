@@ -2,7 +2,7 @@
 //  Expenses+CoreDataProperties.swift
 //  budgetWizard
 //
-//  Created by Kent McNamara on 8/06/19.
+//  Created by Kent McNamara on 9/06/19.
 //  Copyright © 2019 Kent McNamara. All rights reserved.
 //
 //
@@ -20,8 +20,9 @@ extension Expenses {
     @NSManaged public var amount: NSDecimalNumber?
     @NSManaged public var expenseCategory: String?
     @NSManaged public var expenseDate: NSDate?
-    @NSManaged public var expenseName: Bool
+    @NSManaged public var expenseName: String?
     @NSManaged public var isRecurring: Bool
+    @NSManaged public var recurringFrequency: String?
     @NSManaged public var budgets: NSSet?
 
 }

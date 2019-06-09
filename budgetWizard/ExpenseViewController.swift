@@ -15,10 +15,13 @@ class ExpenseViewController: UIViewController{
     @IBOutlet weak var expenseName: UITextField!
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var expenseDate: UITextField!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var recurringExpenseSwitch: UISwitch!
+    @IBOutlet weak var frequency: UITextField!
     let categories = ["Credit Cards", "Food", "Future Bill", "Future Goal", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
-    var selectedCategory: String?
-    var budget = Budget(context: PersistenceService.context)?
-    let expense = Expense(context: PersistenceService.context)
+    let frequencies = ["Weekly", "Forntightly", "Monthly"]
+    var budget: Budget?
+    let expense = Expenses(context: PersistenceService.context)
     
     //MARK: Private Properties
     private var expenseDatePicker: UIDatePicker?
@@ -29,7 +32,7 @@ class ExpenseViewController: UIViewController{
         initDelegates()
         initPickers()
         initGestureRecogniser()
-       
+        
     }
     
     //MARK: Set Delegates
@@ -37,7 +40,7 @@ class ExpenseViewController: UIViewController{
         categoryTextField.delegate = self
         expenseName.delegate = self
         amount.delegate = self
-        
+        frequency.delegate = self
     }
     
     //MARK: Set Gesture recogniser
@@ -52,6 +55,8 @@ class ExpenseViewController: UIViewController{
     func initPickers(){
         createCategoryPickerView()
         createCategoryPickerToolBar()
+        createFrequencyPickerView()
+        createFrequencyPickerToolBar()
         createExpenseDatePicker()
         createExpenseDatePickerToolBar()
     }
@@ -62,22 +67,122 @@ class ExpenseViewController: UIViewController{
     }
     
     
-    /*
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        guard let button = sender as? UIBarButtonItem, button === saveButton else{
+            fatalError("Unrecognised button received")
+        }
+        
+        
     }
-    */
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (validateForSave()){
+            save()
+            return true
+        }
+        return false
+    }
+
     //MARK: Gesture Recogniser view Tapped
     @objc func viewTapped(gestureRecogniser: UITapGestureRecognizer){
         view.endEditing(true)
     }
-
+    
+    //MARK: Switch Toggled
+    @IBAction func switchToggled(_ sender: UISwitch) {
+        if (sender.isOn){
+            frequency.isEnabled = true
+        }else{
+            frequency.text = ""
+            frequency.isEnabled = false
+        }
+    }
+    
+    
+    //MARK: Validation
+    func validateForSave()-> Bool{
+        var errorMsg = ""
+        if (categoryTextField.text!.isEmpty){
+            errorMsg = "Expense Category Must Be Selected\n\n"
+        }
+        if (expenseName.text!.isEmpty){
+            if (errorMsg.isEmpty){
+                errorMsg = "Expense Name Must Be Entered\n\n"
+            }else{
+                errorMsg = errorMsg + "Expense Name Must Be Entered\n\n"
+            }
+        }
+        let expenseAmount: Decimal? = Decimal(string: amount.text!)
+        if (expenseAmount == nil){
+            if (errorMsg.isEmpty){
+                errorMsg = "Expense Amount Must Be Entered\n\n"
+            }else{
+                errorMsg = errorMsg + "Expense Amount Must Be Entered\n\n"
+            }
+        }
+        if (!errorMsg.isEmpty){
+            let alert = UIAlertController(title: "Validation Error", message: errorMsg, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(alertAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+        return errorMsg.isEmpty
+    }
+    
+    //MARK: Save
+    func save(){
+        expense.expenseCategory = categoryTextField.text
+        expense.expenseName = expenseName.text
+        expense.expenseDate = expenseDatePicker?.date as NSDate?
+        expense.amount = Decimal(string: amount.text!) as NSDecimalNumber?
+        expense.isRecurring = recurringExpenseSwitch.isOn
+        expense.recurringFrequency = frequency?.text
+        budget?.expense = expense
+        PersistenceService.saveContext()
+    }
 }
 
 extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    //MARK: UIPickerView
+    func createCategoryPickerView(){
+        
+        let categoryPicker = UIPickerView()
+        categoryPicker.delegate = self
+        categoryPicker.dataSource = self
+        categoryTextField.inputView = categoryPicker
+    }
+    
+    func createCategoryPickerToolBar(){
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(ExpenseViewController.closePicker))
+        
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        categoryTextField.inputAccessoryView = toolBar
+    }
+    //MARK: Frequency Picker
+    func createFrequencyPickerView(){
+        let frequencyPicker = UIPickerView()
+        frequencyPicker.delegate = self
+        frequencyPicker.dataSource = self
+        frequency.inputView = frequencyPicker
+    }
+    
+    func createFrequencyPickerToolBar(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: nil)
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        frequency.inputAccessoryView = toolBar
+    }
 
     //MARK: Picker Functionss
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -85,16 +190,27 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return categories.count
+        if (pickerView == frequency){
+            return frequencies.count
+        }else{
+            return categories.count
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categories[row]
+        if (pickerView == frequency){
+            return frequencies[row]
+        }else{
+            return categories[row]
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedCategory = categories[row]
-        categoryTextField.text = selectedCategory
+        if (pickerView == frequency){
+            frequency.text = frequencies[row]
+        }else{
+            categoryTextField.text = categories[row]
+        }
     }
     
     
@@ -120,26 +236,6 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
                 textField.text = formattedAmount
             }
         }
-    }
-    
-    //MARK: UIPickerView
-    func createCategoryPickerView(){
-        
-        let categoryPicker = UIPickerView()
-        categoryPicker.delegate = self
-        categoryPicker.dataSource = self
-        categoryTextField.inputView = categoryPicker
-    }
-    
-    func createCategoryPickerToolBar(){
-        
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ExpenseViewController.closePicker))
-        
-        toolBar.setItems([doneButton], animated: true)
-        toolBar.isUserInteractionEnabled = true
-        categoryTextField.inputAccessoryView = toolBar
     }
     
     //MARK: Expense Date Picker
