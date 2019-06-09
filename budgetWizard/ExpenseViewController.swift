@@ -75,8 +75,6 @@ class ExpenseViewController: UIViewController{
         guard let button = sender as? UIBarButtonItem, button === saveButton else{
             fatalError("Unrecognised button received")
         }
-        
-        
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -101,7 +99,6 @@ class ExpenseViewController: UIViewController{
             frequency.isEnabled = false
         }
     }
-    
     
     //MARK: Validation
     func validateForSave()-> Bool{
@@ -226,16 +223,16 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         navigationItem.title = expenseName.text
-        if (textField == amount && !textField.text!.isEmpty){
-            let newAmount:Double? = Double(textField.text!)
-            
-            let formatter = NumberFormatter()
-            formatter.locale = Locale.autoupdatingCurrent
-            formatter.numberStyle = .currency
-            if let formattedAmount = formatter.string(from: newAmount! as NSNumber){
-                textField.text = formattedAmount
-            }
-        }
+//        if (textField == amount && !textField.text!.isEmpty){
+//            let newAmount:Double? = Double(textField.text!)
+//
+//            let formatter = NumberFormatter()
+//            formatter.locale = Locale.autoupdatingCurrent
+//            formatter.numberStyle = .currency
+//            if let formattedAmount = formatter.string(from: newAmount! as NSNumber){
+//                textField.text = formattedAmount
+//            }
+//        }
     }
     
     //MARK: Expense Date Picker
