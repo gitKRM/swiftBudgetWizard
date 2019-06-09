@@ -20,7 +20,6 @@ class BudgetViewController: UIViewController {
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
     let budget = Budget(context: PersistenceService.context)
-    
     struct ActiveControl{
         static let nameTextFieldSelected = 1
         static let incomeCashFlowSelected = 2

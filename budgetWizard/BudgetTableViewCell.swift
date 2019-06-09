@@ -10,9 +10,12 @@ import UIKit
 
 class BudgetTableViewCell : UITableViewCell{
     //MARK: Properties
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var fromDateLabel: UILabel!
-    @IBOutlet weak var toDateLabel: UILabel!
+    @IBOutlet weak var budgetName: UILabel!
+    @IBOutlet weak var fromDate: UILabel!
+    @IBOutlet weak var toDate: UILabel!
+    @IBOutlet weak var dayName: UILabel!
+    @IBOutlet weak var monthNum: UILabel!
+    @IBOutlet weak var monthName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
