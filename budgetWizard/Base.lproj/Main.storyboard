@@ -40,12 +40,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="vzB-bG-djA">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BudgetTableViewCell" rowHeight="80" id="vzB-bG-djA" customClass="BudgetTableViewCell" customModule="budgetWizard" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vzB-bG-djA" id="I6p-Vy-2DO">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vzB-bG-djA" id="I6p-Vy-2DO" customClass="BudgetTableViewCell" customModule="budgetWizard" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaE-gJ-aoO">
+                                            <rect key="frame" x="20" y="29" width="217" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdb-tI-ddY">
+                                            <rect key="frame" x="266" y="19" width="128" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAq-1S-fOO">
+                                            <rect key="frame" x="266" y="48" width="128" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -69,7 +92,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhb-dY-7Ga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1377" y="-668"/>
+            <point key="canvasLocation" x="-1378.2608695652175" y="-668.30357142857144"/>
         </scene>
         <!--Add Edit Budget-->
         <scene sceneID="8as-7T-i6t">
@@ -91,25 +114,25 @@
                                         <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Budget Name" textAlignment="center" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="ZHG-Q1-GMI">
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Budget Name" textAlignment="center" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="ZHG-Q1-GMI">
                                         <rect key="frame" x="0.0" y="68.333333333333343" width="374" height="33"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Incoming Cash Flow" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C0Q-eh-hFq">
+                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Incoming Cash Flow" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C0Q-eh-hFq">
                                         <rect key="frame" x="0.0" y="118.33333333333334" width="374" height="33"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Start Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OpR-bb-GPB">
+                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Start Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OpR-bb-GPB">
                                         <rect key="frame" x="0.0" y="168.33333333333331" width="374" height="33"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select End Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VB8-cL-npe">
+                                    <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select End Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VB8-cL-npe">
                                         <rect key="frame" x="0.0" y="218.33333333333331" width="374" height="33"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -131,7 +154,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="Nnn-l9-aoa" kind="presentation" id="TLj-ac-hKB"/>
+                                                    <segue destination="Nnn-l9-aoa" kind="presentation" identifier="btnAddExpense" id="TLj-ac-hKB"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -157,9 +180,15 @@
                                 <action selector="cancel:" destination="6XC-JP-xdz" id="70x-no-uQW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NeN-q5-wwR"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NeN-q5-wwR">
+                            <connections>
+                                <action selector="saveBudget:" destination="6XC-JP-xdz" id="XtO-3Z-PEa"/>
+                                <segue destination="LfO-kM-vR9" kind="push" identifier="btnSave" id="lR5-qc-lDK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addExpenseButton" destination="jJQ-bV-ETw" id="sBz-Du-XRO"/>
                         <outlet property="endDate" destination="VB8-cL-npe" id="YKA-0n-KIy"/>
                         <outlet property="incomingCashFlow" destination="C0Q-eh-hFq" id="HgP-Rj-JJP"/>
                         <outlet property="nameTextField" destination="ZHG-Q1-GMI" id="sNa-kT-eXO"/>
@@ -183,7 +212,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="788"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zfB-KY-lO7">
-                                <rect key="frame" x="20" y="108" width="374" height="223"/>
+                                <rect key="frame" x="20" y="108" width="374" height="271"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Expense Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CEK-ZL-XDJ">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="33"/>
@@ -220,9 +249,18 @@
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5hV-2s-uGE">
                                                 <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="switchToggled:" destination="LfO-kM-vR9" eventType="valueChanged" id="ttr-hV-H0H"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                     </stackView>
+                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Frquency" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ep-DL-oRR">
+                                        <rect key="frame" x="0.0" y="238" width="374" height="33"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -244,15 +282,24 @@
                                 <action selector="cancel:" destination="LfO-kM-vR9" id="oC3-y5-7gx"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="OqL-MW-beM">
+                            <connections>
+                                <segue destination="gcB-CE-SY8" kind="unwind" unwindAction="unwindToBudgetViewWithSender:" id="lUs-mq-PbF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="amount" destination="NNv-2f-t7W" id="l3N-yY-kk1"/>
                         <outlet property="categoryTextField" destination="CEK-ZL-XDJ" id="lZO-iL-WAn"/>
                         <outlet property="expenseDate" destination="4gY-iN-zjs" id="QAH-Is-GQ4"/>
                         <outlet property="expenseName" destination="Jy5-uQ-hsW" id="kvk-pu-TK7"/>
+                        <outlet property="frequency" destination="4Ep-DL-oRR" id="U7p-P5-GLO"/>
+                        <outlet property="recurringExpenseSwitch" destination="5hV-2s-uGE" id="c62-nc-Bp4"/>
+                        <outlet property="saveButton" destination="OqL-MW-beM" id="JXL-en-li3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wi-MT-MVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gcB-CE-SY8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2286.9565217391305" y="-670.3125"/>
         </scene>
@@ -326,10 +373,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PN-pV-Ppz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1376.8115942028987" y="-670.3125"/>
+            <point key="canvasLocation" x="1400" y="-314"/>
         </scene>
     </scenes>
     <resources>
         <image name="BackgroundImage" width="200" height="208.66667175292969"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lR5-qc-lDK"/>
+    </inferredMetricsTieBreakers>
 </document>
