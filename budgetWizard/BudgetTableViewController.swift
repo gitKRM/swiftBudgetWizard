@@ -7,42 +7,70 @@
 //
 
 import UIKit
+import CoreData
+import os.log
 
 class BudgetTableViewController: UITableViewController {
 
     //MARK: Properties
+    var budgets = [Budget]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        getBudgets()
+    }
+    
+    //MARK: load from DB
+    func getBudgets(){
+        let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
+        
+        do{
+            let budget = try PersistenceService.context.fetch(fetchRequest)
+            self.budgets = budget
+        }catch{
+            os_log("Error getting budget information from DB", log: OSLog.default, type: .error)
+        }
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return budgets.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cellIdentifier = "BudgetTableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BudgetTableViewCell else{
+            fatalError("Could not downcast custom cell to BudgetViewTableCell")
+        }
+        //Get day namee
+        let budget = budgets[indexPath.row]
+        cell.budgetName.text = budget.budgetName
+        let dayDateFormatter = DateFormatter()
+        dayDateFormatter.dateFormat = "EEEE"
+        cell.dayName.text = dayDateFormatter.string(from: budget.startDate! as Date)
+        //Get day number as int
+        let calendar = Calendar.current
+        let dayNum = calendar.component(.day, from: budget.startDate! as Date)
+        cell.dayNum.text = String(describing: dayNum)
+        //Get month name
+        let monthDateFormatter = DateFormatter()
+        monthDateFormatter.dateFormat = "LLLL"
+        cell.monthName.text = monthDateFormatter.string(from: budget.startDate! as Date)
+        
+        let endDateFormatter = DateFormatter()
+        endDateFormatter.dateFormat = "dd/MM/yyyy"
+        cell.toDate.text = endDateFormatter.string(from: budget.endDate! as Date)
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
