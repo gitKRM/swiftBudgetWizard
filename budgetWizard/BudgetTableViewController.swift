@@ -50,20 +50,24 @@ class BudgetTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BudgetTableViewCell else{
             fatalError("Could not downcast custom cell to BudgetViewTableCell")
         }
-
+        //Get day namee
         let budget = budgets[indexPath.row]
         cell.budgetName.text = budget.budgetName
         let dayDateFormatter = DateFormatter()
         dayDateFormatter.dateFormat = "EEEE"
         cell.dayName.text = dayDateFormatter.string(from: budget.startDate! as Date)
+        //Get day number as int
+        let calendar = Calendar.current
+        let dayNum = calendar.component(.day, from: budget.startDate! as Date)
+        cell.dayNum.text = String(describing: dayNum)
+        //Get month name
+        let monthDateFormatter = DateFormatter()
+        monthDateFormatter.dateFormat = "LLLL"
+        cell.monthName.text = monthDateFormatter.string(from: budget.startDate! as Date)
         
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        cell.fromDate.text = dateFormatter.string(from: budget.startDate! as Date)
         let endDateFormatter = DateFormatter()
         endDateFormatter.dateFormat = "dd/MM/yyyy"
-        cell.toDate.text = dateFormatter.string(from: budget.endDate! as Date)
+        cell.toDate.text = endDateFormatter.string(from: budget.endDate! as Date)
         return cell
     }
  
