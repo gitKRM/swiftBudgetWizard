@@ -114,12 +114,34 @@ class BudgetTableViewController: UITableViewController {
     }
     
 
-    /*
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? ""){
+            
+        case "AddBudget": break
+            
+        case "ShowBudgetDetails":
+            guard let budgetViewController = segue.destination as? BudgetViewController else{
+                fatalError("Unexpected destination -- could not find \(segue.destination)")
+            }
+            guard let selectedBudgetCell = sender as? BudgetTableViewCell else{
+                fatalError("Unexpected sender:")
+            }
+            guard let indexPath = tableView.indexPath(for: selectedBudgetCell) else{
+                fatalError("Index out of range for selected table cell")
+            }
+            let selectedBudget = budgets[indexPath.row]
+            budgetViewController.selectedBudget = selectedBudget
+            break
+            
+        default:
+            fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
+            break            
+        }
     }
-    */
+ 
 
 }
