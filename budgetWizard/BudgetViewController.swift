@@ -80,7 +80,16 @@ class BudgetViewController: UIViewController {
     
     // MARK: - Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        //--dismiss if view is presented modally
+        let isPresentingController = presentingViewController is UINavigationController
+        if isPresentingController{
+            dismiss(animated: true, completion: nil)
+        }
+            //--Pop if view has been pushed on the stack
+        else if let owningNavController = navigationController{
+            owningNavController.popViewController(animated: true)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
