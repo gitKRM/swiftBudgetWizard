@@ -19,7 +19,7 @@ class BudgetViewController: UIViewController {
     @IBOutlet weak var incomingCashFlow: UITextField!
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
-    let budget = Budget(context: PersistenceService.context)
+    var createdBudget: Budget?
     var selectedBudget: Budget? //--Edit existing budget
     struct ActiveControl{
         static let nameTextFieldSelected = 1
@@ -75,7 +75,6 @@ class BudgetViewController: UIViewController {
     func initGestureRecogniser(){
         //--Gesture recogniser associated to full view, closes of any keyboards when tapped
         let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(BudgetViewController.viewTapped(gestureRecogniser:)))
-        
         view.addGestureRecognizer(gestureRecogniser)
     }
     
@@ -95,7 +94,7 @@ class BudgetViewController: UIViewController {
                     os_log("Error initialising expense view controller", log: OSLog.default, type: .error)
                     return
                 }
-                expenseViewController.budget = budget
+                expenseViewController.budget = createdBudget
             }
             break
             
@@ -123,11 +122,13 @@ class BudgetViewController: UIViewController {
     //MARK: Save Core Data
     func save(){
         //Save Data
+        let budget = Budget(context: PersistenceService.context)
         budget.budgetName = nameTextField.text
         budget.incomingCashFlow = Decimal(string: incomingCashFlow.text!) as NSDecimalNumber?
         budget.startDate = startDatePicker?.date as NSDate?
         budget.endDate = endDatePicker?.date as NSDate?
         PersistenceService.saveContext()
+        createdBudget = budget
     }
     //MARK: Validation
     func validateForSave()-> Bool{
