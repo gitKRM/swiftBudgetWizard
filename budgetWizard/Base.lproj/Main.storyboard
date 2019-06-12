@@ -22,7 +22,7 @@
                     <navigationItem key="navigationItem" title="Summary" id="g22-o8-B8A">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eBO-d7-82K">
                             <connections>
-                                <segue destination="bDv-Z2-Oju" kind="presentation" id="B6k-Xy-jha"/>
+                                <segue destination="CCR-o5-0Ry" kind="show" id="TPL-66-2qR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -49,28 +49,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAq-1S-fOO">
-                                            <rect key="frame" x="240" y="58" width="154" height="21"/>
+                                            <rect key="frame" x="240" y="69" width="154" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaE-gJ-aoO">
-                                            <rect key="frame" x="133" y="11" width="261" height="39"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGG-ex-Ggc">
-                                            <rect key="frame" x="20" y="11" width="97" height="21"/>
+                                            <rect key="frame" x="20" y="11" width="97" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLM-kX-W1k">
-                                            <rect key="frame" x="20" y="41" width="97" height="21"/>
+                                            <rect key="frame" x="20" y="34" width="97" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -84,9 +77,16 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Expires:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdb-tI-ddY">
-                                            <rect key="frame" x="133" y="57" width="71" height="21"/>
+                                            <rect key="frame" x="133" y="69" width="71" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-MediumItalic" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaE-gJ-aoO">
+                                            <rect key="frame" x="133" y="32" width="261" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="24"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -100,6 +100,7 @@
                                     <outlet property="dayNum" destination="gLM-kX-W1k" id="efD-bg-maY"/>
                                     <outlet property="monthName" destination="Np6-WF-zDL" id="Z5V-Yf-jF4"/>
                                     <outlet property="toDate" destination="AAq-1S-fOO" id="BL4-1g-HOR"/>
+                                    <segue destination="6XC-JP-xdz" kind="show" identifier="ShowBudgetDetails" id="GXe-i6-LZc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -116,14 +117,14 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Np8-Xi-TEa">
                             <connections>
-                                <segue destination="n6L-GN-s1i" kind="presentation" id="PmF-CP-TwJ"/>
+                                <segue destination="n6L-GN-s1i" kind="presentation" identifier="AddBudget" id="PmF-CP-TwJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhb-dY-7Ga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1378.2608695652175" y="-668.30357142857144"/>
+            <point key="canvasLocation" x="-2210.144927536232" y="-668.30357142857144"/>
         </scene>
         <!--Add Edit Budget-->
         <scene sceneID="8as-7T-i6t">
@@ -229,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbK-Br-ezh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="427.536231884058" y="-668.30357142857144"/>
+            <point key="canvasLocation" x="-465" y="-668"/>
         </scene>
         <!--Add Expense-->
         <scene sceneID="jSc-u4-gWs">
@@ -332,7 +333,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wi-MT-MVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gcB-CE-SY8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2286.9565217391305" y="-670.3125"/>
+            <point key="canvasLocation" x="1541" y="-668"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Qk-ng-L7v">
@@ -353,24 +354,6 @@
             <point key="canvasLocation" x="-4025" y="-667"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="ek9-GL-cXH">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bDv-Z2-Oju" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JhC-0t-kLr">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="CCR-o5-0Ry" kind="relationship" relationship="rootViewController" id="gTG-I1-o3x"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RKq-66-FW2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2233" y="-668"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="Bm6-mp-rSs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n6L-GN-s1i" sceneMemberID="viewController">
@@ -386,7 +369,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5P-nt-k27" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-519" y="-668"/>
+            <point key="canvasLocation" x="-1316" y="-290"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="k9Y-uy-1OR">
@@ -404,13 +387,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PN-pV-Ppz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1400" y="-314"/>
+            <point key="canvasLocation" x="635" y="-336"/>
         </scene>
     </scenes>
     <resources>
         <image name="BackgroundImage" width="200" height="208.66667175292969"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lR5-qc-lDK"/>
+        <segue reference="1le-Uh-Kqj"/>
+        <segue reference="GXe-i6-LZc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -19,7 +19,8 @@ class BudgetViewController: UIViewController {
     @IBOutlet weak var incomingCashFlow: UITextField!
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
-    let budget = Budget(context: PersistenceService.context)
+    var createdBudget: Budget?
+    var selectedBudget: Budget? //--Edit existing budget
     struct ActiveControl{
         static let nameTextFieldSelected = 1
         static let incomeCashFlowSelected = 2
@@ -47,20 +48,48 @@ class BudgetViewController: UIViewController {
         startDate.delegate = self
         endDate.delegate = self
         updateSaveButton()
-        addExpenseButton.isEnabled = true
+        loadExistingBudget()
+    }
+    
+    //MARK: Load existing budget
+    func loadExistingBudget(){
+        if let selectedBudget = selectedBudget{
+            nameTextField.text = selectedBudget.budgetName
+            let numFormatter = NumberFormatter()
+            numFormatter.generatesDecimalNumbers = true
+            numFormatter.minimumFractionDigits = 2
+            numFormatter.maximumFractionDigits = 2
+            incomingCashFlow.text = numFormatter.string(from: selectedBudget.incomingCashFlow! as NSDecimalNumber)
+            let startDateFormatter = DateFormatter()
+            startDateFormatter.dateFormat = "dd/MM/yyyy"
+            startDate.text = startDateFormatter.string(from: selectedBudget.startDate! as Date)
+            let endDateFormatter = DateFormatter()
+            endDateFormatter.dateFormat = "dd/MM/yyyy"
+            endDate.text = endDateFormatter.string(from: selectedBudget.endDate! as Date)
+            addExpenseButton.isEnabled = true
+        }
+        
     }
     
     //MARK: Init Gesture Recogniser
     func initGestureRecogniser(){
         //--Gesture recogniser associated to full view, closes of any keyboards when tapped
         let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(BudgetViewController.viewTapped(gestureRecogniser:)))
-        
         view.addGestureRecognizer(gestureRecogniser)
     }
     
     // MARK: - Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        //--dismiss if view is presented modally
+        let isPresentingController = presentingViewController is UINavigationController
+        if isPresentingController{
+            dismiss(animated: true, completion: nil)
+        }
+            //--Pop if view has been pushed on the stack
+        else if let owningNavController = navigationController{
+            owningNavController.popViewController(animated: true)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,7 +103,7 @@ class BudgetViewController: UIViewController {
                     os_log("Error initialising expense view controller", log: OSLog.default, type: .error)
                     return
                 }
-                expenseViewController.budget = budget
+                expenseViewController.budget = createdBudget
             }
             break
             
@@ -102,11 +131,13 @@ class BudgetViewController: UIViewController {
     //MARK: Save Core Data
     func save(){
         //Save Data
+        let budget = Budget(context: PersistenceService.context)
         budget.budgetName = nameTextField.text
         budget.incomingCashFlow = Decimal(string: incomingCashFlow.text!) as NSDecimalNumber?
         budget.startDate = startDatePicker?.date as NSDate?
         budget.endDate = endDatePicker?.date as NSDate?
         PersistenceService.saveContext()
+        createdBudget = budget
     }
     //MARK: Validation
     func validateForSave()-> Bool{

@@ -44,12 +44,12 @@ class BudgetTableViewController: UITableViewController {
         return budgets.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "BudgetTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BudgetTableViewCell else{
             fatalError("Could not downcast custom cell to BudgetViewTableCell")
         }
+        
         //Get day namee
         let budget = budgets[indexPath.row]
         cell.budgetName.text = budget.budgetName
@@ -110,16 +110,38 @@ class BudgetTableViewController: UITableViewController {
     
     // MARK: - Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
 
-    /*
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? ""){
+            
+        case "AddBudget": break
+            
+        case "ShowBudgetDetails":
+            guard let budgetViewController = segue.destination as? BudgetViewController else{
+                fatalError("Unexpected destination -- could not find \(segue.destination)")
+            }
+            guard let selectedBudgetCell = sender as? BudgetTableViewCell else{
+                fatalError("Unexpected sender:")
+            }
+            guard let indexPath = tableView.indexPath(for: selectedBudgetCell) else{
+                fatalError("Index out of range for selected table cell")
+            }
+            let selectedBudget = budgets[indexPath.row]
+            budgetViewController.selectedBudget = selectedBudget
+            break
+            
+        default:
+            fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
+            break            
+        }
     }
-    */
+ 
 
 }

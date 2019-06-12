@@ -175,7 +175,7 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
     func createFrequencyPickerToolBar(){
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(ExpenseViewController.closePicker))
         toolBar.setItems([doneButton], animated: true)
         toolBar.isUserInteractionEnabled = true
         frequency.inputAccessoryView = toolBar
@@ -187,7 +187,7 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if (pickerView == frequency){
+        if (frequency.isFirstResponder){
             return frequencies.count
         }else{
             return categories.count
@@ -195,7 +195,7 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if (pickerView == frequency){
+        if (frequency.isFirstResponder){
             return frequencies[row]
         }else{
             return categories[row]
@@ -203,7 +203,7 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if (pickerView == frequency){
+        if (frequency.isFirstResponder){
             frequency.text = frequencies[row]
         }else{
             categoryTextField.text = categories[row]
