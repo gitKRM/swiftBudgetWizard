@@ -35,7 +35,6 @@ class BudgetTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -53,23 +52,15 @@ class BudgetTableViewController: UITableViewController {
         //Get day namee
         let budget = budgets[indexPath.row]
         cell.budgetName.text = budget.budgetName
-        cell.dayName.text = getDatePropertyAsString(formatSpecifier: "EEEE", date: budget.startDate)
+        cell.dayName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: budget.startDate)
         
         //Get day number as int
         let calendar = Calendar.current
         let dayNum = calendar.component(.day, from: budget.startDate! as Date)
         cell.dayNum.text = String(describing: dayNum)
         //Get month name
-        cell.monthName.text = getDatePropertyAsString(formatSpecifier: "LLLL", date: budget.startDate)
-        
+        cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: budget.endDate)
         return cell
-    }
- 
-    func getDatePropertyAsString(formatSpecifier: String, date: NSDate?)-> String{
-     
-        let formatter = DateFormatter()
-        formatter.dateFormat = formatSpecifier
-        return formatter.string(from: date! as Date)
     }
     
     /*
