@@ -60,12 +60,10 @@ class BudgetViewController: UIViewController {
             numFormatter.minimumFractionDigits = 2
             numFormatter.maximumFractionDigits = 2
             incomingCashFlow.text = numFormatter.string(from: selectedBudget.incomingCashFlow! as NSDecimalNumber)
-            let startDateFormatter = DateFormatter()
-            startDateFormatter.dateFormat = "dd/MM/yyyy"
-            startDate.text = startDateFormatter.string(from: selectedBudget.startDate! as Date)
-            let endDateFormatter = DateFormatter()
-            endDateFormatter.dateFormat = "dd/MM/yyyy"
-            endDate.text = endDateFormatter.string(from: selectedBudget.endDate! as Date)
+
+            startDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: selectedBudget.startDate)
+            
+            endDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: selectedBudget.endDate)
             addExpenseButton.isEnabled = true
         }
         
@@ -127,7 +125,6 @@ class BudgetViewController: UIViewController {
         
     }
     
-    //--Swap the logic that directly presents view with a segue and use prepare(segue:)
     //MARK: Save Core Data
     func save(){
         //Save Data
@@ -147,15 +144,13 @@ class BudgetViewController: UIViewController {
         if (amount == nil){
             errorMsg += "\nIncoming Cash Flow Must Be Entered"
         }
-        let startDateFormatter = DateFormatter()
-            startDateFormatter.dateFormat = "dd/MM/yyyy"
-        let validStartDate = startDateFormatter.date(from: startDate.text!)
+
+        let validStartDate = CustomDateFormatter.getDatePropertyFromString(formatSpecifier: "dd/MM/yyyy", date: startDate.text)
         if (validStartDate == nil){
             errorMsg += "\nInvalid Start Date"
         }
-        let endDateFormatter = DateFormatter()
-            endDateFormatter.dateFormat = "dd/MM/yyyy"
-        let validEndDate = endDateFormatter.date(from: endDate.text!)
+
+        let validEndDate = CustomDateFormatter.getDatePropertyFromString(formatSpecifier: "dd/MM/yyyy", date: endDate.text)
         if (validEndDate == nil){
             errorMsg += "\nInvalid End Date"
         }
@@ -172,6 +167,7 @@ class BudgetViewController: UIViewController {
         }
         return errorMsg.isEmpty
     }
+
 }
 
 extension BudgetViewController: UITextFieldDelegate{
@@ -188,16 +184,6 @@ extension BudgetViewController: UITextFieldDelegate{
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         navigationItem.title = nameTextField.text
-//        if (textField == incomingCashFlow && !textField.text!.isEmpty){
-//            let amount:Double? = Double(textField.text!)
-//
-//            let formatter = NumberFormatter()
-//            formatter.locale = Locale.autoupdatingCurrent
-//            formatter.numberStyle = .currency
-//            if let formattedAmount = formatter.string(from: amount! as NSNumber){
-//                textField.text = formattedAmount
-//            }
-//        }
         switch textField.tag {
             case ActiveControl.nameTextFieldSelected:
                 fieldsCompleted[0] = !nameTextField.text!.isEmpty
@@ -220,14 +206,12 @@ extension BudgetViewController: UITextFieldDelegate{
             if (i){
                 index += 1
             }
-            
         }
-        //check against amount & datees -- amount of 0 will still have a string value
+        //check against amount & dates -- amount of 0 will still have a string value
         if (index == 4){
-            //fields have been completed, validate that they're correct
+            //fields have been completed, validate that it's correct
             updateSaveButton()
         }
-        
     }
 
     //MARK: UIDatePickerView
@@ -266,17 +250,12 @@ extension BudgetViewController: UITextFieldDelegate{
     }
 
     @objc func startDateChanged(startDatePicker: UIDatePicker){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        startDate.text = dateFormatter.string(from: startDatePicker.date)
+        startDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: startDatePicker.date as NSDate)
     }
 
     @objc func endDateChanged(endDatePicker: UIDatePicker){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        endDate.text = dateFormatter.string(from: endDatePicker.date)
+        endDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: endDatePicker.date as NSDate)
     }
-
 
     @objc func closePicker(){
         view.endEditing(true)
