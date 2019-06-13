@@ -53,25 +53,25 @@ class BudgetTableViewController: UITableViewController {
         //Get day namee
         let budget = budgets[indexPath.row]
         cell.budgetName.text = budget.budgetName
-        let dayDateFormatter = DateFormatter()
-        dayDateFormatter.dateFormat = "EEEE"
-        cell.dayName.text = dayDateFormatter.string(from: budget.startDate! as Date)
+        cell.dayName.text = getDatePropertyAsString(formatSpecifier: "EEEE", date: budget.startDate)
+        
         //Get day number as int
         let calendar = Calendar.current
         let dayNum = calendar.component(.day, from: budget.startDate! as Date)
         cell.dayNum.text = String(describing: dayNum)
         //Get month name
-        let monthDateFormatter = DateFormatter()
-        monthDateFormatter.dateFormat = "LLLL"
-        cell.monthName.text = monthDateFormatter.string(from: budget.startDate! as Date)
+        cell.monthName.text = getDatePropertyAsString(formatSpecifier: "LLLL", date: budget.startDate)
         
-        let endDateFormatter = DateFormatter()
-        endDateFormatter.dateFormat = "dd/MM/yyyy"
-        cell.toDate.text = endDateFormatter.string(from: budget.endDate! as Date)
         return cell
     }
  
-
+    func getDatePropertyAsString(formatSpecifier: String, date: NSDate?)-> String{
+     
+        let formatter = DateFormatter()
+        formatter.dateFormat = formatSpecifier
+        return formatter.string(from: date! as Date)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

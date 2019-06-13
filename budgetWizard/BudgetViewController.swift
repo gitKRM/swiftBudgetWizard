@@ -60,12 +60,10 @@ class BudgetViewController: UIViewController {
             numFormatter.minimumFractionDigits = 2
             numFormatter.maximumFractionDigits = 2
             incomingCashFlow.text = numFormatter.string(from: selectedBudget.incomingCashFlow! as NSDecimalNumber)
-            let startDateFormatter = DateFormatter()
-            startDateFormatter.dateFormat = "dd/MM/yyyy"
-            startDate.text = startDateFormatter.string(from: selectedBudget.startDate! as Date)
-            let endDateFormatter = DateFormatter()
-            endDateFormatter.dateFormat = "dd/MM/yyyy"
-            endDate.text = endDateFormatter.string(from: selectedBudget.endDate! as Date)
+
+            startDate.text = getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: selectedBudget.startDate)
+
+            endDate.text = getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: selectedBudget.endDate)
             addExpenseButton.isEnabled = true
         }
         
@@ -127,7 +125,7 @@ class BudgetViewController: UIViewController {
         
     }
     
-    //--Swap the logic that directly presents view with a segue and use prepare(segue:)
+ 
     //MARK: Save Core Data
     func save(){
         //Save Data
@@ -147,15 +145,13 @@ class BudgetViewController: UIViewController {
         if (amount == nil){
             errorMsg += "\nIncoming Cash Flow Must Be Entered"
         }
-        let startDateFormatter = DateFormatter()
-            startDateFormatter.dateFormat = "dd/MM/yyyy"
-        let validStartDate = startDateFormatter.date(from: startDate.text!)
+
+        let validStartDate = getDatePropertyFromString(formatSpecifier: "dd/MM/yyyy", date: startDate.text)
         if (validStartDate == nil){
             errorMsg += "\nInvalid Start Date"
         }
-        let endDateFormatter = DateFormatter()
-            endDateFormatter.dateFormat = "dd/MM/yyyy"
-        let validEndDate = endDateFormatter.date(from: endDate.text!)
+
+        let validEndDate = getDatePropertyFromString(formatSpecifier: "dd/MM/yyyy", date: endDate.text)
         if (validEndDate == nil){
             errorMsg += "\nInvalid End Date"
         }
@@ -171,6 +167,19 @@ class BudgetViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
         return errorMsg.isEmpty
+    }
+    //MARK: Date formatting
+    func getDatePropertyFromString(formatSpecifier: String, date: String!)-> Date?{
+        let formatter = DateFormatter()
+        formatter.dateFormat = formatSpecifier
+        return formatter.date(from:date)
+    }
+    
+    func getDatePropertyAsString(formatSpecifier: String, date: NSDate?)-> String{
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = formatSpecifier
+        return formatter.string(from: date! as Date)
     }
 }
 
