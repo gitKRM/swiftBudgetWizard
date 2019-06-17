@@ -20,7 +20,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Summary" id="g22-o8-B8A">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eBO-d7-82K">
+                        <barButtonItem key="rightBarButtonItem" title="Budgets" id="eBO-d7-82K">
                             <connections>
                                 <segue destination="CCR-o5-0Ry" kind="show" id="TPL-66-2qR"/>
                             </connections>
@@ -138,7 +138,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="I13-6e-eHR">
-                                <rect key="frame" x="20" y="107.99999999999997" width="374" height="319.33333333333326"/>
+                                <rect key="frame" x="20" y="107.99999999999997" width="374" height="387.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create New Budget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dc8-dn-U5d">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="51.333333333333336"/>
@@ -170,27 +170,33 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o4S-kT-sUx">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJQ-bV-ETw">
                                         <rect key="frame" x="0.0" y="268.33333333333331" width="374" height="51"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJQ-bV-ETw">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="51"/>
-                                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="30"/>
-                                                <state key="normal" title="Add Expense">
-                                                    <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="15"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <segue destination="Nnn-l9-aoa" kind="presentation" identifier="btnAddExpense" id="TLj-ac-hKB"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                        <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="30"/>
+                                        <state key="normal" title="Add Expense">
+                                            <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="Nnn-l9-aoa" kind="presentation" identifier="btnAddExpense" id="TLj-ac-hKB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9y-d9-FX9">
+                                        <rect key="frame" x="0.0" y="336.33333333333331" width="374" height="51"/>
+                                        <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="30"/>
+                                        <state key="normal" title="View Expenses">
+                                            <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="cU5-xT-GjH" kind="show" identifier="btnViewExpenses" id="CTR-nh-deA"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -230,7 +236,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbK-Br-ezh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-465" y="-668"/>
+            <point key="canvasLocation" x="-465.21739130434787" y="-668.30357142857144"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="sUs-T5-D21">
+            <objects>
+                <viewController id="cU5-xT-GjH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YoM-Ab-Szd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cpB-Iw-GRR">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiN-BT-foL">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="View Expenses" id="5e5-N8-hNf">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vXg-0u-9Yx"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cpB-Iw-GRR" firstAttribute="leading" secondItem="mhK-dH-htu" secondAttribute="leading" id="2lC-HU-dbh"/>
+                            <constraint firstItem="ZiN-BT-foL" firstAttribute="trailing" secondItem="cpB-Iw-GRR" secondAttribute="trailing" id="Cvy-Rc-IvK"/>
+                            <constraint firstItem="cpB-Iw-GRR" firstAttribute="top" secondItem="ZiN-BT-foL" secondAttribute="bottom" id="RWZ-98-Rl6"/>
+                            <constraint firstItem="cpB-Iw-GRR" firstAttribute="trailing" secondItem="mhK-dH-htu" secondAttribute="trailing" id="UMH-0e-mjA"/>
+                            <constraint firstItem="ZiN-BT-foL" firstAttribute="bottom" secondItem="mhK-dH-htu" secondAttribute="top" id="ib5-hY-3Ko"/>
+                            <constraint firstItem="ZiN-BT-foL" firstAttribute="leading" secondItem="cpB-Iw-GRR" secondAttribute="leading" id="jfM-vK-gZr"/>
+                            <constraint firstAttribute="bottom" secondItem="cpB-Iw-GRR" secondAttribute="bottom" id="u9Q-wH-kDZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mhK-dH-htu"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AAY-IH-FAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="660.86956521739137" y="-1016.5178571428571"/>
         </scene>
         <!--Add Expense-->
         <scene sceneID="jSc-u4-gWs">
@@ -333,7 +377,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wi-MT-MVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gcB-CE-SY8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1541" y="-668"/>
+            <point key="canvasLocation" x="2450.7246376811595" y="-668.30357142857144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Qk-ng-L7v">
@@ -394,7 +438,7 @@
         <image name="BackgroundImage" width="200" height="208.66667175292969"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1le-Uh-Kqj"/>
+        <segue reference="lR5-qc-lDK"/>
         <segue reference="GXe-i6-LZc"/>
     </inferredMetricsTieBreakers>
 </document>

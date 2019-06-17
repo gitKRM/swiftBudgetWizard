@@ -111,6 +111,10 @@ class BudgetViewController: UIViewController {
             
             break
             
+        case "btnViewExpenses":
+            
+            break
+            
         default:
             fatalError("Unidentified button")
         }
