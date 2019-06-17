@@ -18,6 +18,7 @@
 		3634D4DB22A2A1DD002B0339 /* BudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4DA22A2A1DD002B0339 /* BudgetViewController.swift */; };
 		3651169722A34E4A00827CA8 /* BudgetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */; };
 		3651169922A354F800827CA8 /* ExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651169822A354F800827CA8 /* ExpenseViewController.swift */; };
+		369AB83C22B79B6700FD221E /* ExpenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB83B22B79B6700FD221E /* ExpenseListViewController.swift */; };
 		36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */; };
 		36F4D81B22AC8DA300800B38 /* Budget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D81722AC8DA300800B38 /* Budget+CoreDataClass.swift */; };
 		36F4D81C22AC8DA300800B38 /* Budget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D81822AC8DA300800B38 /* Budget+CoreDataProperties.swift */; };
@@ -61,6 +62,7 @@
 		3634D4DA22A2A1DD002B0339 /* BudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewController.swift; sourceTree = "<group>"; };
 		3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewController.swift; sourceTree = "<group>"; };
 		3651169822A354F800827CA8 /* ExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewController.swift; sourceTree = "<group>"; };
+		369AB83B22B79B6700FD221E /* ExpenseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListViewController.swift; sourceTree = "<group>"; };
 		36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		36F4D81722AC8DA300800B38 /* Budget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		36F4D81822AC8DA300800B38 /* Budget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */,
 				3634D4A722A2740C002B0339 /* ViewController.swift */,
 				3634D4A922A2740C002B0339 /* Main.storyboard */,
+				369AB83B22B79B6700FD221E /* ExpenseListViewController.swift */,
 				3634D4AF22A2740E002B0339 /* Assets.xcassets */,
 				3634D4B122A2740E002B0339 /* LaunchScreen.storyboard */,
 				3634D4B422A2740E002B0339 /* Info.plist */,
@@ -287,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */,
+				369AB83C22B79B6700FD221E /* ExpenseListViewController.swift in Sources */,
 				3634D4A822A2740C002B0339 /* ViewController.swift in Sources */,
 				36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */,
 				3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */,
