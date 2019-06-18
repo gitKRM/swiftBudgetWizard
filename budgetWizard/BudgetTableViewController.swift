@@ -14,6 +14,7 @@ class BudgetTableViewController: UITableViewController {
 
     //MARK: Properties
     var budgets = [Budget]()
+    var budget: Budget?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,6 +133,25 @@ class BudgetTableViewController: UITableViewController {
             fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
             break            
         }
+    }
+    
+    @IBAction func unwind(sender: UIStoryboardSegue){
+        if let sourceController = sender.source as? BudgetViewController, let
+            budget = sourceController.createdBudget{
+            
+            //--Edit existing
+            if let selectedBudget = tableView.indexPathForSelectedRow{
+                budgets[selectedBudget.row] = budget
+                tableView.reloadRows(at: [selectedBudget], with: .none)
+            }
+            
+            //Add new budget
+            let indexPath = IndexPath(row: budgets.count, section: 0)
+            budgets.append(budget)
+            tableView.insertRows(at: [indexPath], with: .automatic)
+            
+        }
+        
     }
  
 
