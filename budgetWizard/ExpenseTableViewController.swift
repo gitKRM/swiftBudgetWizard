@@ -46,15 +46,22 @@ class ExpenseTableViewController: UITableViewController {
         return expenses.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cellIdentifier = "ExpenseCellIdentifier"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ExpenseTableViewCell else{
+            fatalError("Unidentified cell")
+        }
 
-        // Configure the cell...
-
+        let expense = expenses[indexPath.row]
+        cell.Category.text = expense.expenseCategory
+        cell.Name.text = expense.expenseName
+        cell.ExpenditureDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: expense.expenseDate)
+        cell.Amount.text = CustomNumberFormatter.getFormattedNumberAsString(amount: expense.amount! as Decimal)
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

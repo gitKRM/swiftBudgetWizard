@@ -19,21 +19,21 @@ class BudgetTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getBudgets()
+        //getBudgets()
+        self.budgets = GlobalBudget.getBudgets()!
     }
     
     //MARK: load from DB
-    func getBudgets(){
-        let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
-        
-        do{
-            let budget = try PersistenceService.context.fetch(fetchRequest)
-            self.budgets = budget
-        }catch{
-            os_log("Error getting budget information from DB", log: OSLog.default, type: .error)
-        }
-        
-    }
+//    func getBudgets(){
+//        let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
+//        
+//        do{
+//            let budget = try PersistenceService.context.fetch(fetchRequest)
+//            self.budgets = budget
+//        }catch{
+//            os_log("Error getting budget information from DB", log: OSLog.default, type: .error)
+//        }
+//    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
