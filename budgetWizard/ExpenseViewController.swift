@@ -21,7 +21,8 @@ class ExpenseViewController: UIViewController{
     let categories = ["Credit Cards", "Food", "Future Bill", "Future Goal", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
     let frequencies = ["Weekly", "Forntightly", "Monthly"]
     var budget: Budget?
-    let expense = Expenses(context: PersistenceService.context)
+    var createdExpense: Expenses?
+    
     
     //MARK: Private Properties
     private var expenseDatePicker: UIDatePicker?
@@ -132,6 +133,7 @@ class ExpenseViewController: UIViewController{
     
     //MARK: Save
     func save(){
+        let expense = Expenses(context: PersistenceService.context)
         expense.expenseCategory = categoryTextField.text
         expense.expenseName = expenseName.text
         expense.expenseDate = expenseDatePicker?.date as NSDate?
@@ -139,6 +141,7 @@ class ExpenseViewController: UIViewController{
         expense.isRecurring = recurringExpenseSwitch.isOn
         expense.recurringFrequency = frequency?.text
         budget?.expense = expense
+        createdExpense = expense
         PersistenceService.saveContext()
     }
 }

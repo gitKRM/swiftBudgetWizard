@@ -98,9 +98,28 @@ class ExpenseTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
-
+    
+    @IBAction func unwind(sender: UIStoryboardSegue){
+        if let sourceViewController = sender.source as? ExpenseViewController, let
+            expense = sourceViewController.createdExpense{
+            
+            //--Check if editing
+            if let selectedExpense = tableView.indexPathForSelectedRow{
+                expenses[selectedExpense.row] = expense
+                tableView.reloadRows(at: [selectedExpense], with: .none)
+            }
+            
+            //--Creating new
+            let indexPath = IndexPath(row: expenses.count, section: 0)
+            expenses.append(expense)
+            tableView.insertRows(at: [indexPath], with: .automatic)
+            
+        }
+        
+    }
+    /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
