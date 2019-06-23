@@ -48,16 +48,22 @@ class ExpenseTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "ExpenseCellIdentifier"
+        let cellIdentifier = "ExpenseTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ExpenseTableViewCell else{
             fatalError("Unidentified cell")
         }
 
         let expense = expenses[indexPath.row]
-        cell.Category.text = expense.expenseCategory
-        cell.Name.text = expense.expenseName
-        cell.ExpenditureDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: expense.expenseDate)
-        cell.Amount.text = CustomNumberFormatter.getFormattedNumberAsString(amount: expense.amount! as Decimal)
+        
+        cell.dayName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: expense.expenseDate)
+        
+//        let calendar = Calendar.current
+//        let dayNum = calendar.component(.day, from: expense.expenseDate! as Date)
+//        cell.dayNum.text = String(describing: dayNum)
+        cell.dayNum.text = String(describing: CustomDateFormatter.getDayName(date: expense.expenseDate))
+        cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: expense.expenseDate)
+        
+        cell.ExpenseAmount.text = CustomNumberFormatter.getFormattedNumberAsString(amount: expense.amount! as Decimal)
         
         return cell
     }

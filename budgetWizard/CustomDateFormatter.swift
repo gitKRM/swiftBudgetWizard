@@ -16,11 +16,24 @@ class CustomDateFormatter{
         return formatter.date(from:date)
     }
     
-    static func getDatePropertyAsString(formatSpecifier: String, date: NSDate?)-> String{
+    static func getDatePropertyAsString(formatSpecifier: String, date: NSDate?)-> String?{
+        
+        guard let passedInDate = date else{
+            return nil
+        }
         
         let formatter = DateFormatter()
         formatter.dateFormat = formatSpecifier
-        return formatter.string(from: date! as Date)
+        return formatter.string(from: passedInDate as Date)
+    }
+    
+    //Name of day
+    static func getDayName(date: NSDate?)-> Int{
+        guard let passedIndate = date else{
+            return 0
+        }
+        let calendar = Calendar.current
+        return calendar.component(.day, from: passedIndate as Date)
     }
     
 }
