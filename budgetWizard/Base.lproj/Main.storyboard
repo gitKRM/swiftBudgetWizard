@@ -221,7 +221,7 @@
         <!--Expenses-->
         <scene sceneID="rbG-qd-ApW">
             <objects>
-                <viewController id="GMN-vp-gTT" sceneMemberID="viewController">
+                <viewController id="GMN-vp-gTT" customClass="ExpenseTableViewController" customModule="budgetWizard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PnW-rX-9Ri">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -383,7 +383,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="OqL-MW-beM">
                             <connections>
-                                <segue destination="gcB-CE-SY8" kind="unwind" unwindAction="unwindToBudgetViewWithSender:" id="lUs-mq-PbF"/>
+                                <segue destination="gcB-CE-SY8" kind="unwind" unwindAction="unwindToExpenseTableViewWithSender:" id="ddP-Kg-SDE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -394,7 +394,6 @@
                         <outlet property="expenseName" destination="Jy5-uQ-hsW" id="kvk-pu-TK7"/>
                         <outlet property="frequency" destination="4Ep-DL-oRR" id="U7p-P5-GLO"/>
                         <outlet property="recurringExpenseSwitch" destination="5hV-2s-uGE" id="c62-nc-Bp4"/>
-                        <outlet property="saveButton" destination="OqL-MW-beM" id="JXL-en-li3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wi-MT-MVI" userLabel="First Responder" sceneMemberID="firstResponder"/>

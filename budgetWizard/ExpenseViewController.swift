@@ -70,21 +70,21 @@ class ExpenseViewController: UIViewController{
     
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        guard let button = sender as? UIBarButtonItem, button === saveButton else{
-            fatalError("Unrecognised button received")
-        }
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if (validateForSave()){
-            save()
-            return true
-        }
-        return false
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//        
+//        guard let button = sender as? UIBarButtonItem, button === saveButton else{
+//            fatalError("Unrecognised button received")
+//        }
+//    }
+//    
+//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+//        if (validateForSave()){
+//            save()
+//            return true
+//        }
+//        return false
+//    }
 
     //MARK: Gesture Recogniser view Tapped
     @objc func viewTapped(gestureRecogniser: UITapGestureRecognizer){

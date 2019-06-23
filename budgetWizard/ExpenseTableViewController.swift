@@ -101,7 +101,7 @@ class ExpenseTableViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    @IBAction func unwind(sender: UIStoryboardSegue){
+    @IBAction func unwindToExpenseTableView(sender: UIStoryboardSegue){
         if let sourceViewController = sender.source as? ExpenseViewController, let
             expense = sourceViewController.createdExpense{
             
