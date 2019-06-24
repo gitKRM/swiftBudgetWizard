@@ -313,6 +313,7 @@
                         <outlet property="expenseName" destination="Jy5-uQ-hsW" id="kvk-pu-TK7"/>
                         <outlet property="frequency" destination="4Ep-DL-oRR" id="U7p-P5-GLO"/>
                         <outlet property="recurringExpenseSwitch" destination="5hV-2s-uGE" id="c62-nc-Bp4"/>
+                        <outlet property="saveButton" destination="OqL-MW-beM" id="4RO-yK-z9R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wi-MT-MVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -455,7 +456,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PN-pV-Ppz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="638" y="-291"/>
+            <point key="canvasLocation" x="1300" y="-203"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jbS-5i-Y0H">

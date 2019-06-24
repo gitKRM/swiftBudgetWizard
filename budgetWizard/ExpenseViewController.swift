@@ -23,7 +23,6 @@ class ExpenseViewController: UIViewController{
     var budget: Budget?
     var createdExpense: Expenses?
     
-    
     //MARK: Private Properties
     private var expenseDatePicker: UIDatePicker?
     
@@ -70,14 +69,23 @@ class ExpenseViewController: UIViewController{
     
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: sender)
-//        
-//        guard let button = sender as? UIBarButtonItem, button === saveButton else{
-//            fatalError("Unrecognised button received")
-//        }
-//    }
-//    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        guard let button = sender as? UIBarButtonItem, button === saveButton else{
+            fatalError("Unrecognised button received")
+        }
+        
+        createdExpense = Expenses(context: PersistenceService.context)
+        createdExpense!.expenseCategory = categoryTextField.text
+        createdExpense!.expenseName = expenseName.text
+        createdExpense!.expenseDate = expenseDatePicker?.date as NSDate?
+        createdExpense!.amount = Decimal(string: amount.text!) as NSDecimalNumber?
+        createdExpense!.isRecurring = recurringExpenseSwitch.isOn
+        createdExpense!.recurringFrequency = frequency?.text
+
+    }
+//
 //    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
 //        if (validateForSave()){
 //            save()
@@ -133,16 +141,17 @@ class ExpenseViewController: UIViewController{
     
     //MARK: Save
     func save(){
-        let expense = Expenses(context: PersistenceService.context)
-        expense.expenseCategory = categoryTextField.text
-        expense.expenseName = expenseName.text
-        expense.expenseDate = expenseDatePicker?.date as NSDate?
-        expense.amount = Decimal(string: amount.text!) as NSDecimalNumber?
-        expense.isRecurring = recurringExpenseSwitch.isOn
-        expense.recurringFrequency = frequency?.text
-        budget!.expense = expense
-        createdExpense = expense
-        PersistenceService.saveContext()
+//        let expense = Expenses(context: PersistenceService.context)
+//        expense.expenseCategory = categoryTextField.text
+//        expense.expenseName = expenseName.text
+//        expense.expenseDate = expenseDatePicker?.date as NSDate?
+//        expense.amount = Decimal(string: amount.text!) as NSDecimalNumber?
+//        expense.isRecurring = recurringExpenseSwitch.isOn
+//        expense.recurringFrequency = frequency?.text
+//        budget!.expense = expense
+//        createdExpense = expense
+//        PersistenceService.saveContext()
+        
         
     }
 }

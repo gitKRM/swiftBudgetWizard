@@ -117,14 +117,15 @@ class ExpenseTableViewController: UITableViewController {
                 expenses[selectedExpense.row] = expense
                 tableView.reloadRows(at: [selectedExpense], with: .none)
             }
-            
-            //--Creating new
-            let indexPath = IndexPath(row: expenses.count, section: 0)
-            expenses.append(expense)
-            tableView.insertRows(at: [indexPath], with: .automatic)
-            
+            else{
+                //--Creating new
+                let indexPath = IndexPath(row: expenses.count, section: 0)
+                expenses.append(expense)
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+            save()
         }
-        save()
+        
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
