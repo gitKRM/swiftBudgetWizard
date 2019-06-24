@@ -106,7 +106,11 @@ class BudgetViewController: UIViewController {
             break
             
         case "btnAddExpense":
-            
+            guard let expenseTableViewController = segue.destination as? ExpenseTableViewController else{
+                os_log("Error initialising expense table view controller", log: OSLog.default, type: .error)
+                return
+            }
+            expenseTableViewController.existingBudget = selectedBudget
             break
             
         default:

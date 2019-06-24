@@ -10,7 +10,7 @@ import Foundation
 
 class CustomNumberFormatter{
     
-    static func getFormattedNumberAsString(amount: Decimal)-> String?{
+    static func getNumberFormattedAsCurrency(amount: Decimal)-> String?{
        
         let formatter = NumberFormatter()
         formatter.locale = Locale.autoupdatingCurrent

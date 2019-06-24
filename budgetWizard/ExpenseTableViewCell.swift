@@ -10,8 +10,7 @@ import UIKit
 
 class ExpenseTableViewCell: UITableViewCell {
     //MARK: Properties
-    
-    @IBOutlet weak var ExpenseDate: UILabel!
+    @IBOutlet weak var Name: UILabel!
     @IBOutlet weak var ExpenseAmount: UILabel!
     @IBOutlet weak var dayName: UILabel!
     @IBOutlet weak var dayNum: UILabel!

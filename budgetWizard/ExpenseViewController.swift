@@ -140,9 +140,10 @@ class ExpenseViewController: UIViewController{
         expense.amount = Decimal(string: amount.text!) as NSDecimalNumber?
         expense.isRecurring = recurringExpenseSwitch.isOn
         expense.recurringFrequency = frequency?.text
-        budget?.expense = expense
+        budget!.expense = expense
         createdExpense = expense
         PersistenceService.saveContext()
+        
     }
 }
 

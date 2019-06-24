@@ -15,6 +15,8 @@ class ExpenseTableViewController: UITableViewController {
     //MARK: Proeprties
     var expenses = [Expenses]()
     var expense: Expenses?
+    var existingBudget: Budget?
+    var existingExpenses: Expenses?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +26,17 @@ class ExpenseTableViewController: UITableViewController {
     
     //MARK: Get Expenses from DB
     func getExpenses(){
-        let fetchRequest: NSFetchRequest<Expenses> = Expenses.fetchRequest()
-        do{
-            let expenses = try PersistenceService.context.fetch(fetchRequest)
-            self.expenses = expenses
-        }catch{
-            os_log("Error getting expenses collection from db", log: OSLog.default, type: .error)
-        }
-        
+        if let budget = existingBudget{
+            existingExpenses = budget.expense
+        }else{
+            let fetchRequest: NSFetchRequest<Expenses> = Expenses.fetchRequest()
+            do{
+                let expenses = try PersistenceService.context.fetch(fetchRequest)
+                self.expenses = expenses
+            }catch{
+                os_log("Error getting expenses collection from db", log: OSLog.default, type: .error)
+            }
+        }        
     }
 
     // MARK: - Table view data source
@@ -56,14 +61,10 @@ class ExpenseTableViewController: UITableViewController {
         let expense = expenses[indexPath.row]
         
         cell.dayName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: expense.expenseDate)
-        
-//        let calendar = Calendar.current
-//        let dayNum = calendar.component(.day, from: expense.expenseDate! as Date)
-//        cell.dayNum.text = String(describing: dayNum)
         cell.dayNum.text = String(describing: CustomDateFormatter.getDayName(date: expense.expenseDate))
         cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: expense.expenseDate)
-        
-        cell.ExpenseAmount.text = CustomNumberFormatter.getFormattedNumberAsString(amount: expense.amount! as Decimal)
+        cell.ExpenseAmount.text = CustomNumberFormatter.getNumberFormattedAsCurrency(amount: expense.amount! as Decimal)
+        cell.Name.text = expense.expenseName
         
         return cell
     }
@@ -123,14 +124,30 @@ class ExpenseTableViewController: UITableViewController {
             tableView.insertRows(at: [indexPath], with: .automatic)
             
         }
-        
+        save()
     }
-    /*
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? ""){
+        case "btnAddExpense":
+                break
+        default:
+            fatalError("Unknown segue identifier \(String(describing: segue.identifier))")
+                break
+        }
+        
     }
-    */
+    
+    
+    //MARK: Save
+    func save(){
+        existingBudget?.expense = expense
+        PersistenceService.saveContext()
+        
+    }
+    
 
 }

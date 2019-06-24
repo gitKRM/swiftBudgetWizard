@@ -54,13 +54,7 @@ class BudgetTableViewController: UITableViewController {
         let budget = budgets[indexPath.row]
         cell.budgetName.text = budget.budgetName
         cell.dayName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: budget.startDate)
-        
-        //Get day number as int
-//        let calendar = Calendar.current
-//        let dayNum = calendar.component(.day, from: budget.startDate! as Date)
-//        cell.dayNum.text = String(describing: dayNum)
-        let dayNum = CustomDateFormatter.getDayName(date: budget.startDate)
-        cell.dayNum.text = String(describing: dayNum)
+        cell.dayNum.text = String(describing: CustomDateFormatter.getDayName(date: budget.startDate))
         //Get month name
         cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: budget.endDate)
         return cell
