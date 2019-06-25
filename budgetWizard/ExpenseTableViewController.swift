@@ -15,9 +15,8 @@ class ExpenseTableViewController: UITableViewController {
     //MARK: Proeprties
     var expenses = [Expenses]()
     var expense: Expenses?
-    var existingBudget: Budget?
-    var existingExpenses: Expenses?
-    
+    var budget: Budget?
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         getExpenses()
@@ -26,17 +25,26 @@ class ExpenseTableViewController: UITableViewController {
     
     //MARK: Get Expenses from DB
     func getExpenses(){
-        if let budget = existingBudget{
-            existingExpenses = budget.expense
-        }else{
-            let fetchRequest: NSFetchRequest<Expenses> = Expenses.fetchRequest()
-            do{
-                let expenses = try PersistenceService.context.fetch(fetchRequest)
-                self.expenses = expenses
-            }catch{
-                os_log("Error getting expenses collection from db", log: OSLog.default, type: .error)
+        
+        if let existingExpenses = budget?.expenses{
+            //let enumerator: NSEnumerator = budget!.expenses!.objectEnumerator()
+            let enumerator: NSEnumerator = existingExpenses.objectEnumerator()
+            while let value = enumerator.nextObject(){
+                expenses.append(value as! Expenses)
             }
-        }        
+        }
+        
+        
+    
+
+//        let fetchRequest: NSFetchRequest<Expenses> = Expenses.fetchRequest()
+//        do{
+//            let expenses = try PersistenceService.context.fetch(fetchRequest)
+//            self.expenses = expenses
+//        }catch{
+//            os_log("Error getting expenses collection from db", log: OSLog.default, type: .error)
+//        }
+        
     }
 
     // MARK: - Table view data source
@@ -134,6 +142,10 @@ class ExpenseTableViewController: UITableViewController {
         
         switch(segue.identifier ?? ""){
         case "btnAddExpense":
+            guard let expenseViewController = segue.destination as? ExpenseViewController else{
+                fatalError("Unrecognised seque destination \(segue.destination)")
+            }
+            expenseViewController.budget = budget
                 break
         default:
             fatalError("Unknown segue identifier \(String(describing: segue.identifier))")
@@ -145,7 +157,7 @@ class ExpenseTableViewController: UITableViewController {
     
     //MARK: Save
     func save(){
-        existingBudget?.expense = expense
+        
         PersistenceService.saveContext()
         
     }

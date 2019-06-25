@@ -201,7 +201,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="NeN-q5-wwR">
                             <connections>
                                 <action selector="saveBudget:" destination="6XC-JP-xdz" id="XtO-3Z-PEa"/>
-                                <segue destination="LfO-kM-vR9" kind="push" identifier="btnSave" id="lR5-qc-lDK"/>
+                                <segue destination="5sE-bR-2Qa" kind="presentation" identifier="btnSave" id="q0a-Ah-vDx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -302,7 +302,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="OqL-MW-beM">
                             <connections>
-                                <segue destination="gcB-CE-SY8" kind="unwind" unwindAction="unwindToExpenseTableViewWithSender:" id="ddP-Kg-SDE"/>
+                                <segue destination="gcB-CE-SY8" kind="unwind" unwindAction="unwindToExpenseTableViewWithSender:" id="R78-Wt-3hE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -482,7 +482,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0ht-QS-7wM"/>
-        <segue reference="1le-Uh-Kqj"/>
-        <segue reference="n0V-Dc-UsP"/>
+        <segue reference="GXe-i6-LZc"/>
     </inferredMetricsTieBreakers>
 </document>

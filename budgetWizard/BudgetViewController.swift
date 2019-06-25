@@ -96,12 +96,12 @@ class BudgetViewController: UIViewController {
         switch(segue.identifier ?? ""){
         case "btnSave":
             if (validateForSave()){
-               save()
-                guard let expenseViewController = segue.destination as? ExpenseViewController else{
+               createProxyBudget()
+                guard let expenseTableViewController = segue.destination as? ExpenseTableViewController else{
                     os_log("Error initialising expense view controller", log: OSLog.default, type: .error)
                     return
                 }
-                expenseViewController.budget = createdBudget
+                expenseTableViewController.budget = createdBudget
             }
             break
             
@@ -110,7 +110,7 @@ class BudgetViewController: UIViewController {
                 os_log("Error initialising expense table view controller", log: OSLog.default, type: .error)
                 return
             }
-            expenseTableViewController.existingBudget = selectedBudget
+            expenseTableViewController.budget = selectedBudget
             break
             
         default:
@@ -120,7 +120,7 @@ class BudgetViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func unwindToBudgetView(sender : UIStoryboardSegue){
-       print("Unwind from Expense View Controller")
+        
     }
     
     //MARK: Gesture Recogniser view Tapped
@@ -130,14 +130,14 @@ class BudgetViewController: UIViewController {
     }
     
     //MARK: Save Core Data
-    func save(){
+    func createProxyBudget(){
         //Save Data
         let budget = Budget(context: PersistenceService.context)
         budget.budgetName = nameTextField.text
         budget.incomingCashFlow = Decimal(string: incomingCashFlow.text!) as NSDecimalNumber?
         budget.startDate = startDatePicker?.date as NSDate?
         budget.endDate = endDatePicker?.date as NSDate?
-        PersistenceService.saveContext()
+        //PersistenceService.saveContext()
         createdBudget = budget
     }
     //MARK: Validation

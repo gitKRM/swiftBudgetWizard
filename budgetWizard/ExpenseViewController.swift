@@ -32,7 +32,9 @@ class ExpenseViewController: UIViewController{
         initDelegates()
         initPickers()
         initGestureRecogniser()
-        
+        if let budget = budget{
+            navigationItem.title = budget.budgetName
+        }
     }
     
     //MARK: Set Delegates
@@ -83,7 +85,7 @@ class ExpenseViewController: UIViewController{
         createdExpense!.amount = Decimal(string: amount.text!) as NSDecimalNumber?
         createdExpense!.isRecurring = recurringExpenseSwitch.isOn
         createdExpense!.recurringFrequency = frequency?.text
-
+        budget!.addToExpenses(createdExpense!)
     }
 //
 //    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
