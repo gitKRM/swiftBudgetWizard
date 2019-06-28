@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */; };
 		3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4A522A2740C002B0339 /* AppDelegate.swift */; };
 		3634D4A822A2740C002B0339 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4A722A2740C002B0339 /* ViewController.swift */; };
 		3634D4AB22A2740C002B0339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3634D4A922A2740C002B0339 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyBudget.swift; sourceTree = "<group>"; };
 		3634D4A222A2740C002B0339 /* budgetWizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetWizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3634D4A522A2740C002B0339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3634D4A722A2740C002B0339 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				369AB84522BA2E7B00FD221E /* GlobalExpense.swift */,
 				36F4D82D22ACC2B800800B38 /* BudgetTableViewCell.swift */,
 				3634D4DA22A2A1DD002B0339 /* BudgetViewController.swift */,
+				36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */,
 				369AB83522B23E7100FD221E /* CustomDateFormatter.swift */,
 				369AB84122BA290900FD221E /* CustomNumberFormatter.swift */,
 				3651169822A354F800827CA8 /* ExpenseViewController.swift */,
@@ -310,6 +313,7 @@
 				3634D4A822A2740C002B0339 /* ViewController.swift in Sources */,
 				36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */,
 				369AB85722C213AF00FD221E /* Budget+CoreDataClass.swift in Sources */,
+				36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */,
 				369AB84622BA2E7B00FD221E /* GlobalExpense.swift in Sources */,
 				369AB85622C213AF00FD221E /* Expenses+CoreDataProperties.swift in Sources */,
 				369AB83622B23E7100FD221E /* CustomDateFormatter.swift in Sources */,

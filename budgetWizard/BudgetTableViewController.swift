@@ -131,24 +131,25 @@ class BudgetTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func unwind(sender: UIStoryboardSegue){
+    @IBAction func unwindToBudgetTableView(sender: UIStoryboardSegue){
         if let sourceController = sender.source as? BudgetViewController, let
-            budget = sourceController.createdBudget{
+            proxyBudget = sourceController.createdBudget{
             
-            //--Edit existing
+            let budget = PersistenceService.save(budget: proxyBudget)
+            
+         //--Edit existing
             if let selectedBudget = tableView.indexPathForSelectedRow{
                 budgets[selectedBudget.row] = budget
                 tableView.reloadRows(at: [selectedBudget], with: .none)
+            }else {
+                //Add new budget
+                let indexPath = IndexPath(row: budgets.count, section: 0)
+                budgets.append(budget)
+                tableView.insertRows(at: [indexPath], with: .automatic)
             }
-            
-            //Add new budget
-            let indexPath = IndexPath(row: budgets.count, section: 0)
-            budgets.append(budget)
-            tableView.insertRows(at: [indexPath], with: .automatic)
             
         }
         
     }
- 
 
 }

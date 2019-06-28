@@ -14,12 +14,11 @@ class BudgetViewController: UIViewController {
     
     //MARK: Properties
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var addExpenseButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var incomingCashFlow: UITextField!
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
-    var createdBudget: Budget?
+    var createdBudget: ProxyBudget?
     var selectedBudget: Budget? //--Edit existing budget
     struct ActiveControl{
         static let nameTextFieldSelected = 1
@@ -64,7 +63,6 @@ class BudgetViewController: UIViewController {
             startDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: selectedBudget.startDate)
             
             endDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: selectedBudget.endDate)
-            addExpenseButton.isEnabled = true
         }
         
     }
@@ -93,34 +91,18 @@ class BudgetViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        switch(segue.identifier ?? ""){
-        case "btnSave":
-            if (validateForSave()){
-               createProxyBudget()
-                guard let expenseTableViewController = segue.destination as? ExpenseTableViewController else{
-                    os_log("Error initialising expense view controller", log: OSLog.default, type: .error)
-                    return
-                }
-                expenseTableViewController.budget = createdBudget
-            }
-            break
-            
-        case "btnAddExpense":
-            guard let expenseTableViewController = segue.destination as? ExpenseTableViewController else{
-                os_log("Error initialising expense table view controller", log: OSLog.default, type: .error)
-                return
-            }
-            expenseTableViewController.budget = selectedBudget
-            break
-            
-        default:
-            fatalError("Unidentified button")
+        guard let button = sender as? UIBarButtonItem, button === saveButton else{
+            fatalError("Button not recognised -- Was Expecting Save Button")
         }
+        
+        createdBudget = ProxyBudget(budgetName: nameTextField.text!, incomingCashFlow: Decimal(string: incomingCashFlow.text!)! as NSDecimalNumber, startDate: startDatePicker?.date as NSDate?, endDate: endDatePicker?.date as NSDate?)
     }
     
-    //MARK: Actions
-    @IBAction func unwindToBudgetView(sender : UIStoryboardSegue){
-        
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (validateForSave()){
+            return true
+        }
+        return false
     }
     
     //MARK: Gesture Recogniser view Tapped
@@ -129,17 +111,6 @@ class BudgetViewController: UIViewController {
         
     }
     
-    //MARK: Save Core Data
-    func createProxyBudget(){
-        //Save Data
-        let budget = Budget(context: PersistenceService.context)
-        budget.budgetName = nameTextField.text
-        budget.incomingCashFlow = Decimal(string: incomingCashFlow.text!) as NSDecimalNumber?
-        budget.startDate = startDatePicker?.date as NSDate?
-        budget.endDate = endDatePicker?.date as NSDate?
-        //PersistenceService.saveContext()
-        createdBudget = budget
-    }
     //MARK: Validation
     func validateForSave()-> Bool{
         var errorMsg = ""
@@ -269,7 +240,6 @@ extension BudgetViewController: UITextFieldDelegate{
     private func updateSaveButton(){
         let text = nameTextField.text ?? ""
         saveButton.isEnabled = !text.isEmpty
-        addExpenseButton.isEnabled = false
     }
     
 }

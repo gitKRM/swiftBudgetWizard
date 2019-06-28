@@ -43,5 +43,16 @@ class PersistenceService{
             }
         }
     }
+    
+    static func save(budget: ProxyBudget)-> Budget{
+        
+        let createdBudget = Budget(context: PersistenceService.context)
+        createdBudget.budgetName = budget.budgetName
+        createdBudget.incomingCashFlow = budget.incomingCashFlow
+        createdBudget.startDate = budget.startDate
+        createdBudget.endDate = budget.endDate
+        saveContext()
+        return createdBudget
+    }
 
 }
