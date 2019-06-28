@@ -23,17 +23,6 @@ class BudgetTableViewController: UITableViewController {
         self.budgets = GlobalBudget.getBudgets()!
     }
     
-    //MARK: load from DB
-//    func getBudgets(){
-//        let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
-//
-//        do{
-//            let budget = try PersistenceService.context.fetch(fetchRequest)
-//            self.budgets = budget
-//        }catch{
-//            os_log("Error getting budget information from DB", log: OSLog.default, type: .error)
-//        }
-//    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,25 +49,28 @@ class BudgetTableViewController: UITableViewController {
         return cell
     }
     
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            let budget = budgets[indexPath.row]
+            budgets.remove(at: indexPath.row)
+            PersistenceService.deleteBudget(budget: budget)
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

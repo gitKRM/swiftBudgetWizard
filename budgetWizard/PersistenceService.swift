@@ -54,5 +54,22 @@ class PersistenceService{
         saveContext()
         return createdBudget
     }
+    
+    static func deleteBudget(budget: Budget){
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Budget")
+        fetchRequest.predicate = NSPredicate(format: "budgetName = %@", budget.budgetName!)
+        do{
+            let savedBudget = try context.fetch(fetchRequest)
+            let budgetToDelete = savedBudget[0] as! NSManagedObject
+            context.delete(budgetToDelete)
+            do{
+                try context.save()
+            }catch{
+                fatalError("Error attempting to save managed objects after removing budget: \(String(describing: budget.budgetName))")
+            }
+        }catch{
+            fatalError("Error attempting to delete budget: \(String(describing: budget.budgetName))")
+        }
 
+    }
 }

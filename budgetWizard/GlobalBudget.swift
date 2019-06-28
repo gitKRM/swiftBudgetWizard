@@ -28,7 +28,4 @@ class GlobalBudget {
         return nil
     }
     
-//    static func addToBudgets(budget: Budget){
-//        budgets.append(budget)
-//    }
 }

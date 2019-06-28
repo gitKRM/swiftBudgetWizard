@@ -49,8 +49,5 @@ class ProxyBudget : NSObject {
         expenseSet?.addingObjects(from: expenses!)
     }
     
-    func saveProxyBudget(budget: ProxyBudget){
-        
-    }
     
 }
