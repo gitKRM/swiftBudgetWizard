@@ -55,21 +55,49 @@ class PersistenceService{
         return createdBudget
     }
     
+    //MARK: Edit
+    static func edit(budget: Budget){
+        let budgetToEdit = getItem(budget: budget)
+        budgetToEdit.setValue(budget.budgetName, forKey: "budgetName")
+        budgetToEdit.setValue(budget.incomingCashFlow, forKey: "incomingCashFlow")
+        budgetToEdit.setValue(budget.startDate, forKey: "startDate")
+        budgetToEdit.setValue(budget.endDate, forKey: "endDate")
+        budgetToEdit.setValue(budget.expenses, forKey: "expenses")
+        do
+        {
+            try context.save()
+        }
+        catch
+        {
+            fatalError("Error attempting to update budget \(String(describing: budget.budgetName))")
+        }
+    }
+    
+    //MARK: Delete
     static func deleteBudget(budget: Budget){
+        let budgetToDelete = getItem(budget: budget)
+        context.delete(budgetToDelete)
+        do
+        {
+            try context.save()
+        }
+        catch
+        {
+            fatalError("Error attempting to save managed objects after removing budget: \(String(describing: budget.budgetName))")
+        }
+    }
+    
+    //MARK: Retrieve Object
+    static func getItem(budget: Budget)-> NSManagedObject{
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Budget")
         fetchRequest.predicate = NSPredicate(format: "budgetName = %@", budget.budgetName!)
         do{
-            let savedBudget = try context.fetch(fetchRequest)
-            let budgetToDelete = savedBudget[0] as! NSManagedObject
-            context.delete(budgetToDelete)
-            do{
-                try context.save()
-            }catch{
-                fatalError("Error attempting to save managed objects after removing budget: \(String(describing: budget.budgetName))")
-            }
+            let fetcheddBudget = try context.fetch(fetchRequest)
+            let retrievedBudget = fetcheddBudget[0] as! NSManagedObject
+            return retrievedBudget
+            
         }catch{
-            fatalError("Error attempting to delete budget: \(String(describing: budget.budgetName))")
+            fatalError("Error attempting to retrieve budget: \(String(describing: budget.budgetName))")
         }
-
     }
 }
