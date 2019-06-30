@@ -2,7 +2,7 @@
 //  Expenses+CoreDataProperties.swift
 //  budgetWizard
 //
-//  Created by Kent McNamara on 9/06/19.
+//  Created by Kent McNamara on 25/06/19.
 //  Copyright © 2019 Kent McNamara. All rights reserved.
 //
 //
@@ -23,23 +23,6 @@ extension Expenses {
     @NSManaged public var expenseName: String?
     @NSManaged public var isRecurring: Bool
     @NSManaged public var recurringFrequency: String?
-    @NSManaged public var budgets: NSSet?
-
-}
-
-// MARK: Generated accessors for budgets
-extension Expenses {
-
-    @objc(addBudgetsObject:)
-    @NSManaged public func addToBudgets(_ value: Budget)
-
-    @objc(removeBudgetsObject:)
-    @NSManaged public func removeFromBudgets(_ value: Budget)
-
-    @objc(addBudgets:)
-    @NSManaged public func addToBudgets(_ values: NSSet)
-
-    @objc(removeBudgets:)
-    @NSManaged public func removeFromBudgets(_ values: NSSet)
+    @NSManaged public var budget: Budget?
 
 }

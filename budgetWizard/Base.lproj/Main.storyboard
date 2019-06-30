@@ -76,11 +76,37 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vr8-Ad-G8Z">
+                                            <rect key="frame" x="133" y="66" width="261" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                            <state key="normal" title="Add Edit Expense">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <segue destination="pAN-5X-apd" kind="show" identifier="AddEditExpense" id="IWx-c0-wzk"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.21960784310000001" green="0.82352941180000006" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
+                                    <outlet property="addEditExpense" destination="vr8-Ad-G8Z" id="tdr-p0-IBY"/>
                                     <outlet property="budgetName" destination="iaE-gJ-aoO" id="wVL-mX-JjA"/>
                                     <outlet property="dayName" destination="XGG-ex-Ggc" id="2J9-6a-TC8"/>
                                     <outlet property="dayNum" destination="gLM-kX-W1k" id="efD-bg-maY"/>
@@ -123,7 +149,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="I13-6e-eHR">
-                                <rect key="frame" x="20" y="107.99999999999997" width="374" height="319.33333333333326"/>
+                                <rect key="frame" x="20" y="108.00000000000001" width="374" height="251.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create New Budget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dc8-dn-U5d">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="51.333333333333336"/>
@@ -155,27 +181,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o4S-kT-sUx">
-                                        <rect key="frame" x="0.0" y="268.33333333333331" width="374" height="51"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJQ-bV-ETw">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="51"/>
-                                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="30"/>
-                                                <state key="normal" title="Add Expense">
-                                                    <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="15"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <segue destination="Nnn-l9-aoa" kind="presentation" identifier="btnAddExpense" id="TLj-ac-hKB"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -200,12 +205,11 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="NeN-q5-wwR">
                             <connections>
                                 <action selector="saveBudget:" destination="6XC-JP-xdz" id="XtO-3Z-PEa"/>
-                                <segue destination="LfO-kM-vR9" kind="push" identifier="btnSave" id="lR5-qc-lDK"/>
+                                <segue destination="71K-y1-7z5" kind="unwind" unwindAction="unwindToBudgetTableViewWithSender:" id="FNp-lT-MuO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addExpenseButton" destination="jJQ-bV-ETw" id="sBz-Du-XRO"/>
                         <outlet property="endDate" destination="VB8-cL-npe" id="YKA-0n-KIy"/>
                         <outlet property="incomingCashFlow" destination="C0Q-eh-hFq" id="HgP-Rj-JJP"/>
                         <outlet property="nameTextField" destination="ZHG-Q1-GMI" id="sNa-kT-eXO"/>
@@ -214,8 +218,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbK-Br-ezh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="71K-y1-7z5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-465" y="-668"/>
+            <point key="canvasLocation" x="-112" y="-141"/>
         </scene>
         <!--Add Expense-->
         <scene sceneID="jSc-u4-gWs">
@@ -301,7 +306,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="OqL-MW-beM">
                             <connections>
-                                <segue destination="gcB-CE-SY8" kind="unwind" unwindAction="unwindToBudgetViewWithSender:" id="lUs-mq-PbF"/>
+                                <segue destination="gcB-CE-SY8" kind="unwind" unwindAction="unwindToExpenseTableViewWithSender:" id="R78-Wt-3hE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -312,13 +317,13 @@
                         <outlet property="expenseName" destination="Jy5-uQ-hsW" id="kvk-pu-TK7"/>
                         <outlet property="frequency" destination="4Ep-DL-oRR" id="U7p-P5-GLO"/>
                         <outlet property="recurringExpenseSwitch" destination="5hV-2s-uGE" id="c62-nc-Bp4"/>
-                        <outlet property="saveButton" destination="OqL-MW-beM" id="JXL-en-li3"/>
+                        <outlet property="saveButton" destination="OqL-MW-beM" id="4RO-yK-z9R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wi-MT-MVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gcB-CE-SY8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1541" y="-668"/>
+            <point key="canvasLocation" x="2119" y="-871"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Qk-ng-L7v">
@@ -354,7 +359,91 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5P-nt-k27" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1316" y="-290"/>
+            <point key="canvasLocation" x="-1396" y="212"/>
+        </scene>
+        <!--Expense Table View Controller-->
+        <scene sceneID="Ic5-Gq-mgg">
+            <objects>
+                <tableViewController id="pAN-5X-apd" customClass="ExpenseTableViewController" customModule="budgetWizard" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EZn-cw-c77">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpenseTableViewCell" id="qyK-Ua-jg7" customClass="ExpenseTableViewCell" customModule="budgetWizard" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="96"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qyK-Ua-jg7" id="brB-s7-vSj">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="95.666666666666671"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvQ-3Y-Fvf">
+                                            <rect key="frame" x="20" y="7" width="97" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykd-ys-rKF">
+                                            <rect key="frame" x="20" y="32" width="97" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ws-kc-c1E">
+                                            <rect key="frame" x="20" y="66" width="97" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HN-ZG-v0L">
+                                            <rect key="frame" x="164" y="7" width="230" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xgs-Nb-IIK">
+                                            <rect key="frame" x="164" y="36" width="230" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.21960784310000001" green="0.82352941180000006" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="ExpenseAmount" destination="Xgs-Nb-IIK" id="zsa-yL-h54"/>
+                                    <outlet property="Name" destination="5HN-ZG-v0L" id="QN5-6X-liA"/>
+                                    <outlet property="dayName" destination="nvQ-3Y-Fvf" id="Ui9-9P-Bvb"/>
+                                    <outlet property="dayNum" destination="Ykd-ys-rKF" id="zbn-kf-UZp"/>
+                                    <outlet property="monthName" destination="9Ws-kc-c1E" id="VlF-Zx-rYu"/>
+                                    <segue destination="LfO-kM-vR9" kind="show" identifier="EditExpense" id="tif-wq-NfQ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pAN-5X-apd" id="4fH-MY-4gs"/>
+                            <outlet property="delegate" destination="pAN-5X-apd" id="y85-DZ-3mL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="UaV-rk-EdA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fir-wu-DAQ">
+                            <connections>
+                                <segue destination="Nnn-l9-aoa" kind="presentation" identifier="btnAddExpense" id="jmB-6R-Wi3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iuc-nP-heO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="224.63768115942031" y="-871.20535714285711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="k9Y-uy-1OR">
@@ -372,14 +461,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PN-pV-Ppz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="638" y="-291"/>
+            <point key="canvasLocation" x="1209" y="-141"/>
         </scene>
     </scenes>
     <resources>
         <image name="BackgroundImage" width="200" height="208.66667175292969"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lR5-qc-lDK"/>
+        <segue reference="tif-wq-NfQ"/>
         <segue reference="GXe-i6-LZc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,12 +14,11 @@ class BudgetViewController: UIViewController {
     
     //MARK: Properties
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var addExpenseButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var incomingCashFlow: UITextField!
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
-    var createdBudget: Budget?
+    var createdBudget: ProxyBudget?
     var selectedBudget: Budget? //--Edit existing budget
     struct ActiveControl{
         static let nameTextFieldSelected = 1
@@ -55,16 +54,11 @@ class BudgetViewController: UIViewController {
     func loadExistingBudget(){
         if let selectedBudget = selectedBudget{
             nameTextField.text = selectedBudget.budgetName
-            let numFormatter = NumberFormatter()
-            numFormatter.generatesDecimalNumbers = true
-            numFormatter.minimumFractionDigits = 2
-            numFormatter.maximumFractionDigits = 2
-            incomingCashFlow.text = numFormatter.string(from: selectedBudget.incomingCashFlow! as NSDecimalNumber)
-
+            incomingCashFlow.text = CustomNumberFormatter.getNumberAsString(number: selectedBudget.incomingCashFlow! as NSDecimalNumber)
             startDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: selectedBudget.startDate)
-            
             endDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: selectedBudget.endDate)
-            addExpenseButton.isEnabled = true
+            
+            saveButton.isEnabled = true
         }
         
     }
@@ -93,30 +87,18 @@ class BudgetViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        switch(segue.identifier ?? ""){
-        case "btnSave":
-            if (validateForSave()){
-               save()
-                guard let expenseViewController = segue.destination as? ExpenseViewController else{
-                    os_log("Error initialising expense view controller", log: OSLog.default, type: .error)
-                    return
-                }
-                expenseViewController.budget = createdBudget
-            }
-            break
-            
-        case "btnAddExpense":
-            
-            break
-            
-        default:
-            fatalError("Unidentified button")
+        guard let button = sender as? UIBarButtonItem, button === saveButton else{
+            fatalError("Button not recognised -- Was Expecting Save Button")
         }
+        
+        createdBudget = ProxyBudget(budgetName: nameTextField.text!, incomingCashFlow: Decimal(string: incomingCashFlow.text!)! as NSDecimalNumber, startDate: startDatePicker?.date as NSDate?, endDate: endDatePicker?.date as NSDate?)
     }
     
-    //MARK: Actions
-    @IBAction func unwindToBudgetView(sender : UIStoryboardSegue){
-       print("Unwind from Expense View Controller")
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (validateForSave()){
+            return true
+        }
+        return false
     }
     
     //MARK: Gesture Recogniser view Tapped
@@ -125,17 +107,6 @@ class BudgetViewController: UIViewController {
         
     }
     
-    //MARK: Save Core Data
-    func save(){
-        //Save Data
-        let budget = Budget(context: PersistenceService.context)
-        budget.budgetName = nameTextField.text
-        budget.incomingCashFlow = Decimal(string: incomingCashFlow.text!) as NSDecimalNumber?
-        budget.startDate = startDatePicker?.date as NSDate?
-        budget.endDate = endDatePicker?.date as NSDate?
-        PersistenceService.saveContext()
-        createdBudget = budget
-    }
     //MARK: Validation
     func validateForSave()-> Bool{
         var errorMsg = ""
@@ -184,34 +155,7 @@ extension BudgetViewController: UITextFieldDelegate{
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         navigationItem.title = nameTextField.text
-        switch textField.tag {
-            case ActiveControl.nameTextFieldSelected:
-                fieldsCompleted[0] = !nameTextField.text!.isEmpty
-                break
-            case ActiveControl.incomeCashFlowSelected:
-                fieldsCompleted[1] = !incomingCashFlow.text!.isEmpty
-                break
-            case ActiveControl.startDateSelected:
-                fieldsCompleted[2] = !startDate.text!.isEmpty
-                break
-            case ActiveControl.endDateSelected:
-                fieldsCompleted[3] = !endDate.text!.isEmpty
-                break
-            default:
-                fieldsCompleted[5] = true
-                break
-        }
-        var index: Int = 0
-        for i in fieldsCompleted{
-            if (i){
-                index += 1
-            }
-        }
-        //check against amount & dates -- amount of 0 will still have a string value
-        if (index == 4){
-            //fields have been completed, validate that it's correct
-            updateSaveButton()
-        }
+        saveButton.isEnabled = true
     }
 
     //MARK: UIDatePickerView
@@ -265,7 +209,6 @@ extension BudgetViewController: UITextFieldDelegate{
     private func updateSaveButton(){
         let text = nameTextField.text ?? ""
         saveButton.isEnabled = !text.isEmpty
-        addExpenseButton.isEnabled = false
     }
     
 }

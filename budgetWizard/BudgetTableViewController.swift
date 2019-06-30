@@ -19,21 +19,10 @@ class BudgetTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getBudgets()
+        //getBudgets()
+        self.budgets = GlobalBudget.getBudgets()!
     }
     
-    //MARK: load from DB
-    func getBudgets(){
-        let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
-        
-        do{
-            let budget = try PersistenceService.context.fetch(fetchRequest)
-            self.budgets = budget
-        }catch{
-            os_log("Error getting budget information from DB", log: OSLog.default, type: .error)
-        }
-        
-    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -54,35 +43,35 @@ class BudgetTableViewController: UITableViewController {
         let budget = budgets[indexPath.row]
         cell.budgetName.text = budget.budgetName
         cell.dayName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: budget.startDate)
-        
-        //Get day number as int
-        let calendar = Calendar.current
-        let dayNum = calendar.component(.day, from: budget.startDate! as Date)
-        cell.dayNum.text = String(describing: dayNum)
+        cell.dayNum.text = String(describing: CustomDateFormatter.getDayName(date: budget.startDate))
         //Get month name
         cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: budget.endDate)
+        
+        cell.addEditExpense.tag = indexPath.row
         return cell
     }
     
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            let budget = budgets[indexPath.row]
+            budgets.remove(at: indexPath.row)
+            PersistenceService.delete(budget: budget)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -120,7 +109,7 @@ class BudgetTableViewController: UITableViewController {
                 fatalError("Unexpected destination -- could not find \(segue.destination)")
             }
             guard let selectedBudgetCell = sender as? BudgetTableViewCell else{
-                fatalError("Unexpected sender:")
+                fatalError("No cell selected:")
             }
             guard let indexPath = tableView.indexPath(for: selectedBudgetCell) else{
                 fatalError("Index out of range for selected table cell")
@@ -128,31 +117,42 @@ class BudgetTableViewController: UITableViewController {
             let selectedBudget = budgets[indexPath.row]
             budgetViewController.selectedBudget = selectedBudget
             break
+        case "AddEditExpense":
+            guard let expenseTableViewController = segue.destination as? ExpenseTableViewController else{
+                fatalError("Unrecognised destination \(segue.destination)")
+            }
+            guard let selectedBudgetButtonCell = sender as? UIButton else{
+                fatalError("No cell selected")
+            }
             
+            let selectedBudget = budgets[selectedBudgetButtonCell.tag]
+            expenseTableViewController.budget = selectedBudget
+            break
         default:
             fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
             break            
         }
     }
     
-    @IBAction func unwind(sender: UIStoryboardSegue){
+    @IBAction func unwindToBudgetTableView(sender: UIStoryboardSegue){
         if let sourceController = sender.source as? BudgetViewController, let
-            budget = sourceController.createdBudget{
+            proxyBudget = sourceController.createdBudget{
             
-            //--Edit existing
+         //--Edit existing
             if let selectedBudget = tableView.indexPathForSelectedRow{
+                let budget = PersistenceService.edit(budget: proxyBudget, existingBudget: budgets[selectedBudget.row])
                 budgets[selectedBudget.row] = budget
                 tableView.reloadRows(at: [selectedBudget], with: .none)
+            }else {
+                //Add new budget
+                let budget = PersistenceService.save(budget: proxyBudget)
+                let indexPath = IndexPath(row: budgets.count, section: 0)
+                budgets.append(budget)
+                tableView.insertRows(at: [indexPath], with: .automatic)
             }
-            
-            //Add new budget
-            let indexPath = IndexPath(row: budgets.count, section: 0)
-            budgets.append(budget)
-            tableView.insertRows(at: [indexPath], with: .automatic)
             
         }
         
     }
- 
 
 }

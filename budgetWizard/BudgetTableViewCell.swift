@@ -11,10 +11,11 @@ import UIKit
 class BudgetTableViewCell : UITableViewCell{
     //MARK: Properties
     @IBOutlet weak var budgetName: UILabel!
-    @IBOutlet weak var toDate: UILabel!
     @IBOutlet weak var dayName: UILabel!
     @IBOutlet weak var dayNum: UILabel!
     @IBOutlet weak var monthName: UILabel!
+    @IBOutlet weak var addEditExpense: UIButton!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,4 +25,36 @@ class BudgetTableViewCell : UITableViewCell{
         super.setSelected(selected, animated: true)
     }
     
+}
+
+@IBDesignable extension UIButton {
+    
+    @IBInspectable var borderWidth: CGFloat {
+        set {
+            layer.borderWidth = newValue
+        }
+        get {
+            return layer.borderWidth
+        }
+    }
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        set {
+            layer.cornerRadius = newValue
+        }
+        get {
+            return layer.cornerRadius
+        }
+    }
+    
+    @IBInspectable var borderColor: UIColor? {
+        set {
+            guard let uiColor = newValue else { return }
+            layer.borderColor = uiColor.cgColor
+        }
+        get {
+            guard let color = layer.borderColor else { return nil }
+            return UIColor(cgColor: color)
+        }
+    }
 }
