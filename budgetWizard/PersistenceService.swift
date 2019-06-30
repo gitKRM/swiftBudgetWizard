@@ -34,10 +34,12 @@ class PersistenceService{
     static func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
-            do {
+            do
+            {
                 try context.save()
-            } catch {
-           
+            }
+            catch
+            {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
@@ -55,49 +57,87 @@ class PersistenceService{
         return createdBudget
     }
     
+    static func save(expense: ProxyExpense)-> Expenses{
+        let createdExpense = Expenses(context: context)
+        createdExpense.expenseName = expense.expenseName
+        createdExpense.expenseCategory = expense.expenseCategory
+        createdExpense.amount = expense.expenseAmount
+        createdExpense.expenseDate = expense.expenseDate
+        createdExpense.isRecurring = expense.isRecurring!
+        createdExpense.recurringFrequency = expense.recurringFrequency
+        createdExpense.budget = expense.budget
+        saveContext()
+        return createdExpense
+    }
+    
     //MARK: Edit
-    static func edit(budget: Budget){
-        let budgetToEdit = getItem(budget: budget)
+    static func edit(budget: ProxyBudget, existingBudget: Budget)-> Budget{
+        let budgetToEdit = getItem(budget: existingBudget)
         budgetToEdit.setValue(budget.budgetName, forKey: "budgetName")
         budgetToEdit.setValue(budget.incomingCashFlow, forKey: "incomingCashFlow")
         budgetToEdit.setValue(budget.startDate, forKey: "startDate")
         budgetToEdit.setValue(budget.endDate, forKey: "endDate")
         budgetToEdit.setValue(budget.expenses, forKey: "expenses")
-        do
-        {
-            try context.save()
-        }
-        catch
-        {
-            fatalError("Error attempting to update budget \(String(describing: budget.budgetName))")
-        }
+       
+        saveContext()
+        return budgetToEdit as! Budget
+       
+    }
+    
+    static func edit(expense: ProxyExpense, existingExpense: Expenses)-> Expenses{
+        let expenseToEdit = getItem(expense: existingExpense)
+        expenseToEdit.setValue(expense.expenseName, forKey: "expenseName")
+        expenseToEdit.setValue(expense.expenseCategory, forKey: "expenseCategory")
+        expenseToEdit.setValue(expense.expenseAmount, forKey: "amount")
+        expenseToEdit.setValue(expense.expenseDate, forKey: "expenseDate")
+        expenseToEdit.setValue(expense.isRecurring, forKey: "isRecurring")
+        expenseToEdit.setValue(expense.recurringFrequency, forKey: "recurringFrequency")
+        expenseToEdit.setValue(expense.budget, forKey: "budget")
+       
+        saveContext()
+        return expenseToEdit as! Expenses
+        
     }
     
     //MARK: Delete
-    static func deleteBudget(budget: Budget){
+    static func delete(budget: Budget){
         let budgetToDelete = getItem(budget: budget)
         context.delete(budgetToDelete)
-        do
-        {
-            try context.save()
-        }
-        catch
-        {
-            fatalError("Error attempting to save managed objects after removing budget: \(String(describing: budget.budgetName))")
-        }
+        saveContext()
+    }
+    
+    static func delete(expense: Expenses){
+        let expenseToDelete = getItem(expense: expense)
+        context.delete(expenseToDelete)
+        saveContext()
     }
     
     //MARK: Retrieve Object
     static func getItem(budget: Budget)-> NSManagedObject{
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Budget")
         fetchRequest.predicate = NSPredicate(format: "budgetName = %@", budget.budgetName!)
-        do{
+        do
+        {
             let fetcheddBudget = try context.fetch(fetchRequest)
             let retrievedBudget = fetcheddBudget[0] as! NSManagedObject
             return retrievedBudget
-            
-        }catch{
+        }
+        catch
+        {
             fatalError("Error attempting to retrieve budget: \(String(describing: budget.budgetName))")
+        }
+    }
+    
+    static func getItem(expense: Expenses)-> NSManagedObject{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expenses")
+        fetchRequest.predicate = NSPredicate(format: "expenseName = %@ AND amount = %@", expense.expenseName!,expense.amount!)
+        do{
+            let fetchedExpense = try context.fetch(fetchRequest)
+            let retrievedExpense = fetchedExpense[0] as! NSManagedObject
+            return retrievedExpense
+        }
+        catch{
+            fatalError("Error attempting to retrieve expense: \(String(describing: expense.expenseName))")
         }
     }
 }

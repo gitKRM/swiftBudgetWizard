@@ -17,7 +17,7 @@ class ProxyBudget : NSObject {
     var expenses: [Expenses]?
     var expenseSet: NSSet?
     
-    init?(budgetName: String, incomingCashFlow: NSDecimalNumber, startDate: NSDate?, endDate: NSDate? ){
+    init?(budgetName: String, incomingCashFlow: NSDecimalNumber, startDate: NSDate?, endDate: NSDate?){
         guard !budgetName.isEmpty else{
             return nil
         }
@@ -38,7 +38,6 @@ class ProxyBudget : NSObject {
         self.incomingCashFlow = incomingCashFlow
         self.startDate = sDate
         self.endDate = eDate
-        
     }
     
     func AddExpense(expense: Expenses){

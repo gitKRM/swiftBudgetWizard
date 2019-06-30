@@ -46,6 +46,8 @@ class BudgetTableViewController: UITableViewController {
         cell.dayNum.text = String(describing: CustomDateFormatter.getDayName(date: budget.startDate))
         //Get month name
         cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: budget.endDate)
+        
+        cell.addEditExpense.tag = indexPath.row
         return cell
     }
     
@@ -63,8 +65,7 @@ class BudgetTableViewController: UITableViewController {
             // Delete the row from the data source
             let budget = budgets[indexPath.row]
             budgets.remove(at: indexPath.row)
-            PersistenceService.deleteBudget(budget: budget)
-            
+            PersistenceService.delete(budget: budget)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -108,7 +109,7 @@ class BudgetTableViewController: UITableViewController {
                 fatalError("Unexpected destination -- could not find \(segue.destination)")
             }
             guard let selectedBudgetCell = sender as? BudgetTableViewCell else{
-                fatalError("Unexpected sender:")
+                fatalError("No cell selected:")
             }
             guard let indexPath = tableView.indexPath(for: selectedBudgetCell) else{
                 fatalError("Index out of range for selected table cell")
@@ -116,7 +117,17 @@ class BudgetTableViewController: UITableViewController {
             let selectedBudget = budgets[indexPath.row]
             budgetViewController.selectedBudget = selectedBudget
             break
+        case "AddEditExpense":
+            guard let expenseTableViewController = segue.destination as? ExpenseTableViewController else{
+                fatalError("Unrecognised destination \(segue.destination)")
+            }
+            guard let selectedBudgetButtonCell = sender as? UIButton else{
+                fatalError("No cell selected")
+            }
             
+            let selectedBudget = budgets[selectedBudgetButtonCell.tag]
+            expenseTableViewController.budget = selectedBudget
+            break
         default:
             fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
             break            
@@ -127,14 +138,14 @@ class BudgetTableViewController: UITableViewController {
         if let sourceController = sender.source as? BudgetViewController, let
             proxyBudget = sourceController.createdBudget{
             
-            let budget = PersistenceService.save(budget: proxyBudget)
-            
          //--Edit existing
             if let selectedBudget = tableView.indexPathForSelectedRow{
+                let budget = PersistenceService.edit(budget: proxyBudget, existingBudget: budgets[selectedBudget.row])
                 budgets[selectedBudget.row] = budget
                 tableView.reloadRows(at: [selectedBudget], with: .none)
             }else {
                 //Add new budget
+                let budget = PersistenceService.save(budget: proxyBudget)
                 let indexPath = IndexPath(row: budgets.count, section: 0)
                 budgets.append(budget)
                 tableView.insertRows(at: [indexPath], with: .automatic)

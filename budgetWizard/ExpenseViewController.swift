@@ -20,8 +20,8 @@ class ExpenseViewController: UIViewController{
     @IBOutlet weak var frequency: UITextField!
     let categories = ["Credit Cards", "Food", "Future Bill", "Future Goal", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
     let frequencies = ["Weekly", "Forntightly", "Monthly"]
-    var budget: Budget?
-    var createdExpense: Expenses?
+    var createdExpense: ProxyExpense?
+    var selectedExpense: Expenses?
     
     //MARK: Private Properties
     private var expenseDatePicker: UIDatePicker?
@@ -31,10 +31,8 @@ class ExpenseViewController: UIViewController{
         super.viewDidLoad()
         initDelegates()
         initPickers()
+        loadExistingExpense()
         initGestureRecogniser()
-        if let budget = budget{
-            navigationItem.title = budget.budgetName
-        }
     }
     
     //MARK: Set Delegates
@@ -43,6 +41,17 @@ class ExpenseViewController: UIViewController{
         expenseName.delegate = self
         amount.delegate = self
         frequency.delegate = self
+    }
+    
+    func loadExistingExpense(){
+        if let selectedExpense = selectedExpense{
+            categoryTextField.text = selectedExpense.expenseCategory
+            expenseName.text = selectedExpense.expenseName
+            expenseDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MMM/yyyy", date: selectedExpense.expenseDate)
+            amount.text = CustomNumberFormatter.getNumberAsString(number: selectedExpense.amount! as NSDecimalNumber)
+            recurringExpenseSwitch.isOn = selectedExpense.isRecurring
+            frequency.text = selectedExpense.recurringFrequency
+        }
     }
     
     //MARK: Set Gesture recogniser
@@ -65,7 +74,15 @@ class ExpenseViewController: UIViewController{
 
     // MARK: - Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        //--dismiss if view is presented modally
+        let isPresentingController = presentingViewController is UINavigationController
+        if isPresentingController{
+            dismiss(animated: true, completion: nil)
+        }
+            //--Pop if view has been pushed on the stack
+        else if let owningNavController = navigationController{
+            owningNavController.popViewController(animated: true)
+        }
     }
     
     
@@ -78,37 +95,15 @@ class ExpenseViewController: UIViewController{
             fatalError("Unrecognised button received")
         }
         
-        createdExpense = Expenses(context: PersistenceService.context)
-        createdExpense!.expenseCategory = categoryTextField.text
-        createdExpense!.expenseName = expenseName.text
-        createdExpense!.expenseDate = expenseDatePicker?.date as NSDate?
-        createdExpense!.amount = Decimal(string: amount.text!) as NSDecimalNumber?
-        createdExpense!.isRecurring = recurringExpenseSwitch.isOn
-        createdExpense!.recurringFrequency = frequency?.text
-        budget!.addToExpenses(createdExpense!)
+        createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!, isRecurring: recurringExpenseSwitch.isOn, recurringFrequency: frequency.text!)
+        
     }
-//
-//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-//        if (validateForSave()){
-//            save()
-//            return true
-//        }
-//        return false
-//    }
-
-    //MARK: Gesture Recogniser view Tapped
-    @objc func viewTapped(gestureRecogniser: UITapGestureRecognizer){
-        view.endEditing(true)
-    }
-    
-    //MARK: Switch Toggled
-    @IBAction func switchToggled(_ sender: UISwitch) {
-        if (sender.isOn){
-            frequency.isEnabled = true
-        }else{
-            frequency.text = ""
-            frequency.isEnabled = false
+    //-- Only allow for segue to continue if validation passes
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (validateForSave()){
+            return true
         }
+        return false
     }
     
     //MARK: Validation
@@ -132,6 +127,11 @@ class ExpenseViewController: UIViewController{
                 errorMsg = errorMsg + "Expense Amount Must Be Entered\n\n"
             }
         }
+        let validExpenseDate = CustomDateFormatter.getDatePropertyFromString(formatSpecifier: "dd/MM/yyyy", date: expenseDate.text)
+        if (validExpenseDate == nil){
+            errorMsg += "\nInvalid Start Date"
+        }
+        
         if (!errorMsg.isEmpty){
             let alert = UIAlertController(title: "Validation Error", message: errorMsg, preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
@@ -141,20 +141,20 @@ class ExpenseViewController: UIViewController{
         return errorMsg.isEmpty
     }
     
-    //MARK: Save
-    func save(){
-//        let expense = Expenses(context: PersistenceService.context)
-//        expense.expenseCategory = categoryTextField.text
-//        expense.expenseName = expenseName.text
-//        expense.expenseDate = expenseDatePicker?.date as NSDate?
-//        expense.amount = Decimal(string: amount.text!) as NSDecimalNumber?
-//        expense.isRecurring = recurringExpenseSwitch.isOn
-//        expense.recurringFrequency = frequency?.text
-//        budget!.expense = expense
-//        createdExpense = expense
-//        PersistenceService.saveContext()
-        
-        
+
+    //MARK: Gesture Recogniser view Tapped
+    @objc func viewTapped(gestureRecogniser: UITapGestureRecognizer){
+        view.endEditing(true)
+    }
+    
+    //MARK: Switch Toggled
+    @IBAction func switchToggled(_ sender: UISwitch) {
+        if (sender.isOn){
+            frequency.isEnabled = true
+        }else{
+            frequency.text = ""
+            frequency.isEnabled = false
+        }
     }
 }
 
@@ -238,16 +238,6 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         navigationItem.title = expenseName.text
-//        if (textField == amount && !textField.text!.isEmpty){
-//            let newAmount:Double? = Double(textField.text!)
-//
-//            let formatter = NumberFormatter()
-//            formatter.locale = Locale.autoupdatingCurrent
-//            formatter.numberStyle = .currency
-//            if let formattedAmount = formatter.string(from: newAmount! as NSNumber){
-//                textField.text = formattedAmount
-//            }
-//        }
     }
     
     //MARK: Expense Date Picker

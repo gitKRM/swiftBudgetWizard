@@ -54,15 +54,11 @@ class BudgetViewController: UIViewController {
     func loadExistingBudget(){
         if let selectedBudget = selectedBudget{
             nameTextField.text = selectedBudget.budgetName
-            let numFormatter = NumberFormatter()
-            numFormatter.generatesDecimalNumbers = true
-            numFormatter.minimumFractionDigits = 2
-            numFormatter.maximumFractionDigits = 2
-            incomingCashFlow.text = numFormatter.string(from: selectedBudget.incomingCashFlow! as NSDecimalNumber)
-
+            incomingCashFlow.text = CustomNumberFormatter.getNumberAsString(number: selectedBudget.incomingCashFlow! as NSDecimalNumber)
             startDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: selectedBudget.startDate)
-            
             endDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: selectedBudget.endDate)
+            
+            saveButton.isEnabled = true
         }
         
     }
@@ -159,34 +155,7 @@ extension BudgetViewController: UITextFieldDelegate{
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         navigationItem.title = nameTextField.text
-        switch textField.tag {
-            case ActiveControl.nameTextFieldSelected:
-                fieldsCompleted[0] = !nameTextField.text!.isEmpty
-                break
-            case ActiveControl.incomeCashFlowSelected:
-                fieldsCompleted[1] = !incomingCashFlow.text!.isEmpty
-                break
-            case ActiveControl.startDateSelected:
-                fieldsCompleted[2] = !startDate.text!.isEmpty
-                break
-            case ActiveControl.endDateSelected:
-                fieldsCompleted[3] = !endDate.text!.isEmpty
-                break
-            default:
-                fieldsCompleted[5] = true
-                break
-        }
-        var index: Int = 0
-        for i in fieldsCompleted{
-            if (i){
-                index += 1
-            }
-        }
-        //check against amount & dates -- amount of 0 will still have a string value
-        if (index == 4){
-            //fields have been completed, validate that it's correct
-            updateSaveButton()
-        }
+        saveButton.isEnabled = true
     }
 
     //MARK: UIDatePickerView
