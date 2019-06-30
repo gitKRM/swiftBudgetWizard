@@ -75,7 +75,7 @@ class ExpenseViewController: UIViewController{
     // MARK: - Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         //--dismiss if view is presented modally
-        let isPresentingController = presentingViewController is UINavigationController
+        let isPresentingController = presentingViewController is UITabBarController
         if isPresentingController{
             dismiss(animated: true, completion: nil)
         }
