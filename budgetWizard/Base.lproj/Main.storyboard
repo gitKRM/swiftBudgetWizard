@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jN4-HZ-bEu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IND-vY-yKV">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,43 +9,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Summary-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="budgetWizard" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Summary" id="g22-o8-B8A">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eBO-d7-82K">
-                            <connections>
-                                <segue destination="CCR-o5-0Ry" kind="show" id="TPL-66-2qR"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3119" y="-668"/>
-        </scene>
         <!--View Budgets-->
         <scene sceneID="9eg-Wy-Rhx">
             <objects>
                 <tableViewController id="CCR-o5-0Ry" customClass="BudgetTableViewController" customModule="budgetWizard" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="R2C-5M-lU2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="R2C-5M-lU2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BudgetTableViewCell" id="vzB-bG-djA" customClass="BudgetTableViewCell" customModule="budgetWizard" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="96"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vzB-bG-djA" id="I6p-Vy-2DO" customClass="BudgetTableViewCell" customModule="budgetWizard" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="95.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLM-kX-W1k">
@@ -77,7 +55,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vr8-Ad-G8Z">
-                                            <rect key="frame" x="133" y="66" width="261" height="21"/>
+                                            <rect key="frame" x="133" y="66" width="220" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
@@ -121,21 +99,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="View Budgets" id="UIB-yZ-sG8">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ciT-cU-hgl">
-                            <connections>
-                                <action selector="cancel:" destination="CCR-o5-0Ry" id="6Lt-L6-bSs"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Np8-Xi-TEa">
                             <connections>
-                                <segue destination="n6L-GN-s1i" kind="presentation" identifier="AddBudget" id="PmF-CP-TwJ"/>
+                                <segue destination="n6L-GN-s1i" kind="presentation" identifier="AddBudget" id="kvG-tO-NTD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhb-dY-7Ga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2210.144927536232" y="-668.30357142857144"/>
+            <point key="canvasLocation" x="-1284.0579710144928" y="-331.47321428571428"/>
         </scene>
         <!--Add Edit Budget-->
         <scene sceneID="8as-7T-i6t">
@@ -146,7 +119,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="3RZ-GE-4RK">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="I13-6e-eHR">
                                 <rect key="frame" x="20" y="108.00000000000001" width="374" height="251.33333333333337"/>
@@ -220,7 +193,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbK-Br-ezh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="71K-y1-7z5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-112" y="-141"/>
+            <point key="canvasLocation" x="797.10144927536237" y="-141.29464285714286"/>
         </scene>
         <!--Add Expense-->
         <scene sceneID="jSc-u4-gWs">
@@ -323,25 +296,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wi-MT-MVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gcB-CE-SY8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2119" y="-871"/>
+            <point key="canvasLocation" x="3028.985507246377" y="-871.20535714285711"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="3Qk-ng-L7v">
+        <!--Summary-->
+        <scene sceneID="OAM-Gh-jBW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jN4-HZ-bEu" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zzx-6M-glI">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Omf-QC-ed0"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xwj-ba-tEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="SFD-bL-r1d" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EuU-XH-Lwq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="p15-Zp-E7b"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Summary" image="pieChart" selectedImage="pieChart" id="hv6-2w-ezP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CaD-Af-yWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4025" y="-667"/>
+            <point key="canvasLocation" x="-3128" y="328"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Vit-9U-zMh">
+            <objects>
+                <tabBarController id="IND-vY-yKV" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vpu-ab-Uw2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="N7E-F5-bfk" kind="relationship" relationship="viewControllers" id="mAD-Gi-9gw"/>
+                        <segue destination="SFD-bL-r1d" kind="relationship" relationship="viewControllers" id="Ymx-6A-tc1"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Vk-7Q-Hfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3597" y="-570"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bm6-mp-rSs">
@@ -359,7 +348,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5P-nt-k27" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1396" y="212"/>
+            <point key="canvasLocation" x="-486.95652173913049" y="211.60714285714286"/>
         </scene>
         <!--Expense Table View Controller-->
         <scene sceneID="Ic5-Gq-mgg">
@@ -443,7 +432,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iuc-nP-heO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="224.63768115942031" y="-871.20535714285711"/>
+            <point key="canvasLocation" x="1134.7826086956522" y="-871.20535714285711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="k9Y-uy-1OR">
@@ -461,11 +450,32 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PN-pV-Ppz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1209" y="-141"/>
+            <point key="canvasLocation" x="2118.840579710145" y="-141.29464285714286"/>
+        </scene>
+        <!--Budgets-->
+        <scene sceneID="hzc-9S-7so">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N7E-F5-bfk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Budgets" image="creditCard" id="inM-Qb-UrR"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5fB-gt-Csz">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CCR-o5-0Ry" kind="relationship" relationship="rootViewController" id="60I-AH-oJy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jzP-MX-FmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2194.202898550725" y="-331.47321428571428"/>
         </scene>
     </scenes>
     <resources>
         <image name="BackgroundImage" width="200" height="208.66667175292969"/>
+        <image name="creditCard" width="30" height="30"/>
+        <image name="pieChart" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tif-wq-NfQ"/>

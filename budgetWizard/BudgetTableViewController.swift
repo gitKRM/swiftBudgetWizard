@@ -18,7 +18,7 @@ class BudgetTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.leftBarButtonItem = editButtonItem
         //getBudgets()
         self.budgets = GlobalBudget.getBudgets()!
     }
