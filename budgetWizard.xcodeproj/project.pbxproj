@@ -138,28 +138,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		3622500122CCAB1E00DABF62 /* Expenses */ = {
+		3622500122CCAB1E00DABF62 /* Expense View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				369AB85222C213AF00FD221E /* Expenses+CoreDataProperties.swift */,
-				369AB85122C213AF00FD221E /* Expenses+CoreDataClass.swift */,
 				369AB83D22B8DED200FD221E /* ExpenseTableViewController.swift */,
 				3651169822A354F800827CA8 /* ExpenseViewController.swift */,
-				369AB83F22BA242100FD221E /* ExpenseTableViewCell.swift */,
 			);
-			path = Expenses;
+			path = "Expense View Controllers";
 			sourceTree = "<group>";
 		};
-		3622500222CCABDF00DABF62 /* Budgets */ = {
+		3622500222CCABDF00DABF62 /* Budget View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				369AB85422C213AF00FD221E /* Budget+CoreDataProperties.swift */,
-				369AB85322C213AF00FD221E /* Budget+CoreDataClass.swift */,
 				3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */,
 				3634D4DA22A2A1DD002B0339 /* BudgetViewController.swift */,
-				36F4D82D22ACC2B800800B38 /* BudgetTableViewCell.swift */,
 			);
-			path = Budgets;
+			path = "Budget View Controllers";
 			sourceTree = "<group>";
 		};
 		3622500322CCAC4300DABF62 /* Custom Formatters */ = {
@@ -171,22 +165,6 @@
 			path = "Custom Formatters";
 			sourceTree = "<group>";
 		};
-		3622500422CCAC6200DABF62 /* Proxy Expense */ = {
-			isa = PBXGroup;
-			children = (
-				36224FFD22C74E7900DABF62 /* ProxyExpense.swift */,
-			);
-			path = "Proxy Expense";
-			sourceTree = "<group>";
-		};
-		3622500522CCAC7A00DABF62 /* Proxy Budget */ = {
-			isa = PBXGroup;
-			children = (
-				36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */,
-			);
-			path = "Proxy Budget";
-			sourceTree = "<group>";
-		};
 		3622500622CCAD1400DABF62 /* Persistent Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,12 +173,12 @@
 			path = "Persistent Service";
 			sourceTree = "<group>";
 		};
-		3622500722CCAD3000DABF62 /* Summaries */ = {
+		3622500722CCAD3000DABF62 /* Summary View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				36224FFF22CA091D00DABF62 /* SummaryViewController.swift */,
 			);
-			path = Summaries;
+			path = "Summary View Controller";
 			sourceTree = "<group>";
 		};
 		3622500822CCAD5700DABF62 /* Globals */ = {
@@ -210,6 +188,42 @@
 				369AB84322BA2E6200FD221E /* GlobalBudget.swift */,
 			);
 			path = Globals;
+			sourceTree = "<group>";
+		};
+		3622500922CDF7F500DABF62 /* BudgetModel */ = {
+			isa = PBXGroup;
+			children = (
+				36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */,
+				369AB85422C213AF00FD221E /* Budget+CoreDataProperties.swift */,
+				369AB85322C213AF00FD221E /* Budget+CoreDataClass.swift */,
+			);
+			path = BudgetModel;
+			sourceTree = "<group>";
+		};
+		3622500B22CDF89000DABF62 /* ExpemseModel */ = {
+			isa = PBXGroup;
+			children = (
+				36224FFD22C74E7900DABF62 /* ProxyExpense.swift */,
+				369AB85222C213AF00FD221E /* Expenses+CoreDataProperties.swift */,
+				369AB85122C213AF00FD221E /* Expenses+CoreDataClass.swift */,
+			);
+			path = ExpemseModel;
+			sourceTree = "<group>";
+		};
+		3622500C22CDFAB900DABF62 /* Budget Table Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				36F4D82D22ACC2B800800B38 /* BudgetTableViewCell.swift */,
+			);
+			path = "Budget Table Custom Cell";
+			sourceTree = "<group>";
+		};
+		3622500D22CDFADC00DABF62 /* Expense Table Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				369AB83F22BA242100FD221E /* ExpenseTableViewCell.swift */,
+			);
+			path = "Expense Table Custom Cell";
 			sourceTree = "<group>";
 		};
 		3634D49922A2740C002B0339 = {
@@ -237,14 +251,16 @@
 		3634D4A422A2740C002B0339 /* budgetWizard */ = {
 			isa = PBXGroup;
 			children = (
-				3622500822CCAD5700DABF62 /* Globals */,
-				3622500722CCAD3000DABF62 /* Summaries */,
-				3622500622CCAD1400DABF62 /* Persistent Service */,
-				3622500522CCAC7A00DABF62 /* Proxy Budget */,
-				3622500422CCAC6200DABF62 /* Proxy Expense */,
+				3622500222CCABDF00DABF62 /* Budget View Controllers */,
+				3622500922CDF7F500DABF62 /* BudgetModel */,
+				3622500C22CDFAB900DABF62 /* Budget Table Custom Cell */,
 				3622500322CCAC4300DABF62 /* Custom Formatters */,
-				3622500222CCABDF00DABF62 /* Budgets */,
-				3622500122CCAB1E00DABF62 /* Expenses */,
+				3622500122CCAB1E00DABF62 /* Expense View Controllers */,
+				3622500B22CDF89000DABF62 /* ExpemseModel */,
+				3622500D22CDFADC00DABF62 /* Expense Table Custom Cell */,
+				3622500822CCAD5700DABF62 /* Globals */,
+				3622500722CCAD3000DABF62 /* Summary View Controller */,
+				3622500622CCAD1400DABF62 /* Persistent Service */,
 				3634D4A522A2740C002B0339 /* AppDelegate.swift */,
 				3634D4A922A2740C002B0339 /* Main.storyboard */,
 				3634D4AF22A2740E002B0339 /* Assets.xcassets */,
