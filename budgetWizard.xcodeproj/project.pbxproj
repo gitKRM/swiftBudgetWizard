@@ -10,6 +10,7 @@
 		36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */; };
 		36224FFE22C74E7900DABF62 /* ProxyExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFD22C74E7900DABF62 /* ProxyExpense.swift */; };
 		3622500022CA091D00DABF62 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFF22CA091D00DABF62 /* SummaryViewController.swift */; };
+		3622501022D1A6FC00DABF62 /* ExpenseCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622500F22D1A6FC00DABF62 /* ExpenseCategories.swift */; };
 		3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4A522A2740C002B0339 /* AppDelegate.swift */; };
 		3634D4AB22A2740C002B0339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3634D4A922A2740C002B0339 /* Main.storyboard */; };
 		3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4AC22A2740C002B0339 /* budgetWizard.xcdatamodeld */; };
@@ -61,6 +62,7 @@
 		36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyBudget.swift; sourceTree = "<group>"; };
 		36224FFD22C74E7900DABF62 /* ProxyExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyExpense.swift; sourceTree = "<group>"; };
 		36224FFF22CA091D00DABF62 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		3622500F22D1A6FC00DABF62 /* ExpenseCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategories.swift; sourceTree = "<group>"; };
 		3634D4A222A2740C002B0339 /* budgetWizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetWizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3634D4A522A2740C002B0339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3634D4AA22A2740C002B0339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		3622500122CCAB1E00DABF62 /* Expense View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3622500F22D1A6FC00DABF62 /* ExpenseCategories.swift */,
 				369AB83D22B8DED200FD221E /* ExpenseTableViewController.swift */,
 				3651169822A354F800827CA8 /* ExpenseViewController.swift */,
 			);
@@ -521,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				369AB84022BA242100FD221E /* ExpenseTableViewCell.swift in Sources */,
+				3622501022D1A6FC00DABF62 /* ExpenseCategories.swift in Sources */,
 				369AB83E22B8DED200FD221E /* ExpenseTableViewController.swift in Sources */,
 				36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */,
 				36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */,

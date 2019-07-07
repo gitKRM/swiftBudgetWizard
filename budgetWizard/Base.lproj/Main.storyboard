@@ -316,14 +316,46 @@
                                 <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ysl-Ki-bKQ">
+                                <rect key="frame" x="20" y="64.000000000000014" width="374" height="150.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select A Budget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt9-Zb-vfc">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="28.666666666666668"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select A Budget" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Av-1g-WHy">
+                                        <rect key="frame" x="0.0" y="37.666666666666671" width="374" height="33"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select A Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiN-u4-diZ">
+                                        <rect key="frame" x="0.0" y="79.666666666666657" width="374" height="28.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select A Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GoH-Tc-yz9">
+                                        <rect key="frame" x="0.0" y="117.33333333333334" width="374" height="33"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="p15-Zp-E7b" firstAttribute="bottom" secondItem="HMy-Lk-gQm" secondAttribute="bottom" constant="40" id="3Gf-8K-5bM"/>
                             <constraint firstItem="cFm-zK-ZhO" firstAttribute="top" secondItem="p15-Zp-E7b" secondAttribute="top" constant="206" id="Boy-zs-0yl"/>
                             <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="HMy-Lk-gQm" secondAttribute="trailing" constant="20" id="CK9-MA-sAz"/>
+                            <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="top" secondItem="p15-Zp-E7b" secondAttribute="top" constant="20" id="GLf-Tf-GUG"/>
+                            <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="WUG-il-Iuo"/>
                             <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="cFm-zK-ZhO" secondAttribute="trailing" constant="20" id="Ynv-kF-gWH"/>
                             <constraint firstItem="HMy-Lk-gQm" firstAttribute="top" secondItem="cFm-zK-ZhO" secondAttribute="bottom" constant="25" id="iNH-lS-OCT"/>
+                            <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="Ysl-Ki-bKQ" secondAttribute="trailing" constant="20" id="irF-bp-MU7"/>
                             <constraint firstItem="HMy-Lk-gQm" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="mry-dj-mIJ"/>
                             <constraint firstItem="cFm-zK-ZhO" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="zra-NL-fah"/>
                         </constraints>
@@ -332,6 +364,8 @@
                     <tabBarItem key="tabBarItem" title="Summary" image="pieChart" selectedImage="pieChart" id="hv6-2w-ezP"/>
                     <connections>
                         <outlet property="pieChart" destination="HMy-Lk-gQm" id="8no-dn-H8R"/>
+                        <outlet property="selectedBudgetTxtField" destination="3Av-1g-WHy" id="NE7-xb-59B"/>
+                        <outlet property="selectedCategoryTxtField" destination="GoH-Tc-yz9" id="ItN-7a-cmj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CaD-Af-yWb" userLabel="First Responder" sceneMemberID="firstResponder"/>

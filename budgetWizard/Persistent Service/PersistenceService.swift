@@ -114,18 +114,35 @@ class PersistenceService{
     
     //MARK: Retrieve Object
     static func getItem(budget: Budget)-> NSManagedObject{
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Budget")
-        fetchRequest.predicate = NSPredicate(format: "budgetName = %@", budget.budgetName!)
+        let fetchRequest = getFetchRequest(name: budget.budgetName!)
         do
         {
-            let fetcheddBudget = try context.fetch(fetchRequest)
-            let retrievedBudget = fetcheddBudget[0] as! NSManagedObject
+            let fetcheddBudgets = try context.fetch(fetchRequest)
+            let retrievedBudget = fetcheddBudgets[0] as! NSManagedObject
             return retrievedBudget
         }
         catch
         {
             fatalError("Error attempting to retrieve budget: \(String(describing: budget.budgetName))")
         }
+    }
+    
+    static func getItem(name: String)-> Budget?{
+        let fetchRequest = getFetchRequest(name: name)
+        do{
+            let fetchedBudgets = try context.fetch(fetchRequest)
+            let retrievedBudget = fetchedBudgets[0] as! NSManagedObject
+            return retrievedBudget as? Budget
+        }
+        catch{
+            fatalError("Could not find budget with name \(name)")
+        }
+    }
+    
+    private static func getFetchRequest(name: String)-> NSFetchRequest<NSFetchRequestResult>{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Budget")
+        fetchRequest.predicate = NSPredicate(format: "budgetName = %@", name)
+        return fetchRequest
     }
     
     static func getItem(expense: Expenses)-> NSManagedObject{
@@ -139,5 +156,9 @@ class PersistenceService{
         catch{
             fatalError("Error attempting to retrieve expense: \(String(describing: expense.expenseName))")
         }
+    }
+    
+    static func getExpensesFromCategory(budget: Budget, category: String){
+        
     }
 }
