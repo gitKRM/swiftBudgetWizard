@@ -158,7 +158,43 @@ class PersistenceService{
         }
     }
     
-    static func getExpensesFromCategory(budget: Budget, category: String){
-        
+    static func getExpenseAsArray(budget: Budget?)->[Expenses] {
+        var expenses = [Expenses]()
+        if let existingExpenses = budget?.expenses{
+            
+            //let enumerator: NSEnumerator = budget!.expenses!.objectEnumerator()
+            let enumerator: NSEnumerator = existingExpenses.objectEnumerator()
+            while let value = enumerator.nextObject(){
+                expenses.append(value as! Expenses)
+            }
+        }
+        return expenses
+    }
+    
+    static func getExpensesFromCategory(budget: Budget, category: String)-> [Expenses]?{     
+        switch (category){
+        case "All":
+            return getExpenseAsArray(budget: budget)
+        case "Necessity":
+            return filterExpenseOnCategory(budget: budget, category: "Necessity")
+        case "Commitments":
+            return filterExpenseOnCategory(budget: budget, category: "Commitments")
+        case "Wants":
+            return filterExpenseOnCategory(budget: budget, category: "Wants")
+        default:
+            return nil
+        }
+    }
+    
+    private static func filterExpenseOnCategory(budget: Budget, category: String)-> [Expenses]{
+        var expenses = [Expenses]()
+        budget.expenses?.forEach{e in
+            if let expense = e as? Expenses{
+                if (ExpenseCategories.categoryWeightsDict[category]?.contains(expense.expenseCategory!))!{
+                    expenses.append(expense)
+                }
+            }
+        }
+        return expenses
     }
 }

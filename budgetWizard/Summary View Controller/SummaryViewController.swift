@@ -14,6 +14,8 @@ class SummaryViewController: UIViewController {
     //MARK:Properties
     @IBOutlet weak var pieChart: PieChartView!
     var budgets = [Budget]()
+    var budget: Budget?
+    var expenses = [Expenses]()
     @IBOutlet weak var selectedBudgetTxtField: UITextField!
     @IBOutlet weak var selectedCategoryTxtField: UITextField!
     
@@ -105,7 +107,7 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
         self.budgetItems.removeAll()
         self.budgets = GlobalBudget.getBudgets()!
         
-        budgets.forEach{b in
+        budgets.forEach{b in            
             budgetItems.append(b.budgetName!)
         }
         
@@ -174,9 +176,16 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (selectedBudgetTxtField.isFirstResponder){
+            budget = budgets[row]
             selectedBudgetTxtField.text = budgetItems[row]
         }else{
             selectedCategoryTxtField.text = categoryItems[row]
+            getExpenses()
         }
+    }
+    
+    func getExpenses(){
+        expenses.removeAll()
+        expenses = PersistenceService.getExpensesFromCategory(budget: budget!, category: selectedCategoryTxtField.text!)!
     }
 }

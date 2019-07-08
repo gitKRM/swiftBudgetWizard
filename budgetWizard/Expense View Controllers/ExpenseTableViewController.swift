@@ -25,15 +25,16 @@ class ExpenseTableViewController: UITableViewController {
     
     //MARK: Get Expenses from DB
     func getExpenses(){
+        expenses = PersistenceService.getExpenseAsArray(budget: budget)
         
-        if let existingExpenses = budget?.expenses{
-            navigationItem.title = budget?.budgetName
-            //let enumerator: NSEnumerator = budget!.expenses!.objectEnumerator()
-            let enumerator: NSEnumerator = existingExpenses.objectEnumerator()
-            while let value = enumerator.nextObject(){
-                expenses.append(value as! Expenses)
-            }
-        }        
+//        if let existingExpenses = budget?.expenses{
+//            navigationItem.title = budget?.budgetName
+//            //let enumerator: NSEnumerator = budget!.expenses!.objectEnumerator()
+//            let enumerator: NSEnumerator = existingExpenses.objectEnumerator()
+//            while let value = enumerator.nextObject(){
+//                expenses.append(value as! Expenses)
+//            }
+//        }
     }
 
     // MARK: - Table view data source
