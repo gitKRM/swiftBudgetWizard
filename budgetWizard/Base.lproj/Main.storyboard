@@ -310,12 +310,6 @@
                                 <rect key="frame" x="20" y="317" width="374" height="456"/>
                                 <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Pie Chart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFm-zK-ZhO">
-                                <rect key="frame" x="20" y="250" width="374" height="42"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ysl-Ki-bKQ">
                                 <rect key="frame" x="20" y="64.000000000000014" width="374" height="150.33333333333337"/>
                                 <subviews>
@@ -349,15 +343,12 @@
                         <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="p15-Zp-E7b" firstAttribute="bottom" secondItem="HMy-Lk-gQm" secondAttribute="bottom" constant="40" id="3Gf-8K-5bM"/>
-                            <constraint firstItem="cFm-zK-ZhO" firstAttribute="top" secondItem="p15-Zp-E7b" secondAttribute="top" constant="206" id="Boy-zs-0yl"/>
                             <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="HMy-Lk-gQm" secondAttribute="trailing" constant="20" id="CK9-MA-sAz"/>
                             <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="top" secondItem="p15-Zp-E7b" secondAttribute="top" constant="20" id="GLf-Tf-GUG"/>
                             <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="WUG-il-Iuo"/>
-                            <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="cFm-zK-ZhO" secondAttribute="trailing" constant="20" id="Ynv-kF-gWH"/>
-                            <constraint firstItem="HMy-Lk-gQm" firstAttribute="top" secondItem="cFm-zK-ZhO" secondAttribute="bottom" constant="25" id="iNH-lS-OCT"/>
                             <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="Ysl-Ki-bKQ" secondAttribute="trailing" constant="20" id="irF-bp-MU7"/>
                             <constraint firstItem="HMy-Lk-gQm" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="mry-dj-mIJ"/>
-                            <constraint firstItem="cFm-zK-ZhO" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="zra-NL-fah"/>
+                            <constraint firstItem="HMy-Lk-gQm" firstAttribute="top" secondItem="EuU-XH-Lwq" secondAttribute="top" constant="317" id="wxP-pH-asL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="p15-Zp-E7b"/>
                     </view>
