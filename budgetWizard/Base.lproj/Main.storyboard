@@ -301,18 +301,67 @@
         <!--Summary-->
         <scene sceneID="OAM-Gh-jBW">
             <objects>
-                <viewController id="SFD-bL-r1d" sceneMemberID="viewController">
+                <viewController id="SFD-bL-r1d" customClass="SummaryViewController" customModule="budgetWizard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EuU-XH-Lwq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMy-Lk-gQm" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="317" width="374" height="456"/>
+                                <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ysl-Ki-bKQ">
+                                <rect key="frame" x="20" y="64.000000000000014" width="374" height="150.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select A Budget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt9-Zb-vfc">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="28.666666666666668"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select A Budget" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Av-1g-WHy">
+                                        <rect key="frame" x="0.0" y="37.666666666666671" width="374" height="33"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select A Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiN-u4-diZ">
+                                        <rect key="frame" x="0.0" y="79.666666666666657" width="374" height="28.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select A Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GoH-Tc-yz9">
+                                        <rect key="frame" x="0.0" y="117.33333333333334" width="374" height="33"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="p15-Zp-E7b" firstAttribute="bottom" secondItem="HMy-Lk-gQm" secondAttribute="bottom" constant="40" id="3Gf-8K-5bM"/>
+                            <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="HMy-Lk-gQm" secondAttribute="trailing" constant="20" id="CK9-MA-sAz"/>
+                            <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="top" secondItem="p15-Zp-E7b" secondAttribute="top" constant="20" id="GLf-Tf-GUG"/>
+                            <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="WUG-il-Iuo"/>
+                            <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="Ysl-Ki-bKQ" secondAttribute="trailing" constant="20" id="irF-bp-MU7"/>
+                            <constraint firstItem="HMy-Lk-gQm" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="mry-dj-mIJ"/>
+                            <constraint firstItem="HMy-Lk-gQm" firstAttribute="top" secondItem="EuU-XH-Lwq" secondAttribute="top" constant="317" id="wxP-pH-asL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="p15-Zp-E7b"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Summary" image="pieChart" selectedImage="pieChart" id="hv6-2w-ezP"/>
+                    <connections>
+                        <outlet property="pieChart" destination="HMy-Lk-gQm" id="8no-dn-H8R"/>
+                        <outlet property="selectedBudgetTxtField" destination="3Av-1g-WHy" id="NE7-xb-59B"/>
+                        <outlet property="selectedCategoryTxtField" destination="GoH-Tc-yz9" id="ItN-7a-cmj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CaD-Af-yWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3128" y="328"/>
+            <point key="canvasLocation" x="-3128.985507246377" y="327.45535714285711"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vit-9U-zMh">

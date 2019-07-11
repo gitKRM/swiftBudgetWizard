@@ -3,14 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */; };
 		36224FFE22C74E7900DABF62 /* ProxyExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFD22C74E7900DABF62 /* ProxyExpense.swift */; };
+		3622500022CA091D00DABF62 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFF22CA091D00DABF62 /* SummaryViewController.swift */; };
+		3622501022D1A6FC00DABF62 /* ExpenseCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622500F22D1A6FC00DABF62 /* ExpenseCategories.swift */; };
 		3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4A522A2740C002B0339 /* AppDelegate.swift */; };
-		3634D4A822A2740C002B0339 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4A722A2740C002B0339 /* ViewController.swift */; };
 		3634D4AB22A2740C002B0339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3634D4A922A2740C002B0339 /* Main.storyboard */; };
 		3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4AC22A2740C002B0339 /* budgetWizard.xcdatamodeld */; };
 		3634D4B022A2740E002B0339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3634D4AF22A2740E002B0339 /* Assets.xcassets */; };
@@ -32,6 +33,9 @@
 		369AB85822C213AF00FD221E /* Budget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB85422C213AF00FD221E /* Budget+CoreDataProperties.swift */; };
 		36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */; };
 		36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D82D22ACC2B800800B38 /* BudgetTableViewCell.swift */; };
+		69AE717F0C0EE19E8AFF302F /* Pods_budgetWizardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C66F6EC4416026234BA08806 /* Pods_budgetWizardTests.framework */; };
+		840876C41A0EF5D5D49E8DD0 /* Pods_budgetWizard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017EA958250387807524064A /* Pods_budgetWizard.framework */; };
+		FD926F5CCA2F967051B3FAA5 /* Pods_budgetWizardUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2C41C5742F5BD9CF292ECD /* Pods_budgetWizardUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,11 +56,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		017EA958250387807524064A /* Pods_budgetWizard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_budgetWizard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E26AC77F989C822EAB293EB /* Pods-budgetWizardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetWizardTests.release.xcconfig"; path = "Target Support Files/Pods-budgetWizardTests/Pods-budgetWizardTests.release.xcconfig"; sourceTree = "<group>"; };
+		2201B8AC943000A1A1111100 /* Pods-budgetWizard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetWizard.debug.xcconfig"; path = "Target Support Files/Pods-budgetWizard/Pods-budgetWizard.debug.xcconfig"; sourceTree = "<group>"; };
 		36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyBudget.swift; sourceTree = "<group>"; };
 		36224FFD22C74E7900DABF62 /* ProxyExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyExpense.swift; sourceTree = "<group>"; };
+		36224FFF22CA091D00DABF62 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		3622500F22D1A6FC00DABF62 /* ExpenseCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategories.swift; sourceTree = "<group>"; };
 		3634D4A222A2740C002B0339 /* budgetWizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetWizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3634D4A522A2740C002B0339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3634D4A722A2740C002B0339 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3634D4AA22A2740C002B0339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3634D4AD22A2740C002B0339 /* budgetWizard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = budgetWizard.xcdatamodel; sourceTree = "<group>"; };
 		3634D4AF22A2740E002B0339 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,6 +91,12 @@
 		369AB85422C213AF00FD221E /* Budget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		36F4D82D22ACC2B800800B38 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
+		47AC8233C3961C960BCE5C57 /* Pods-budgetWizardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetWizardTests.debug.xcconfig"; path = "Target Support Files/Pods-budgetWizardTests/Pods-budgetWizardTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B6928F02B4C84C80D9C5ED96 /* Pods-budgetWizard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetWizard.release.xcconfig"; path = "Target Support Files/Pods-budgetWizard/Pods-budgetWizard.release.xcconfig"; sourceTree = "<group>"; };
+		C66F6EC4416026234BA08806 /* Pods_budgetWizardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_budgetWizardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E94CC434B807B7343F03ACF2 /* Pods-budgetWizardUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetWizardUITests.debug.xcconfig"; path = "Target Support Files/Pods-budgetWizardUITests/Pods-budgetWizardUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FF2C41C5742F5BD9CF292ECD /* Pods_budgetWizardUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_budgetWizardUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF6057F5CD9BA6078C828077 /* Pods-budgetWizardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetWizardUITests.release.xcconfig"; path = "Target Support Files/Pods-budgetWizardUITests/Pods-budgetWizardUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840876C41A0EF5D5D49E8DD0 /* Pods_budgetWizard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69AE717F0C0EE19E8AFF302F /* Pods_budgetWizardTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,12 +120,115 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD926F5CCA2F967051B3FAA5 /* Pods_budgetWizardUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AF03AD54DC0D34E90E985C1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2201B8AC943000A1A1111100 /* Pods-budgetWizard.debug.xcconfig */,
+				B6928F02B4C84C80D9C5ED96 /* Pods-budgetWizard.release.xcconfig */,
+				47AC8233C3961C960BCE5C57 /* Pods-budgetWizardTests.debug.xcconfig */,
+				1E26AC77F989C822EAB293EB /* Pods-budgetWizardTests.release.xcconfig */,
+				E94CC434B807B7343F03ACF2 /* Pods-budgetWizardUITests.debug.xcconfig */,
+				FF6057F5CD9BA6078C828077 /* Pods-budgetWizardUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		3622500122CCAB1E00DABF62 /* Expense View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3622500F22D1A6FC00DABF62 /* ExpenseCategories.swift */,
+				369AB83D22B8DED200FD221E /* ExpenseTableViewController.swift */,
+				3651169822A354F800827CA8 /* ExpenseViewController.swift */,
+			);
+			path = "Expense View Controllers";
+			sourceTree = "<group>";
+		};
+		3622500222CCABDF00DABF62 /* Budget View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */,
+				3634D4DA22A2A1DD002B0339 /* BudgetViewController.swift */,
+			);
+			path = "Budget View Controllers";
+			sourceTree = "<group>";
+		};
+		3622500322CCAC4300DABF62 /* Custom Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				369AB84122BA290900FD221E /* CustomNumberFormatter.swift */,
+				369AB83522B23E7100FD221E /* CustomDateFormatter.swift */,
+			);
+			path = "Custom Formatters";
+			sourceTree = "<group>";
+		};
+		3622500622CCAD1400DABF62 /* Persistent Service */ = {
+			isa = PBXGroup;
+			children = (
+				36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */,
+			);
+			path = "Persistent Service";
+			sourceTree = "<group>";
+		};
+		3622500722CCAD3000DABF62 /* Summary View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				36224FFF22CA091D00DABF62 /* SummaryViewController.swift */,
+			);
+			path = "Summary View Controller";
+			sourceTree = "<group>";
+		};
+		3622500822CCAD5700DABF62 /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				369AB84522BA2E7B00FD221E /* GlobalExpense.swift */,
+				369AB84322BA2E6200FD221E /* GlobalBudget.swift */,
+			);
+			path = Globals;
+			sourceTree = "<group>";
+		};
+		3622500922CDF7F500DABF62 /* BudgetModel */ = {
+			isa = PBXGroup;
+			children = (
+				36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */,
+				369AB85422C213AF00FD221E /* Budget+CoreDataProperties.swift */,
+				369AB85322C213AF00FD221E /* Budget+CoreDataClass.swift */,
+			);
+			path = BudgetModel;
+			sourceTree = "<group>";
+		};
+		3622500B22CDF89000DABF62 /* ExpemseModel */ = {
+			isa = PBXGroup;
+			children = (
+				36224FFD22C74E7900DABF62 /* ProxyExpense.swift */,
+				369AB85222C213AF00FD221E /* Expenses+CoreDataProperties.swift */,
+				369AB85122C213AF00FD221E /* Expenses+CoreDataClass.swift */,
+			);
+			path = ExpemseModel;
+			sourceTree = "<group>";
+		};
+		3622500C22CDFAB900DABF62 /* Budget Table Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				36F4D82D22ACC2B800800B38 /* BudgetTableViewCell.swift */,
+			);
+			path = "Budget Table Custom Cell";
+			sourceTree = "<group>";
+		};
+		3622500D22CDFADC00DABF62 /* Expense Table Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				369AB83F22BA242100FD221E /* ExpenseTableViewCell.swift */,
+			);
+			path = "Expense Table Custom Cell";
+			sourceTree = "<group>";
+		};
 		3634D49922A2740C002B0339 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +236,8 @@
 				3634D4BC22A2740F002B0339 /* budgetWizardTests */,
 				3634D4C722A2740F002B0339 /* budgetWizardUITests */,
 				3634D4A322A2740C002B0339 /* Products */,
+				2AF03AD54DC0D34E90E985C1 /* Pods */,
+				6FBD610386E7F8621C02F842 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,25 +254,17 @@
 		3634D4A422A2740C002B0339 /* budgetWizard */ = {
 			isa = PBXGroup;
 			children = (
-				369AB85122C213AF00FD221E /* Expenses+CoreDataClass.swift */,
-				369AB85222C213AF00FD221E /* Expenses+CoreDataProperties.swift */,
-				369AB85322C213AF00FD221E /* Budget+CoreDataClass.swift */,
-				369AB85422C213AF00FD221E /* Budget+CoreDataProperties.swift */,
+				3622500222CCABDF00DABF62 /* Budget View Controllers */,
+				3622500922CDF7F500DABF62 /* BudgetModel */,
+				3622500C22CDFAB900DABF62 /* Budget Table Custom Cell */,
+				3622500322CCAC4300DABF62 /* Custom Formatters */,
+				3622500122CCAB1E00DABF62 /* Expense View Controllers */,
+				3622500B22CDF89000DABF62 /* ExpemseModel */,
+				3622500D22CDFADC00DABF62 /* Expense Table Custom Cell */,
+				3622500822CCAD5700DABF62 /* Globals */,
+				3622500722CCAD3000DABF62 /* Summary View Controller */,
+				3622500622CCAD1400DABF62 /* Persistent Service */,
 				3634D4A522A2740C002B0339 /* AppDelegate.swift */,
-				369AB84322BA2E6200FD221E /* GlobalBudget.swift */,
-				369AB84522BA2E7B00FD221E /* GlobalExpense.swift */,
-				36F4D82D22ACC2B800800B38 /* BudgetTableViewCell.swift */,
-				3634D4DA22A2A1DD002B0339 /* BudgetViewController.swift */,
-				36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */,
-				36224FFD22C74E7900DABF62 /* ProxyExpense.swift */,
-				369AB83522B23E7100FD221E /* CustomDateFormatter.swift */,
-				369AB84122BA290900FD221E /* CustomNumberFormatter.swift */,
-				3651169822A354F800827CA8 /* ExpenseViewController.swift */,
-				3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */,
-				369AB83D22B8DED200FD221E /* ExpenseTableViewController.swift */,
-				369AB83F22BA242100FD221E /* ExpenseTableViewCell.swift */,
-				36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */,
-				3634D4A722A2740C002B0339 /* ViewController.swift */,
 				3634D4A922A2740C002B0339 /* Main.storyboard */,
 				3634D4AF22A2740E002B0339 /* Assets.xcassets */,
 				3634D4B122A2740E002B0339 /* LaunchScreen.storyboard */,
@@ -179,6 +292,16 @@
 			path = budgetWizardUITests;
 			sourceTree = "<group>";
 		};
+		6FBD610386E7F8621C02F842 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				017EA958250387807524064A /* Pods_budgetWizard.framework */,
+				C66F6EC4416026234BA08806 /* Pods_budgetWizardTests.framework */,
+				FF2C41C5742F5BD9CF292ECD /* Pods_budgetWizardUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,9 +309,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3634D4CD22A2740F002B0339 /* Build configuration list for PBXNativeTarget "budgetWizard" */;
 			buildPhases = (
+				6A5E8B568B62B4694FA47BCC /* [CP] Check Pods Manifest.lock */,
 				3634D49E22A2740C002B0339 /* Sources */,
 				3634D49F22A2740C002B0339 /* Frameworks */,
 				3634D4A022A2740C002B0339 /* Resources */,
+				15C52C74A4D80CB5B08B587F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,6 +328,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3634D4D022A2740F002B0339 /* Build configuration list for PBXNativeTarget "budgetWizardTests" */;
 			buildPhases = (
+				DB1D1C6D0B04205C0D454390 /* [CP] Check Pods Manifest.lock */,
 				3634D4B522A2740F002B0339 /* Sources */,
 				3634D4B622A2740F002B0339 /* Frameworks */,
 				3634D4B722A2740F002B0339 /* Resources */,
@@ -221,6 +347,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3634D4D322A2740F002B0339 /* Build configuration list for PBXNativeTarget "budgetWizardUITests" */;
 			buildPhases = (
+				1F4A60593318153A9F977D11 /* [CP] Check Pods Manifest.lock */,
 				3634D4C022A2740F002B0339 /* Sources */,
 				3634D4C122A2740F002B0339 /* Frameworks */,
 				3634D4C222A2740F002B0339 /* Resources */,
@@ -305,16 +432,103 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		15C52C74A4D80CB5B08B587F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-budgetWizard/Pods-budgetWizard-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-budgetWizard/Pods-budgetWizard-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-budgetWizard/Pods-budgetWizard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F4A60593318153A9F977D11 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-budgetWizardUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A5E8B568B62B4694FA47BCC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-budgetWizard-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB1D1C6D0B04205C0D454390 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-budgetWizardTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3634D49E22A2740C002B0339 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				369AB84022BA242100FD221E /* ExpenseTableViewCell.swift in Sources */,
+				3622501022D1A6FC00DABF62 /* ExpenseCategories.swift in Sources */,
 				369AB83E22B8DED200FD221E /* ExpenseTableViewController.swift in Sources */,
 				36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */,
-				3634D4A822A2740C002B0339 /* ViewController.swift in Sources */,
 				36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */,
+				3622500022CA091D00DABF62 /* SummaryViewController.swift in Sources */,
 				369AB85722C213AF00FD221E /* Budget+CoreDataClass.swift in Sources */,
 				36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */,
 				369AB84622BA2E7B00FD221E /* GlobalExpense.swift in Sources */,
@@ -502,6 +716,7 @@
 		};
 		3634D4CE22A2740F002B0339 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2201B8AC943000A1A1111100 /* Pods-budgetWizard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -521,6 +736,7 @@
 		};
 		3634D4CF22A2740F002B0339 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6928F02B4C84C80D9C5ED96 /* Pods-budgetWizard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -540,6 +756,7 @@
 		};
 		3634D4D122A2740F002B0339 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47AC8233C3961C960BCE5C57 /* Pods-budgetWizardTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -561,6 +778,7 @@
 		};
 		3634D4D222A2740F002B0339 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E26AC77F989C822EAB293EB /* Pods-budgetWizardTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -582,6 +800,7 @@
 		};
 		3634D4D422A2740F002B0339 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E94CC434B807B7343F03ACF2 /* Pods-budgetWizardUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -602,6 +821,7 @@
 		};
 		3634D4D522A2740F002B0339 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF6057F5CD9BA6078C828077 /* Pods-budgetWizardUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

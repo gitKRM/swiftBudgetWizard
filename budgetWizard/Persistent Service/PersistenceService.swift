@@ -114,18 +114,35 @@ class PersistenceService{
     
     //MARK: Retrieve Object
     static func getItem(budget: Budget)-> NSManagedObject{
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Budget")
-        fetchRequest.predicate = NSPredicate(format: "budgetName = %@", budget.budgetName!)
+        let fetchRequest = getFetchRequest(name: budget.budgetName!)
         do
         {
-            let fetcheddBudget = try context.fetch(fetchRequest)
-            let retrievedBudget = fetcheddBudget[0] as! NSManagedObject
+            let fetcheddBudgets = try context.fetch(fetchRequest)
+            let retrievedBudget = fetcheddBudgets[0] as! NSManagedObject
             return retrievedBudget
         }
         catch
         {
             fatalError("Error attempting to retrieve budget: \(String(describing: budget.budgetName))")
         }
+    }
+    
+    static func getItem(name: String)-> Budget?{
+        let fetchRequest = getFetchRequest(name: name)
+        do{
+            let fetchedBudgets = try context.fetch(fetchRequest)
+            let retrievedBudget = fetchedBudgets[0] as! NSManagedObject
+            return retrievedBudget as? Budget
+        }
+        catch{
+            fatalError("Could not find budget with name \(name)")
+        }
+    }
+    
+    private static func getFetchRequest(name: String)-> NSFetchRequest<NSFetchRequestResult>{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Budget")
+        fetchRequest.predicate = NSPredicate(format: "budgetName = %@", name)
+        return fetchRequest
     }
     
     static func getItem(expense: Expenses)-> NSManagedObject{
@@ -139,5 +156,45 @@ class PersistenceService{
         catch{
             fatalError("Error attempting to retrieve expense: \(String(describing: expense.expenseName))")
         }
+    }
+    
+    static func getExpenseAsArray(budget: Budget?)->[Expenses] {
+        var expenses = [Expenses]()
+        if let existingExpenses = budget?.expenses{
+            
+            //let enumerator: NSEnumerator = budget!.expenses!.objectEnumerator()
+            let enumerator: NSEnumerator = existingExpenses.objectEnumerator()
+            while let value = enumerator.nextObject(){
+                expenses.append(value as! Expenses)
+            }
+        }
+        return expenses
+    }
+    
+    static func getExpensesFromCategory(budget: Budget, category: String)-> [Expenses]?{     
+        switch (category){
+        case "All":
+            return getExpenseAsArray(budget: budget)
+        case "Necessity":
+            return filterExpenseOnCategory(budget: budget, category: "Necessity")
+        case "Commitments":
+            return filterExpenseOnCategory(budget: budget, category: "Commitments")
+        case "Wants":
+            return filterExpenseOnCategory(budget: budget, category: "Wants")
+        default:
+            return nil
+        }
+    }
+    
+    private static func filterExpenseOnCategory(budget: Budget, category: String)-> [Expenses]{
+        var expenses = [Expenses]()
+        budget.expenses?.forEach{e in
+            if let expense = e as? Expenses{
+                if (ExpenseCategories.categoryWeightsDict[category]?.contains(expense.expenseCategory!))!{
+                    expenses.append(expense)
+                }
+            }
+        }
+        return expenses
     }
 }

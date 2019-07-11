@@ -18,7 +18,7 @@ class ExpenseViewController: UIViewController{
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var recurringExpenseSwitch: UISwitch!
     @IBOutlet weak var frequency: UITextField!
-    let categories = ["Credit Cards", "Food", "Future Bill", "Future Goal", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
+    let categories = ExpenseCategories.GetCategories()
     let frequencies = ["Weekly", "Forntightly", "Monthly"]
     var createdExpense: ProxyExpense?
     var selectedExpense: Expenses?
