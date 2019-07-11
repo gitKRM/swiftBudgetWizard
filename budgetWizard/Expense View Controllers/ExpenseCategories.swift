@@ -18,7 +18,7 @@ class ExpenseCategories{
                                                 "Rates","Rent","Utilities"],
                                   "Commitments":["Future Bill","Future Goal","Kids",
                                                  "Pets","Savings","Vehicle"],
-                                  "Wants":["Credit Cards","Loans","Personl","Sundry"]]
+                                  "Wants":["Credit Cards","Loans","Personal","Sundry"]]
     
     static let categoryWeights = ["All", "Necessity", "Commitments","Wants"]
    

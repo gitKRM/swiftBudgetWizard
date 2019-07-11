@@ -21,12 +21,6 @@ class SummaryViewController: UIViewController {
     
     var budgetItems: [String] = []
     var categoryItems: [String] = []
-    var testData1 = PieChartDataEntry(value: 0)  
-    var testData2 = PieChartDataEntry(value: 0)
-    var testData3 = PieChartDataEntry(value: 0)
-    var testData4 = PieChartDataEntry(value: 0)
-    var pieChartDataEntries = [PieChartDataEntry]()
-    var test = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,51 +31,21 @@ class SummaryViewController: UIViewController {
         selectedCategoryTxtField.delegate = self
     }
     
-    func updateChartData(){
-        
-        let dataSet = PieChartDataSet(entries: pieChartDataEntries, label: "My Test Chart")
-        let chartData = PieChartData(dataSet: dataSet)
-        
-        //let colours = [UIColor.red, UIColor.green, UIColor.yellow, UIColor.blue]
-        let colours = [UIColor(named: "MyPeach"), UIColor(named: "MyLime"), UIColor(named: "MyRed"), UIColor(named: "MyBlue")]
-        dataSet.colors = colours as! [NSUIColor]
-        
-        pieChart.data = chartData
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         SetupView()
-        
-//        pieChart.chartDescription?.text = "Chart Description"
-//        pieChart.transparentCircleColor = UIColor.clear
-//        pieChart.holeColor = UIColor(named: "MyBlue")
-//        pieChart.usePercentValuesEnabled = true
-//        pieChart.holeRadiusPercent = 0.1
-//
-//       // pieChart.centerAttributedText = NSAttributedString(string: "test")
-//        testData1.value = 24.0
-//        //testData1.label    = "Test data 1"
-//        testData2.value = 56.4
-//        testData2.label = "Test Data 2"
-//        testData3.value = 78.2
-//        testData3.label = "Test Data 3"
-//        testData4.value = 12.5
-//        testData4.label = "Test Data 4"
-//        pieChart.legend.textColor = UIColor.black
-//
-//        pieChartDataEntries = [testData1, testData2, testData3, testData4]
-//
-//        updateChartData()
     }
     
     func SetupView(){
-        LoadPickerViews()
+        LoadBudgets()
+        UIColor.loadColors()
         createBudgetPickerView()
         createBudgetPickerToolBar()
         createCategoryPickerView()
         createCategoryPickerToolBar()
         selectedBudgetTxtField.text = budgetItems[budgetItems.count-1]
         selectedCategoryTxtField.text = categoryItems[0]
+        updateGraph()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -103,14 +67,15 @@ class SummaryViewController: UIViewController {
 extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     
     //MARK: Load Budgets
-    func LoadPickerViews(){
+    func LoadBudgets(){
         self.budgetItems.removeAll()
         self.budgets = GlobalBudget.getBudgets()!
         
         budgets.forEach{b in            
             budgetItems.append(b.budgetName!)
         }
-        
+        let index = budgets.count
+        budget = budgets[index-1]
         categoryItems = ExpenseCategories.GetCategoryWeights()
     }
     
@@ -180,12 +145,95 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
             selectedBudgetTxtField.text = budgetItems[row]
         }else{
             selectedCategoryTxtField.text = categoryItems[row]
-            getExpenses()
         }
+        updateGraph()
+    }
+    
+    func updateGraph(){
+        getExpenses()
+        
+        var pieChartDataEntries = [PieChartDataEntry]()
+        
+        expenses.forEach{e in
+            let entry = PieChartDataEntry(value: e.amount as! Double)
+            entry.label = e.expenseName
+            
+            pieChartDataEntries.append(entry)
+        }
+        
+        pieChart.chartDescription?.text = budget?.budgetName
+        pieChart.transparentCircleColor = UIColor.clear
+        //pieChart.usePercentValuesEnabled = true
+        pieChart.holeRadiusPercent = 0.5
+        // pieChart.centerAttributedText = NSAttributedString(string: "test")
+       
+        pieChart.legend.textColor = UIColor.black
+        
+        updateChartData(pieChartDataEntries: pieChartDataEntries)
+        
+    }
+    
+    func updateChartData(pieChartDataEntries: [PieChartDataEntry]){
+        
+        let dataSet = PieChartDataSet(entries: pieChartDataEntries, label: nil)
+        dataSet.valueColors = [UIColor.black]
+        dataSet.valueFont = UIFont.systemFont(ofSize: 12)
+    
+        let chartData = PieChartData(dataSet: dataSet)
+        
+        //let colours = [UIColor.red, UIColor.green, UIColor.yellow, UIColor.blue]
+//        let colours = [UIColor(named: "MyPeach"), UIColor(named: "MyLime"), UIColor(named: "MyRed"), UIColor(named: "MyBlue")]
+        
+        //dataSet.colors = colors as! [NSUIColor]
+        
+//        var colors: [UIColor] = []
+//
+//        for _ in 0..<pieChartDataEntries.count {
+//            let red = Double(arc4random_uniform(256))
+//            let green = Double(arc4random_uniform(256))
+//            let blue = Double(arc4random_uniform(256))
+//
+//            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+//            colors.append(color)
+//        }
+//
+//        dataSet.colors = colors
+        
+        dataSet.colors = UIColor.getColors()
+    
+        pieChart.data = chartData
     }
     
     func getExpenses(){
-        expenses.removeAll()
-        expenses = PersistenceService.getExpensesFromCategory(budget: budget!, category: selectedCategoryTxtField.text!)!
+        if (budget != nil){
+            expenses.removeAll()
+            expenses = PersistenceService.getExpensesFromCategory(budget: budget!, category: selectedCategoryTxtField.text!)!
+        }
     }
+}
+
+extension UIColor{
+    private static var colorArray = [UIColor]()
+    
+    static func loadColors(){
+        
+        colorArray.append(UIColor(named: "DarkLime")!)
+        colorArray.append(UIColor(named: "Desert")!)
+        colorArray.append(UIColor(named: "Grass")!)
+        colorArray.append(UIColor(named: "HotPink")!)
+        colorArray.append(UIColor(named: "MyBlue")!)
+        colorArray.append(UIColor(named: "MyGreen")!)
+        colorArray.append(UIColor(named: "MyLightPurple")!)
+        colorArray.append(UIColor(named: "MyLime")!)
+        colorArray.append(UIColor(named: "MyPeach")!)
+        colorArray.append(UIColor(named: "MyRed")!)
+        colorArray.append(UIColor(named: "MyYellow")!)
+        colorArray.append(UIColor(named: "NiceBlue")!)
+        colorArray.append(UIColor(named: "PaleBlue")!)
+        colorArray.append(UIColor(named: "PastalPink")!)
+        colorArray.append(UIColor(named: "SkyBlue")!)
+        colorArray.append(UIColor(named: "Violet")!)
+    }
+    
+    static func getColors() -> [UIColor] {return colorArray}
 }
