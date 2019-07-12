@@ -11,6 +11,9 @@
 		36224FFE22C74E7900DABF62 /* ProxyExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFD22C74E7900DABF62 /* ProxyExpense.swift */; };
 		3622500022CA091D00DABF62 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFF22CA091D00DABF62 /* SummaryViewController.swift */; };
 		3622501022D1A6FC00DABF62 /* ExpenseCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622500F22D1A6FC00DABF62 /* ExpenseCategories.swift */; };
+		3622501922D94B0000DABF62 /* SummaryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622501822D94B0000DABF62 /* SummaryPickerView.swift */; };
+		3622501B22D94BF400DABF62 /* SummaryViewGraphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622501A22D94BF400DABF62 /* SummaryViewGraphs.swift */; };
+		3622501D22D94D1000DABF62 /* SummaryViewColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622501C22D94D1000DABF62 /* SummaryViewColors.swift */; };
 		3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4A522A2740C002B0339 /* AppDelegate.swift */; };
 		3634D4AB22A2740C002B0339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3634D4A922A2740C002B0339 /* Main.storyboard */; };
 		3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4AC22A2740C002B0339 /* budgetWizard.xcdatamodeld */; };
@@ -63,6 +66,9 @@
 		36224FFD22C74E7900DABF62 /* ProxyExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyExpense.swift; sourceTree = "<group>"; };
 		36224FFF22CA091D00DABF62 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		3622500F22D1A6FC00DABF62 /* ExpenseCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategories.swift; sourceTree = "<group>"; };
+		3622501822D94B0000DABF62 /* SummaryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPickerView.swift; sourceTree = "<group>"; };
+		3622501A22D94BF400DABF62 /* SummaryViewGraphs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewGraphs.swift; sourceTree = "<group>"; };
+		3622501C22D94D1000DABF62 /* SummaryViewColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewColors.swift; sourceTree = "<group>"; };
 		3634D4A222A2740C002B0339 /* budgetWizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetWizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3634D4A522A2740C002B0339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3634D4AA22A2740C002B0339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -180,6 +186,9 @@
 			isa = PBXGroup;
 			children = (
 				36224FFF22CA091D00DABF62 /* SummaryViewController.swift */,
+				3622501822D94B0000DABF62 /* SummaryPickerView.swift */,
+				3622501A22D94BF400DABF62 /* SummaryViewGraphs.swift */,
+				3622501C22D94D1000DABF62 /* SummaryViewColors.swift */,
 			);
 			path = "Summary View Controller";
 			sourceTree = "<group>";
@@ -530,10 +539,13 @@
 				36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */,
 				3622500022CA091D00DABF62 /* SummaryViewController.swift in Sources */,
 				369AB85722C213AF00FD221E /* Budget+CoreDataClass.swift in Sources */,
+				3622501B22D94BF400DABF62 /* SummaryViewGraphs.swift in Sources */,
+				3622501922D94B0000DABF62 /* SummaryPickerView.swift in Sources */,
 				36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */,
 				369AB84622BA2E7B00FD221E /* GlobalExpense.swift in Sources */,
 				369AB85622C213AF00FD221E /* Expenses+CoreDataProperties.swift in Sources */,
 				369AB83622B23E7100FD221E /* CustomDateFormatter.swift in Sources */,
+				3622501D22D94D1000DABF62 /* SummaryViewColors.swift in Sources */,
 				3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */,
 				3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */,
 				369AB84422BA2E6200FD221E /* GlobalBudget.swift in Sources */,
