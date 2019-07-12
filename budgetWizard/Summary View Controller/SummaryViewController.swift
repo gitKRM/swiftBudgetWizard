@@ -16,11 +16,10 @@ class SummaryViewController: UIViewController {
     var budgets = [Budget]()
     var budget: Budget?
     var expenses = [Expenses]()
-    @IBOutlet weak var selectedBudgetTxtField: UITextField!
-    @IBOutlet weak var selectedCategoryTxtField: UITextField!
-    
+    var pickerData: [[String]] = [[String]]()
+    var selectedBudgetRow = 0
     var budgetItems: [String] = []
-    var categoryItems: [String] = []
+    @IBOutlet weak var selectedBudgetTxtField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +27,6 @@ class SummaryViewController: UIViewController {
     
     func initDelegates(){
         selectedBudgetTxtField.delegate = self
-        selectedCategoryTxtField.delegate = self
     }
     
     
@@ -43,8 +41,7 @@ class SummaryViewController: UIViewController {
         createBudgetPickerToolBar()
         createCategoryPickerView()
         createCategoryPickerToolBar()
-        selectedBudgetTxtField.text = budgetItems[budgetItems.count-1]
-        selectedCategoryTxtField.text = categoryItems[0]
+        selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
         updateGraph()
     }
     
@@ -68,15 +65,16 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
     
     //MARK: Load Budgets
     func LoadBudgets(){
-        self.budgetItems.removeAll()
+        budgetItems.removeAll()
         self.budgets = GlobalBudget.getBudgets()!
         
-        budgets.forEach{b in            
+        budgets.forEach{b in
             budgetItems.append(b.budgetName!)
         }
-        let index = budgets.count
-        budget = budgets[index-1]
-        categoryItems = ExpenseCategories.GetCategoryWeights()
+        
+        budget = budgets[budgets.count-1]
+        //--New Picker Data for 2D array
+        pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
     }
     
     //MARK: Picker View
@@ -102,7 +100,6 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
         let categoryPicker = UIPickerView()
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
-        selectedCategoryTxtField.inputView = categoryPicker
     }
     
     func createCategoryPickerToolBar(){
@@ -112,7 +109,6 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(SummaryViewController.closePicker))
         toolBar.setItems([doneButton], animated: true)
         toolBar.isUserInteractionEnabled = true
-        selectedCategoryTxtField.inputAccessoryView = toolBar
     }
     
     @objc func closePicker(){
@@ -120,31 +116,31 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if (selectedBudgetTxtField.isFirstResponder){
-            return budgetItems.count
+        if component == 0{
+            return pickerData[0].count
         }else{
-            return categoryItems.count
+            return pickerData[1].count
         }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if (selectedBudgetTxtField.isFirstResponder){
-            return budgetItems[row]
-        }else{
-            return categoryItems[row]
-        }
+        return pickerData[component][row]
     }
+
+    
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if (selectedBudgetTxtField.isFirstResponder){
+        if (component == 0){
             budget = budgets[row]
-            selectedBudgetTxtField.text = budgetItems[row]
+            selectedBudgetTxtField.text = pickerData[component][row] + " | " + pickerData[1][0]
+            selectedBudgetRow = row
         }else{
-            selectedCategoryTxtField.text = categoryItems[row]
+            selectedBudgetTxtField.text = pickerData[0][selectedBudgetRow] + " | " + pickerData[component][row]
         }
         updateGraph()
     }
@@ -205,9 +201,14 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
     }
     
     func getExpenses(){
-        if (budget != nil){
-            expenses.removeAll()
-            expenses = PersistenceService.getExpensesFromCategory(budget: budget!, category: selectedCategoryTxtField.text!)!
+        if !selectedBudgetTxtField.text!.isEmpty{
+            let split = selectedBudgetTxtField.text?.split(separator: "|")
+            let category = String(split![1].trimmingCharacters(in: .whitespaces))
+            
+            if (budget != nil){
+                expenses.removeAll()
+                expenses = PersistenceService.getExpensesFromCategory(budget: budget!, category: category)!
+            }
         }
     }
 }
