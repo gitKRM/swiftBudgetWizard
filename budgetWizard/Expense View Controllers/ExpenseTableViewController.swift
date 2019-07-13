@@ -61,7 +61,7 @@ class ExpenseTableViewController: UITableViewController {
         cell.dayName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: expense.expenseDate)
         cell.dayNum.text = String(describing: CustomDateFormatter.getDayName(date: expense.expenseDate))
         cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: expense.expenseDate)
-        cell.ExpenseAmount.text = CustomNumberFormatter.getNumberFormattedAsCurrency(amount: expense.amount!)
+        cell.ExpenseAmount.text = CustomNumberFormatter.getNumberFormattedAsCurrency(amount: expense.amount)
         cell.Name.text = expense.expenseName
         
         return cell

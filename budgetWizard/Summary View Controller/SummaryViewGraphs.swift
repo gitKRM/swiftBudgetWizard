@@ -15,19 +15,21 @@ extension SummaryViewController{
         getExpenses()
         
         var pieChartDataEntries = [PieChartDataEntry]()
-        
+        expenseTotal = 0
         expenses.forEach{e in
             let entry = PieChartDataEntry(value: e.amount as! Double)
             entry.label = e.expenseName
-            
+            expenseTotal += e.amount as Decimal
             pieChartDataEntries.append(entry)
         }
         
-        pieChart.chartDescription?.text = budget?.budgetName
         pieChart.transparentCircleColor = UIColor.clear
         //pieChart.usePercentValuesEnabled = true
-        pieChart.holeRadiusPercent = 0.5
-        // pieChart.centerAttributedText = NSAttributedString(string: "test")
+        pieChart.holeRadiusPercent = 0.4
+        
+        let attribute = [ NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 18.0)! ]
+        
+        pieChart.centerAttributedText = NSAttributedString(string: CustomNumberFormatter.getNumberFormattedAsCurrency(closure: CustomNumberFormatter.convertDecimalToNSDecimal(decimal:), decimal: expenseTotal)!, attributes: attribute)
         
         pieChart.legend.textColor = UIColor.black
         
@@ -39,11 +41,17 @@ extension SummaryViewController{
         
         let dataSet = PieChartDataSet(entries: pieChartDataEntries, label: nil)
         dataSet.valueColors = [UIColor.black]
-        dataSet.valueFont = UIFont.systemFont(ofSize: 12)
+        dataSet.valueFont = UIFont.systemFont(ofSize: 17)
+        
+        dataSet.xValuePosition = PieChartDataSet.ValuePosition.outsideSlice
         
         let chartData = PieChartData(dataSet: dataSet)
-   
-        dataSet.colors = UIColor.getColors()
+        let format = NumberFormatter()
+        format.numberStyle = .currency
+        let formatter = DefaultValueFormatter(formatter: format)
+        chartData.setValueFormatter(formatter)
+        
+        dataSet.colors = UIColor.getColors().shuffled()
         
         pieChart.data = chartData
     }

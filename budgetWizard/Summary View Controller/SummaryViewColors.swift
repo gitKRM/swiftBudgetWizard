@@ -23,7 +23,7 @@ extension UIColor{
         colorArray.append(UIColor(named: "MyLightPurple")!)
         colorArray.append(UIColor(named: "MyLime")!)
         colorArray.append(UIColor(named: "MyPeach")!)
-        colorArray.append(UIColor(named: "MyRed")!)
+        colorArray.append(UIColor(named: "MyOrange")!)
         colorArray.append(UIColor(named: "MyYellow")!)
         colorArray.append(UIColor(named: "NiceBlue")!)
         colorArray.append(UIColor(named: "PaleBlue")!)

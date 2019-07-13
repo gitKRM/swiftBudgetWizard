@@ -147,7 +147,7 @@ class PersistenceService{
     
     static func getItem(expense: Expenses)-> NSManagedObject{
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expenses")
-        fetchRequest.predicate = NSPredicate(format: "expenseName = %@ AND amount = %@", expense.expenseName!,expense.amount!)
+        fetchRequest.predicate = NSPredicate(format: "expenseName = %@ AND amount = %@", expense.expenseName,expense.amount)
         do{
             let fetchedExpense = try context.fetch(fetchRequest)
             let retrievedExpense = fetchedExpense[0] as! NSManagedObject
@@ -190,7 +190,7 @@ class PersistenceService{
         var expenses = [Expenses]()
         budget.expenses?.forEach{e in
             if let expense = e as? Expenses{
-                if (ExpenseCategories.categoryWeightsDict[category]?.contains(expense.expenseCategory!))!{
+                if (ExpenseCategories.categoryWeightsDict[category]?.contains(expense.expenseCategory))!{
                     expenses.append(expense)
                 }
             }

@@ -17,10 +17,10 @@ extension Expenses {
         return NSFetchRequest<Expenses>(entityName: "Expenses")
     }
 
-    @NSManaged public var amount: NSDecimalNumber?
-    @NSManaged public var expenseCategory: String?
-    @NSManaged public var expenseDate: NSDate?
-    @NSManaged public var expenseName: String?
+    @NSManaged public var amount: NSDecimalNumber
+    @NSManaged public var expenseCategory: String
+    @NSManaged public var expenseDate: NSDate
+    @NSManaged public var expenseName: String
     @NSManaged public var isRecurring: Bool
     @NSManaged public var recurringFrequency: String?
     @NSManaged public var budget: Budget?

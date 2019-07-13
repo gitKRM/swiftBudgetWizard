@@ -20,8 +20,8 @@ class SummaryViewController: UIViewController {
     var pickerData: [[String]] = [[String]]()
     var selectedBudgetRow = 0
     var selectedCategoryRow = 0
-    
-    var budgetItems: [String] = []    
+    var budgetItems: [String] = []
+    var expenseTotal = Decimal()
     
     override func viewDidLoad() {
         super.viewDidLoad()

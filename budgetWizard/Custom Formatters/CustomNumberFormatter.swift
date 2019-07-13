@@ -21,6 +21,24 @@ class CustomNumberFormatter{
         return nil
     }
     
+    static func getNumberFormattedAsCurrency(closure: (Decimal) -> NSNumber, decimal: Decimal)-> String?{
+        
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.autoupdatingCurrent
+        formatter.numberStyle = .currency
+        if let formattedAmount = formatter.string(from: closure(decimal)){
+            return formattedAmount
+        }
+        return nil
+    }
+    
+    static func convertDecimalToNSDecimal(decimal: Decimal) -> NSNumber{
+        if (decimal.isNaN){
+            return NSNumber(0)
+        }
+        return NSDecimalNumber(decimal: decimal)
+    }
+
     static func getNumberAsString(number: NSDecimalNumber)-> String?{
         let numFormatter = NumberFormatter()
         numFormatter.generatesDecimalNumbers = true
