@@ -10,9 +10,10 @@ import UIKit
 import Charts
 
 class SummaryViewController: UIViewController {
-
+    
     //MARK:Properties
     @IBOutlet weak var pieChart: PieChartView!
+    
     @IBOutlet weak var selectedBudgetTxtField: UITextField!
     var budgets = [Budget]()
     var budget: Budget?
@@ -22,10 +23,12 @@ class SummaryViewController: UIViewController {
     var selectedCategoryRow = 0
     var budgetItems: [String] = []
     var expenseTotal = Decimal()
+    var collectionCellIdentifiers = [Int: String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         selectedBudgetTxtField.delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +61,8 @@ class SummaryViewController: UIViewController {
         //--New Picker Data for 2D array
         pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
     }
+    
+   
 
 }
 

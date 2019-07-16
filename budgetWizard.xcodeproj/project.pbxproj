@@ -16,6 +16,8 @@
 		3622501D22D94D1000DABF62 /* SummaryViewColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622501C22D94D1000DABF62 /* SummaryViewColors.swift */; };
 		3622502022D9713C00DABF62 /* ExpenseValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622501F22D9713C00DABF62 /* ExpenseValidation.swift */; };
 		3622502222D9717900DABF62 /* ExpensePickerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622502122D9717900DABF62 /* ExpensePickerViews.swift */; };
+		3622502C22DAACEC00DABF62 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622502B22DAACEC00DABF62 /* TestViewController.swift */; };
+		3622503022DAD71F00DABF62 /* SummaryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622502F22DAD71F00DABF62 /* SummaryCollectionView.swift */; };
 		3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4A522A2740C002B0339 /* AppDelegate.swift */; };
 		3634D4AB22A2740C002B0339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3634D4A922A2740C002B0339 /* Main.storyboard */; };
 		3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4AC22A2740C002B0339 /* budgetWizard.xcdatamodeld */; };
@@ -36,6 +38,9 @@
 		369AB85722C213AF00FD221E /* Budget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB85322C213AF00FD221E /* Budget+CoreDataClass.swift */; };
 		369AB85822C213AF00FD221E /* Budget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB85422C213AF00FD221E /* Budget+CoreDataProperties.swift */; };
 		36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */; };
+		36D2DBDE22DC86A70010FC3D /* TestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D2DBDD22DC86A70010FC3D /* TestCollectionViewCell.swift */; };
+		36D2DBE022DCA2750010FC3D /* Test2CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D2DBDF22DCA2750010FC3D /* Test2CollectionViewCell.swift */; };
+		36D2DBE222DDBFB50010FC3D /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D2DBE122DDBFB50010FC3D /* MenuBar.swift */; };
 		36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D82D22ACC2B800800B38 /* BudgetTableViewCell.swift */; };
 		69AE717F0C0EE19E8AFF302F /* Pods_budgetWizardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C66F6EC4416026234BA08806 /* Pods_budgetWizardTests.framework */; };
 		840876C41A0EF5D5D49E8DD0 /* Pods_budgetWizard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017EA958250387807524064A /* Pods_budgetWizard.framework */; };
@@ -72,6 +77,8 @@
 		3622501C22D94D1000DABF62 /* SummaryViewColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewColors.swift; sourceTree = "<group>"; };
 		3622501F22D9713C00DABF62 /* ExpenseValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseValidation.swift; sourceTree = "<group>"; };
 		3622502122D9717900DABF62 /* ExpensePickerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensePickerViews.swift; sourceTree = "<group>"; };
+		3622502B22DAACEC00DABF62 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		3622502F22DAD71F00DABF62 /* SummaryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionView.swift; sourceTree = "<group>"; };
 		3634D4A222A2740C002B0339 /* budgetWizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetWizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3634D4A522A2740C002B0339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3634D4AA22A2740C002B0339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -98,6 +105,9 @@
 		369AB85322C213AF00FD221E /* Budget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		369AB85422C213AF00FD221E /* Budget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		36D2DBDD22DC86A70010FC3D /* TestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewCell.swift; sourceTree = "<group>"; };
+		36D2DBDF22DCA2750010FC3D /* Test2CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2CollectionViewCell.swift; sourceTree = "<group>"; };
+		36D2DBE122DDBFB50010FC3D /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		36F4D82D22ACC2B800800B38 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
 		47AC8233C3961C960BCE5C57 /* Pods-budgetWizardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetWizardTests.debug.xcconfig"; path = "Target Support Files/Pods-budgetWizardTests/Pods-budgetWizardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B6928F02B4C84C80D9C5ED96 /* Pods-budgetWizard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetWizard.release.xcconfig"; path = "Target Support Files/Pods-budgetWizard/Pods-budgetWizard.release.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +203,7 @@
 				3622501822D94B0000DABF62 /* SummaryPickerView.swift */,
 				3622501A22D94BF400DABF62 /* SummaryViewGraphs.swift */,
 				3622501C22D94D1000DABF62 /* SummaryViewColors.swift */,
+				3622502F22DAD71F00DABF62 /* SummaryCollectionView.swift */,
 			);
 			path = "Summary View Controller";
 			sourceTree = "<group>";
@@ -282,6 +293,10 @@
 				3634D4B122A2740E002B0339 /* LaunchScreen.storyboard */,
 				3634D4B422A2740E002B0339 /* Info.plist */,
 				3634D4AC22A2740C002B0339 /* budgetWizard.xcdatamodeld */,
+				3622502B22DAACEC00DABF62 /* TestViewController.swift */,
+				36D2DBDD22DC86A70010FC3D /* TestCollectionViewCell.swift */,
+				36D2DBDF22DCA2750010FC3D /* Test2CollectionViewCell.swift */,
+				36D2DBE122DDBFB50010FC3D /* MenuBar.swift */,
 			);
 			path = budgetWizard;
 			sourceTree = "<group>";
@@ -540,15 +555,20 @@
 				369AB83E22B8DED200FD221E /* ExpenseTableViewController.swift in Sources */,
 				36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */,
 				36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */,
+				3622503022DAD71F00DABF62 /* SummaryCollectionView.swift in Sources */,
+				36D2DBE022DCA2750010FC3D /* Test2CollectionViewCell.swift in Sources */,
 				3622500022CA091D00DABF62 /* SummaryViewController.swift in Sources */,
 				369AB85722C213AF00FD221E /* Budget+CoreDataClass.swift in Sources */,
 				3622501B22D94BF400DABF62 /* SummaryViewGraphs.swift in Sources */,
 				3622501922D94B0000DABF62 /* SummaryPickerView.swift in Sources */,
+				36D2DBDE22DC86A70010FC3D /* TestCollectionViewCell.swift in Sources */,
 				3622502022D9713C00DABF62 /* ExpenseValidation.swift in Sources */,
 				36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */,
+				36D2DBE222DDBFB50010FC3D /* MenuBar.swift in Sources */,
 				369AB85622C213AF00FD221E /* Expenses+CoreDataProperties.swift in Sources */,
 				369AB83622B23E7100FD221E /* CustomDateFormatter.swift in Sources */,
 				3622501D22D94D1000DABF62 /* SummaryViewColors.swift in Sources */,
+				3622502C22DAACEC00DABF62 /* TestViewController.swift in Sources */,
 				3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */,
 				3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */,
 				369AB84422BA2E6200FD221E /* GlobalBudget.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IND-vY-yKV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cQM-5J-1uI">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -306,10 +306,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMy-Lk-gQm" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="229" width="374" height="544"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ysl-Ki-bKQ">
                                 <rect key="frame" x="20" y="64" width="374" height="70.666666666666686"/>
                                 <subviews>
@@ -327,28 +323,144 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFa-xW-raN" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="193" width="374" height="544"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="p15-Zp-E7b" firstAttribute="bottom" secondItem="HMy-Lk-gQm" secondAttribute="bottom" constant="40" id="3Gf-8K-5bM"/>
-                            <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="HMy-Lk-gQm" secondAttribute="trailing" constant="20" id="CK9-MA-sAz"/>
                             <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="top" secondItem="p15-Zp-E7b" secondAttribute="top" constant="20" id="GLf-Tf-GUG"/>
                             <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="WUG-il-Iuo"/>
                             <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="Ysl-Ki-bKQ" secondAttribute="trailing" constant="20" id="irF-bp-MU7"/>
-                            <constraint firstItem="HMy-Lk-gQm" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="mry-dj-mIJ"/>
-                            <constraint firstItem="HMy-Lk-gQm" firstAttribute="top" secondItem="Ysl-Ki-bKQ" secondAttribute="bottom" constant="94.329999999999998" id="pK8-Z2-JxU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="p15-Zp-E7b"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Summary" image="pieChart" selectedImage="pieChart" id="hv6-2w-ezP"/>
                     <connections>
-                        <outlet property="pieChart" destination="HMy-Lk-gQm" id="8no-dn-H8R"/>
-                        <outlet property="selectedBudgetTxtField" destination="3Av-1g-WHy" id="NE7-xb-59B"/>
+                        <outlet property="pieChart" destination="gFa-xW-raN" id="JQJ-DL-rbj"/>
+                        <outlet property="selectedBudgetTxtField" destination="3Av-1g-WHy" id="rbt-H1-jDH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CaD-Af-yWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3128.985507246377" y="327.45535714285711"/>
+        </scene>
+        <!--Test View Controller-->
+        <scene sceneID="mMd-8P-GD6">
+            <objects>
+                <viewController id="cQM-5J-1uI" customClass="TestViewController" customModule="budgetWizard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="exm-xF-Va9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YGN-UY-Egq">
+                                <rect key="frame" x="20" y="351" width="374" height="481"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fxr-bU-MS3">
+                                    <size key="itemSize" width="373" height="482"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell1" id="kM6-Q1-lc0" customClass="TestCollectionViewCell" customModule="budgetWizard" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="-0.66666666666666663" width="373" height="482"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="373" height="482"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zie-5F-81v" customClass="PieChartView" customModule="Charts">
+                                                    <rect key="frame" x="40" y="36" width="299" height="353"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdc-wa-WaI">
+                                                    <rect key="frame" x="60" y="423" width="245" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="0.1907094439" blue="0.9290930423" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="myLabel" destination="Cdc-wa-WaI" id="Qvm-ab-GUp"/>
+                                            <outlet property="pieChart" destination="Zie-5F-81v" id="UaD-Vb-K86"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell2" id="yxs-zc-cZD" customClass="TestCollectionViewCell" customModule="budgetWizard" customModuleProvider="target">
+                                        <rect key="frame" x="383" y="-0.66666666666666663" width="373" height="482"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="373" height="482"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TD6-Zs-Wbr">
+                                                    <rect key="frame" x="41" y="19" width="285" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CtZ-ft-I3r" customClass="PieChartView" customModule="Charts">
+                                                    <rect key="frame" x="20" y="86" width="333" height="344"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="myLabel" destination="TD6-Zs-Wbr" id="C12-o6-Zls"/>
+                                            <outlet property="pieChart" destination="CtZ-ft-I3r" id="Mx3-GD-ocu"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell3" id="l0d-Kz-AJe" customClass="TestCollectionViewCell" customModule="budgetWizard" customModuleProvider="target">
+                                        <rect key="frame" x="766" y="-0.66666666666666663" width="373" height="482"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="373" height="482"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2K-hN-BOP" customClass="PieChartView" customModule="Charts">
+                                                    <rect key="frame" x="20" y="86" width="333" height="364"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1D-jm-mf8">
+                                                    <rect key="frame" x="33" y="36" width="304" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="myLabel" destination="E1D-jm-mf8" id="yRz-97-5jB"/>
+                                            <outlet property="pieChart" destination="l2K-hN-BOP" id="CVZ-ay-xsz"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="cQM-5J-1uI" id="WUm-Rb-5mB"/>
+                                    <outlet property="delegate" destination="cQM-5J-1uI" id="12K-d8-ci7"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="6Ep-8O-ttc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gnz-Ul-qyt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4665.217391304348" y="-519.64285714285711"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vit-9U-zMh">

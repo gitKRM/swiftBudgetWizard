@@ -13,7 +13,7 @@ extension SummaryViewController{
     
     func updateGraph(){
         getExpenses()
-        
+
         var pieChartDataEntries = [PieChartDataEntry]()
         expenseTotal = 0
         expenses.forEach{e in
@@ -28,7 +28,7 @@ extension SummaryViewController{
         pieChart.holeRadiusPercent = 0.4
         
         let attribute = [ NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 18.0)! ]
-        
+
         pieChart.centerAttributedText = NSAttributedString(string: CustomNumberFormatter.getNumberFormattedAsCurrency(closure: CustomNumberFormatter.convertDecimalToNSDecimal(decimal:), decimal: expenseTotal)!, attributes: attribute)
         
         pieChart.legend.textColor = UIColor.black
@@ -36,31 +36,31 @@ extension SummaryViewController{
         updateChartData(pieChartDataEntries: pieChartDataEntries)
         
     }
-    
+
     func updateChartData(pieChartDataEntries: [PieChartDataEntry]){
-        
+
         let dataSet = PieChartDataSet(entries: pieChartDataEntries, label: nil)
         dataSet.valueColors = [UIColor.black]
         dataSet.valueFont = UIFont.systemFont(ofSize: 17)
         
         dataSet.xValuePosition = PieChartDataSet.ValuePosition.outsideSlice
-        
+
         let chartData = PieChartData(dataSet: dataSet)
         let format = NumberFormatter()
         format.numberStyle = .currency
         let formatter = DefaultValueFormatter(formatter: format)
         chartData.setValueFormatter(formatter)
-        
+
         dataSet.colors = UIColor.getColors().shuffled()
-        
+
         pieChart.data = chartData
     }
-    
+
     func getExpenses(){
         if !selectedBudgetTxtField.text!.isEmpty{
             let split = selectedBudgetTxtField.text?.split(separator: "|")
             let category = String(split![1].trimmingCharacters(in: .whitespaces))
-            
+
             if (budget != nil){
                 expenses.removeAll()
                 expenses = PersistenceService.getExpensesFromCategory(budget: budget!, category: category)!
