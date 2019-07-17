@@ -40,7 +40,10 @@ class SummaryViewController: UIViewController {
         UIColor.loadColors()
         createBudgetPickerView()
         createBudgetPickerToolBar()
-        selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
+        if (budgets.count > 0){
+            selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
+        }
+        
         updateGraph()
     }
     
@@ -53,16 +56,17 @@ class SummaryViewController: UIViewController {
         budgetItems.removeAll()
         self.budgets = GlobalBudget.getBudgets()!
         
-        budgets.forEach{b in
-            budgetItems.append(b.budgetName!)
+        if (budgets.count > 0){
+            budgets.forEach{b in
+                budgetItems.append(b.budgetName!)
+            }
+            
+            budget = budgets[budgets.count-1]
+            //--New Picker Data for 2D array
+            pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
         }
         
-        budget = budgets[budgets.count-1]
-        //--New Picker Data for 2D array
-        pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
     }
     
-   
-
 }
 

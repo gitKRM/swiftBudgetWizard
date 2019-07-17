@@ -34,6 +34,9 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         view.addContraintsWithFormat("V:|-40-[v0(50)]-40-|", views: menuBar)
     }
 
+    func scrollToMenuIndex(menuIndex: Int){
+        
+    }
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -53,6 +56,10 @@ class TestViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
        return cell
         
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        menuBar.horizontalBarLeftAnchor?.constant = scrollView.contentOffset.x / 4
     }
     
 }

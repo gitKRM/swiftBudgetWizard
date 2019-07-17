@@ -10,10 +10,13 @@ import UIKit
 
 class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    var horizontalBarLeftAnchor: NSLayoutConstraint?
+    var summaryController: Summary2ViewController?
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor.red
+        cv.backgroundColor = UIColor.black
         cv.dataSource = self
         cv.delegate = self
         return cv
@@ -42,7 +45,9 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         horizontalBarView.backgroundColor = UIColor.white
         addSubview(horizontalBarView)
         horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
-        horizontalBarView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        
+        horizontalBarLeftAnchor = horizontalBarView.leftAnchor.constraint(equalTo: self.leftAnchor)
+        horizontalBarLeftAnchor?.isActive = true
         horizontalBarView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         horizontalBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4).isActive = true
         horizontalBarView.heightAnchor.constraint(equalToConstant: 4).isActive = true
@@ -64,6 +69,19 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         cell.image.image = UIImage(named: imageNames[indexPath.item])?.withRenderingMode(.alwaysTemplate)
         cell.tintColor = UIColor.white
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let x = CGFloat(indexPath.item) * frame.width / 4
+        horizontalBarLeftAnchor?.constant = x
+        
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.layoutIfNeeded()
+        }, completion: nil)
+        
+        summaryController?.scrollToMenuIndex(menuIndex: indexPath.item)
+                
     }
     
     //MARK:Cells
@@ -115,7 +133,7 @@ class MenuCell: UICollectionViewCell {
     
     func SetupViews(){
 //        backgroundColor = UIColor(red: 67/255, green: 67/255, blue: 67/255, alpha: 1)
-        backgroundColor = UIColor.darkGray
+        backgroundColor = UIColor.black
     }
     
     required init?(coder aDecoder: NSCoder) {
