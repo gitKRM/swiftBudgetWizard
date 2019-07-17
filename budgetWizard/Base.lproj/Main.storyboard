@@ -306,9 +306,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4E0-ZL-296">
-                                <rect key="frame" x="0.0" y="240" width="414" height="547"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4E0-ZL-296">
+                                <rect key="frame" x="0.0" y="240" width="414" height="553"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="kEq-Ha-ZRh">
                                     <size key="itemSize" width="50" height="50"/>
@@ -326,7 +325,7 @@
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="barChart" id="2xh-IW-Mzy">
-                                        <rect key="frame" x="0.0" y="55.333333333333336" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="50.333333333333336" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -334,7 +333,7 @@
                                         </view>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lineChart" id="RIl-b6-q4d">
-                                        <rect key="frame" x="0.0" y="110.33333333333333" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="100.66666666666667" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -349,6 +348,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4E0-ZL-296" firstAttribute="top" secondItem="QTr-CT-l0f" secondAttribute="top" constant="196" id="Jsc-vF-Y0n"/>
+                            <constraint firstItem="4E0-ZL-296" firstAttribute="leading" secondItem="QTr-CT-l0f" secondAttribute="leading" id="QW0-4Q-VDu"/>
+                            <constraint firstItem="QTr-CT-l0f" firstAttribute="bottom" secondItem="4E0-ZL-296" secondAttribute="bottom" constant="20" id="jeT-Gw-XFs"/>
+                            <constraint firstItem="4E0-ZL-296" firstAttribute="trailing" secondItem="QTr-CT-l0f" secondAttribute="trailing" id="sAs-DN-wPv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="QTr-CT-l0f"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="9m1-3Z-z2Y"/>
