@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
+extension Summary2ViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     
     //MARK: Picker View
     func createBudgetPickerView(){
@@ -23,7 +23,7 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(SummaryViewController.closePicker))
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(Summary2ViewController.closePicker))
         
         toolBar.setItems([doneButton], animated: true)
         toolBar.isUserInteractionEnabled = true
@@ -53,16 +53,16 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
         return pickerData[component][row]
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if (component == 0){
-            budget = budgets[row]
-            selectedBudgetTxtField.text = pickerData[component][row] + " | " + pickerData[1][selectedCategoryRow]
-            selectedBudgetRow = row            
-        }else{
-            selectedBudgetTxtField.text = pickerData[0][selectedBudgetRow] + " | " + pickerData[component][row]
-            selectedCategoryRow = row
-        }
-        updateGraph()
-    }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        if (component == 0){
+//            budget = budgets[row]
+//            selectedBudgetTxtField.text = pickerData[component][row] + " | " + pickerData[1][selectedCategoryRow]
+//            selectedBudgetRow = row
+//        }else{
+//            selectedBudgetTxtField.text = pickerData[0][selectedBudgetRow] + " | " + pickerData[component][row]
+//            selectedCategoryRow = row
+//        }
+//        updateGraph()
+//    }
 }
 

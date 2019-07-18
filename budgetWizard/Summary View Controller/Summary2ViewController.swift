@@ -9,9 +9,12 @@
 import UIKit
 
 class Summary2ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+    //MARK: Properties
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var selectedBudgetTxtField: UITextField!
     
+    //var pickerData: [[String]] = [[String]]()
+    var pickerData: [[String]] = [["test1","test2","test3"],["One","Two","Three"]]
     
     lazy var menuBar: MenuBar = {
         let mb = MenuBar()
@@ -23,7 +26,10 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UIColor.loadColors()
+        selectedBudgetTxtField.delegate = self
+        createBudgetPickerView()
+        createBudgetPickerToolBar()
         setupMenuBar()
         
     }
@@ -60,12 +66,23 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let ci = cellId[indexPath.item]
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as! SummaryChartsCollectionCell
         
-        let colors = [UIColor.blue, UIColor.green, UIColor.red]
+        cell.backgroundColor = UIColor.darkGray
         
-        cell.backgroundColor = colors[indexPath.item]
-    
+        switch(ci){
+        case "pieChart":
+            cell.setPieChart()
+            
+        case "barChart":
+            cell.setBarChart()
+            
+        case "lineChart":
+            cell.setLineChart()
+        default:
+            ""
+        }            
+        
         return cell
     }
 
@@ -89,6 +106,7 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func scrollToMenuIndex(menuIndex: Int){
         if (menuIndex == 3) {
+            selectedBudgetTxtField.becomeFirstResponder()
             return
         }
         let indexPath = IndexPath(item: menuIndex, section: 0)

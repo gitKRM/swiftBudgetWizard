@@ -27,7 +27,7 @@ class SummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedBudgetTxtField.delegate = self
+        //selectedBudgetTxtField.delegate = self
         
     }
     
@@ -38,8 +38,8 @@ class SummaryViewController: UIViewController {
     func SetupView(){
         LoadBudgets()
         UIColor.loadColors()
-        createBudgetPickerView()
-        createBudgetPickerToolBar()
+        //createBudgetPickerView()
+        //createBudgetPickerToolBar()
         if (budgets.count > 0){
             selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
         }

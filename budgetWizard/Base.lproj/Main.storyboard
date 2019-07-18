@@ -57,7 +57,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vr8-Ad-G8Z">
                                             <rect key="frame" x="133" y="66" width="220" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                             <state key="normal" title="Add Edit Expense">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -81,7 +81,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.21960784310000001" green="0.82352941180000006" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="addEditExpense" destination="vr8-Ad-G8Z" id="tdr-p0-IBY"/>
@@ -316,29 +316,74 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pieChart" id="P1J-h3-Jvu">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pieChart" id="P1J-h3-Jvu" customClass="SummaryChartsCollectionCell" customModule="budgetWizard" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQl-Yb-vGX" customClass="PieChartView" customModule="Charts">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="UQl-Yb-vGX" firstAttribute="top" secondItem="P1J-h3-Jvu" secondAttribute="top" id="Sg9-Uw-Pj2"/>
+                                            <constraint firstAttribute="trailing" secondItem="UQl-Yb-vGX" secondAttribute="trailing" id="YN3-qe-dJO"/>
+                                            <constraint firstAttribute="bottom" secondItem="UQl-Yb-vGX" secondAttribute="bottom" id="eSP-9u-qa7"/>
+                                            <constraint firstItem="UQl-Yb-vGX" firstAttribute="leading" secondItem="P1J-h3-Jvu" secondAttribute="leading" id="gZA-Zh-8vJ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="pieChart" destination="UQl-Yb-vGX" id="Wc8-Va-BJ9"/>
+                                        </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="barChart" id="2xh-IW-Mzy">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="barChart" id="2xh-IW-Mzy" customClass="SummaryChartsCollectionCell" customModule="budgetWizard" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50.333333333333336" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXt-uC-Avo" customClass="BarChartView" customModule="Charts">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="hXt-uC-Avo" secondAttribute="bottom" id="Ftg-xD-sRU"/>
+                                            <constraint firstItem="hXt-uC-Avo" firstAttribute="leading" secondItem="2xh-IW-Mzy" secondAttribute="leading" id="gVV-ak-sdf"/>
+                                            <constraint firstAttribute="trailing" secondItem="hXt-uC-Avo" secondAttribute="trailing" id="jEn-xK-DGh"/>
+                                            <constraint firstItem="hXt-uC-Avo" firstAttribute="top" secondItem="2xh-IW-Mzy" secondAttribute="top" id="mtE-pE-2Gm"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="barChart" destination="hXt-uC-Avo" id="Bgl-oQ-tiP"/>
+                                        </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lineChart" id="RIl-b6-q4d">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lineChart" id="RIl-b6-q4d" customClass="SummaryChartsCollectionCell" customModule="budgetWizard" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="100.66666666666667" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPH-Xh-OwV" customClass="LineChartView" customModule="Charts">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="EPH-Xh-OwV" firstAttribute="leading" secondItem="RIl-b6-q4d" secondAttribute="leading" id="LCn-FB-REi"/>
+                                            <constraint firstItem="EPH-Xh-OwV" firstAttribute="top" secondItem="RIl-b6-q4d" secondAttribute="top" id="LRL-tO-BTL"/>
+                                            <constraint firstAttribute="trailing" secondItem="EPH-Xh-OwV" secondAttribute="trailing" id="PAo-Bq-z5y"/>
+                                            <constraint firstAttribute="bottom" secondItem="EPH-Xh-OwV" secondAttribute="bottom" id="ntw-QV-GrM"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="lineChart" destination="EPH-Xh-OwV" id="p2s-er-YgU"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -346,6 +391,13 @@
                                     <outlet property="delegate" destination="foL-yG-jaU" id="FOI-5R-jVS"/>
                                 </connections>
                             </collectionView>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xuZ-jF-g5B">
+                                <rect key="frame" x="46" y="84" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -359,6 +411,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="9m1-3Z-z2Y"/>
                     <connections>
                         <outlet property="collectionView" destination="4E0-ZL-296" id="45O-Bn-oPA"/>
+                        <outlet property="selectedBudgetTxtField" destination="xuZ-jF-g5B" id="pLO-Tc-tp9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OPM-PT-j7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -622,9 +675,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.21960784310000001" green="0.82352941180000006" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="ExpenseAmount" destination="Xgs-Nb-IIK" id="zsa-yL-h54"/>
