@@ -28,20 +28,23 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
     
     func setupMenuBar(){
         //--Bar behind the time & reception -- used to controll colouring
-//        let topBar = UIView()
-//        topBar.backgroundColor = UIColor.black
-//        view.addSubview(topBar)
-//        topBar.translatesAutoresizingMaskIntoConstraints = false
-//
-//        topBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        topBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-//        topBar.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-//        topBar.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//        view.addContraintsWithFormat("H:[v0]|", views: topBar)
-//        view.addContraintsWithFormat("V:|[v0(50)]|", views: topBar)
+        let topBar = UIView()
+        topBar.backgroundColor = UIColor.black
+        view.addSubview(topBar)
+        topBar.translatesAutoresizingMaskIntoConstraints = false
+
+        topBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        topBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        topBar.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        topBar.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        view.addContraintsWithFormat("H:[v0]|", views: topBar)
+        view.addContraintsWithFormat("V:|[v0(50)]|", views: topBar)
         //--Menu Bar with Icons
         
         view.addSubview(menuBar)
