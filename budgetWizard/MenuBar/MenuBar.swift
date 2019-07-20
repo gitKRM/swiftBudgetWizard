@@ -76,13 +76,11 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let x = CGFloat(indexPath.item) * frame.width / 4
         horizontalBarLeftAnchor?.constant = x
         
-        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.layoutIfNeeded()
         }, completion: nil)
 
-        
         summaryController?.scrollToMenuIndex(menuIndex: indexPath.item)
-                
     }
     
     //MARK:Cells
@@ -141,4 +139,11 @@ class MenuCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+extension UIColor{
+
+    static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIColor{
+        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+    }
 }

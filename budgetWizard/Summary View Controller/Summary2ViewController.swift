@@ -80,7 +80,7 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
         case "lineChart":
             cell.setLineChart()
         default:
-            ""
+            return cell
         }            
         
         return cell
@@ -114,7 +114,7 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
         //--across as jerky as the horizontal bar will bounce back and forth
         collectionView.scrollToItem(at: indexPath, at: [], animated: false)
     }
-    
+    //--Update Menu Cell Image colour when scroll from swipe
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let index = targetContentOffset.pointee.x / view.frame.width
         let indexPath = IndexPath(item: Int(index), section: 0)
