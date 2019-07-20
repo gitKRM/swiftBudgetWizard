@@ -110,7 +110,9 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
             return
         }
         let indexPath = IndexPath(item: menuIndex, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: [], animated: true)
+        //--Below, if animated is set to true, this will be a spring effect which will come
+        //--across as jerky as the horizontal bar will bounce back and forth
+        collectionView.scrollToItem(at: indexPath, at: [], animated: false)
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
