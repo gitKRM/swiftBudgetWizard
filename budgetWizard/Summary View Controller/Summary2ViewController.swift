@@ -65,7 +65,7 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let ci = cellId[indexPath.item]
-        
+       
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as! SummaryChartsCollectionCell
         
         cell.backgroundColor = UIColor.darkGray
@@ -118,6 +118,10 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let index = targetContentOffset.pointee.x / view.frame.width
         let indexPath = IndexPath(item: Int(index), section: 0)
+        menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+    }
+    
+    func returnFromFilter(indexPath: IndexPath){
         menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
     }
 }

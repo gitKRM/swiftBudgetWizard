@@ -11,6 +11,7 @@ import UIKit
 class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     var horizontalBarLeftAnchor: NSLayoutConstraint?
+    var preHorizontalBarLeftAnchor: NSLayoutConstraint?
     var summaryController: Summary2ViewController?
     
     lazy var collectionView: UICollectionView = {
