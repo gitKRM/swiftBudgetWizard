@@ -123,6 +123,19 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func returnFromFilter(indexPath: IndexPath){
         menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        switch(indexPath.item){
+        case 0:
+            menuBar.horizontalBarLeftAnchor?.constant = 0.0
+            break
+        case 1:
+            menuBar.horizontalBarLeftAnchor?.constant = menuBar.horizontalBarLeftAnchor!.constant / 3
+            return
+        case 2:
+            menuBar.horizontalBarLeftAnchor?.constant = ((menuBar.horizontalBarLeftAnchor!.constant / 3) * 2)
+            return
+        default:
+            menuBar.horizontalBarLeftAnchor?.constant = 0.0
+        }
     }
 }
 

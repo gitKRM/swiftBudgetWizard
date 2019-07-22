@@ -32,6 +32,9 @@ extension Summary2ViewController: UIPickerViewDelegate, UIPickerViewDataSource, 
     
     @objc func closePicker(){
         view.endEditing(true)
+        returnFromFilter(indexPath: menuBar.originalMenuIndex!)
+        //--Shift horisontal bar to correct location
+        
     }
     
     

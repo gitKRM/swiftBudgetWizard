@@ -13,6 +13,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     var horizontalBarLeftAnchor: NSLayoutConstraint?
     var preHorizontalBarLeftAnchor: NSLayoutConstraint?
     var summaryController: Summary2ViewController?
+    var originalMenuIndex: IndexPath?
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -37,7 +38,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         collectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: [])
-        
+        originalMenuIndex = IndexPath(item: 0, section: 0)
         setupHorizontalBar()
     }
     
@@ -73,10 +74,14 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //--Dont check if filter is being selected
+        if (indexPath.item != 3){
+            originalMenuIndex = indexPath
+        }
         
         let x = CGFloat(indexPath.item) * frame.width / 4
         horizontalBarLeftAnchor?.constant = x
-        
+       
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.layoutIfNeeded()
         }, completion: nil)
