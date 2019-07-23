@@ -62,7 +62,7 @@ extension Summary2ViewController: UIPickerViewDelegate, UIPickerViewDataSource, 
             selectedBudgetTxtField.text = pickerData[0][selectedBudgetRow] + " | " + pickerData[component][row]
             selectedCategoryRow = row
         }
-        cell?.selectedBudgetTxtField = selectedBudgetTxtField.text
+        SummaryChartsCollectionCell.selectedBudgetTxtField = selectedBudgetTxtField.text
         cell!.updateGraph()
         
     }

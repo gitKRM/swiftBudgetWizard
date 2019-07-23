@@ -76,7 +76,7 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         switch(ci){
         case "pieChart":
-            cell!.setPieChart()
+            cell!.updateGraph()
             
         case "barChart":
             cell!.setBarChart()
@@ -155,7 +155,7 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
             pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
             
             selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
-            
+            SummaryChartsCollectionCell.selectedBudgetTxtField = selectedBudgetTxtField.text
             SummaryChartsCollectionCell.budget = budgets[budgets.count-1]
             //--New Picker Data for 2D array
             pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]

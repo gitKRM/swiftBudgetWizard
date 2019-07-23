@@ -14,30 +14,10 @@ class SummaryChartsCollectionCell: UICollectionViewCell {
     @IBOutlet weak var pieChart: PieChartView!
     @IBOutlet weak var barChart: BarChartView!
     @IBOutlet weak var lineChart: LineChartView!
-    var selectedBudgetTxtField: String?
+    static var selectedBudgetTxtField: String?
     var expenseTotal = Decimal()
     var expenses = [Expenses]()
     static var budget: Budget?
-    
-    func setPieChart() {
-        
-        var dataEntries: [PieChartDataEntry] = []
-        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0]
-        
-        
-        for i in 0..<months.count {
-            let dataEntry = PieChartDataEntry(value: unitsSold[i], label: months[i], data: Double(i))
-            dataEntries.append(dataEntry)
-        }
-        
-        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "Units Sold")
-        let pieChartData = PieChartData(dataSet: pieChartDataSet)
-        pieChart.data = pieChartData
-        
-        pieChartDataSet.colors = UIColor.getColors().shuffled()
-        
-    }
     
     func setBarChart(){
         var dataEntries: [BarChartDataEntry] = []
@@ -123,8 +103,8 @@ class SummaryChartsCollectionCell: UICollectionViewCell {
     }
     
     func getExpenses(){
-        if !selectedBudgetTxtField!.isEmpty{
-            let split = selectedBudgetTxtField?.split(separator: "|")
+        if !SummaryChartsCollectionCell.selectedBudgetTxtField!.isEmpty{
+            let split = SummaryChartsCollectionCell.selectedBudgetTxtField?.split(separator: "|")
             let category = String(split![1].trimmingCharacters(in: .whitespaces))
             
             if (SummaryChartsCollectionCell.budget != nil){
