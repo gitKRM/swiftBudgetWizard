@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Summary2ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class SummaryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     //MARK: Properties
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var selectedBudgetTxtField: UITextField!
@@ -70,24 +70,24 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let ci = cellId[indexPath.item]
        
-        Summary2ViewController.cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as? SummaryChartsCollectionCell
+        SummaryViewController.cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as? SummaryChartsCollectionCell
         
-        Summary2ViewController.cell!.backgroundColor = UIColor.darkGray
+        SummaryViewController.cell!.backgroundColor = UIColor.darkGray
         
         switch(ci){
         case "pieChart":
-            Summary2ViewController.cell!.updatePieChart()
+            SummaryViewController.cell!.updatePieChart()
             
         case "barChart":
-            Summary2ViewController.cell!.updateBarChart()
+            SummaryViewController.cell!.updateBarChart()
             
         case "lineChart":
-            Summary2ViewController.cell!.setLineChart()
+            SummaryViewController.cell!.setLineChart()
         default:
-            return Summary2ViewController.cell!
+            return SummaryViewController.cell!
         }            
         
-        return Summary2ViewController.cell!
+        return SummaryViewController.cell!
     }
 
     //:Mark Cell Sizing

@@ -12,7 +12,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     
     var horizontalBarLeftAnchor: NSLayoutConstraint?
     var preHorizontalBarLeftAnchor: NSLayoutConstraint?
-    var summaryController: Summary2ViewController?
+    var summaryController: SummaryViewController?
     var originalMenuIndex: IndexPath?
     
     lazy var collectionView: UICollectionView = {

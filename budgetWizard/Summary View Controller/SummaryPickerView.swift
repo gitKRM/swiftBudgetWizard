@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension Summary2ViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
+extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     
     //MARK: Picker View
     func createBudgetPickerView(){
@@ -23,7 +23,7 @@ extension Summary2ViewController: UIPickerViewDelegate, UIPickerViewDataSource, 
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(Summary2ViewController.closePicker))
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(SummaryViewController.closePicker))
         
         toolBar.setItems([doneButton], animated: true)
         toolBar.isUserInteractionEnabled = true
@@ -64,15 +64,15 @@ extension Summary2ViewController: UIPickerViewDelegate, UIPickerViewDataSource, 
         }
         SummaryChartsCollectionCell.selectedBudgetTxtField = selectedBudgetTxtField.text
         
-        switch Summary2ViewController.cell?.reuseIdentifier {
+        switch SummaryViewController.cell?.reuseIdentifier {
         case "pieChart":
-            Summary2ViewController.cell!.updatePieChart()
+            SummaryViewController.cell!.updatePieChart()
             break
         case "barChart":
-            Summary2ViewController.cell!.updateBarChart()
+            SummaryViewController.cell!.updateBarChart()
             break;
         default:
-            Summary2ViewController.cell!.setLineChart()
+            SummaryViewController.cell!.setLineChart()
         }
         
         

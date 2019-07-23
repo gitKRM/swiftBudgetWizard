@@ -25,7 +25,7 @@
 		3642FA9422E0516100FB757B /* SummaryChartsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3642FA9322E0516100FB757B /* SummaryChartsCollectionCell.swift */; };
 		3651169722A34E4A00827CA8 /* BudgetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */; };
 		3651169922A354F800827CA8 /* ExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651169822A354F800827CA8 /* ExpenseViewController.swift */; };
-		368160BC22DF1A8300293766 /* Summary2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368160BB22DF1A8300293766 /* Summary2ViewController.swift */; };
+		368160BC22DF1A8300293766 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368160BB22DF1A8300293766 /* SummaryViewController.swift */; };
 		369AB83622B23E7100FD221E /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB83522B23E7100FD221E /* CustomDateFormatter.swift */; };
 		369AB83E22B8DED200FD221E /* ExpenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB83D22B8DED200FD221E /* ExpenseTableViewController.swift */; };
 		369AB84022BA242100FD221E /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB83F22BA242100FD221E /* ExpenseTableViewCell.swift */; };
@@ -88,7 +88,7 @@
 		3642FA9322E0516100FB757B /* SummaryChartsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryChartsCollectionCell.swift; sourceTree = "<group>"; };
 		3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewController.swift; sourceTree = "<group>"; };
 		3651169822A354F800827CA8 /* ExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewController.swift; sourceTree = "<group>"; };
-		368160BB22DF1A8300293766 /* Summary2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary2ViewController.swift; sourceTree = "<group>"; };
+		368160BB22DF1A8300293766 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		369AB83522B23E7100FD221E /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		369AB83D22B8DED200FD221E /* ExpenseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewController.swift; sourceTree = "<group>"; };
 		369AB83F22BA242100FD221E /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 			children = (
 				3622501822D94B0000DABF62 /* SummaryPickerView.swift */,
 				3622501C22D94D1000DABF62 /* SummaryViewColors.swift */,
-				368160BB22DF1A8300293766 /* Summary2ViewController.swift */,
+				368160BB22DF1A8300293766 /* SummaryViewController.swift */,
 			);
 			path = "Summary View Controller";
 			sourceTree = "<group>";
@@ -565,7 +565,7 @@
 				36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */,
 				36D2DBE222DDBFB50010FC3D /* MenuBar.swift in Sources */,
 				369AB85622C213AF00FD221E /* Expenses+CoreDataProperties.swift in Sources */,
-				368160BC22DF1A8300293766 /* Summary2ViewController.swift in Sources */,
+				368160BC22DF1A8300293766 /* SummaryViewController.swift in Sources */,
 				3642FA9422E0516100FB757B /* SummaryChartsCollectionCell.swift in Sources */,
 				369AB83622B23E7100FD221E /* CustomDateFormatter.swift in Sources */,
 				3622501D22D94D1000DABF62 /* SummaryViewColors.swift in Sources */,
