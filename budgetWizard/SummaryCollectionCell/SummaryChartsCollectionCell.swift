@@ -57,7 +57,7 @@ class SummaryChartsCollectionCell: UICollectionViewCell {
     }
     
     //MARK: Charts loaded from db
-    func updateGraph(){
+    func updatePieChart(){
         getExpenses()
         
         var pieChartDataEntries = [PieChartDataEntry]()
@@ -100,6 +100,43 @@ class SummaryChartsCollectionCell: UICollectionViewCell {
         dataSet.colors = UIColor.getColors().shuffled()
         
         pieChart.data = chartData
+    }
+    
+    func updateBarChart(){
+        getExpenses()
+        
+        var barChartDataEntries = [BarChartDataEntry]()
+        expenseTotal = 0
+        
+        for i in 0..<expenses.count {
+            let dataEntry = BarChartDataEntry(x: Double(truncating: expenses[i].amount), y: Double(i))
+            barChartDataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = BarChartDataSet(entries: barChartDataEntries, label: "Expenditure")
+        let chartData = BarChartData(dataSet: chartDataSet)
+        barChart.data = chartData
+        
+        
+//        var dataEntries: [BarChartDataEntry] = []
+//        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+//        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0]
+//
+//
+//        for i in 0..<months.count {
+//            let dataEntry = BarChartDataEntry(x: unitsSold[i], y: Double(i))
+//            dataEntries.append(dataEntry)
+//        }
+//
+//        let barChartDataSet = BarChartDataSet(entries: dataEntries, label: "Units Sold")
+//        let barChartData = BarChartData(dataSet: barChartDataSet)
+//        barChart.data = barChartData
+//
+//        barChartDataSet.colors = UIColor.getColors().shuffled()
+        
+        
+        
+        
     }
     
     func getExpenses(){

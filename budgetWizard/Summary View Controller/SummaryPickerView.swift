@@ -63,7 +63,18 @@ extension Summary2ViewController: UIPickerViewDelegate, UIPickerViewDataSource, 
             selectedCategoryRow = row
         }
         SummaryChartsCollectionCell.selectedBudgetTxtField = selectedBudgetTxtField.text
-        cell!.updateGraph()
+        
+        switch Summary2ViewController.cell?.reuseIdentifier {
+        case "pieChart":
+            Summary2ViewController.cell!.updatePieChart()
+            break
+        case "barChart":
+            Summary2ViewController.cell!.updateBarChart()
+            break;
+        default:
+            Summary2ViewController.cell!.setLineChart()
+        }
+        
         
     }
 }

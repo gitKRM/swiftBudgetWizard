@@ -17,7 +17,7 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
     var selectedBudgetRow = 0
     var selectedCategoryRow = 0
     var pickerData: [[String]] = [[String]]()
-    var cell: SummaryChartsCollectionCell?
+    static var cell: SummaryChartsCollectionCell?
     
     lazy var menuBar: MenuBar = {
         let mb = MenuBar()
@@ -70,24 +70,24 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let ci = cellId[indexPath.item]
        
-        cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as? SummaryChartsCollectionCell
+        Summary2ViewController.cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as? SummaryChartsCollectionCell
         
-        cell!.backgroundColor = UIColor.darkGray
+        Summary2ViewController.cell!.backgroundColor = UIColor.darkGray
         
         switch(ci){
         case "pieChart":
-            cell!.updateGraph()
+            Summary2ViewController.cell!.updatePieChart()
             
         case "barChart":
-            cell!.setBarChart()
+            Summary2ViewController.cell!.updateBarChart()
             
         case "lineChart":
-            cell!.setLineChart()
+            Summary2ViewController.cell!.setLineChart()
         default:
-            return cell!
+            return Summary2ViewController.cell!
         }            
         
-        return cell!
+        return Summary2ViewController.cell!
     }
 
     //:Mark Cell Sizing
