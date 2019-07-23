@@ -9,14 +9,11 @@
 /* Begin PBXBuildFile section */
 		36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */; };
 		36224FFE22C74E7900DABF62 /* ProxyExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFD22C74E7900DABF62 /* ProxyExpense.swift */; };
-		3622500022CA091D00DABF62 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36224FFF22CA091D00DABF62 /* SummaryViewController.swift */; };
 		3622501022D1A6FC00DABF62 /* ExpenseCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622500F22D1A6FC00DABF62 /* ExpenseCategories.swift */; };
 		3622501922D94B0000DABF62 /* SummaryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622501822D94B0000DABF62 /* SummaryPickerView.swift */; };
-		3622501B22D94BF400DABF62 /* SummaryViewGraphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622501A22D94BF400DABF62 /* SummaryViewGraphs.swift */; };
 		3622501D22D94D1000DABF62 /* SummaryViewColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622501C22D94D1000DABF62 /* SummaryViewColors.swift */; };
 		3622502022D9713C00DABF62 /* ExpenseValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622501F22D9713C00DABF62 /* ExpenseValidation.swift */; };
 		3622502222D9717900DABF62 /* ExpensePickerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622502122D9717900DABF62 /* ExpensePickerViews.swift */; };
-		3622503022DAD71F00DABF62 /* SummaryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622502F22DAD71F00DABF62 /* SummaryCollectionView.swift */; };
 		3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4A522A2740C002B0339 /* AppDelegate.swift */; };
 		3634D4AB22A2740C002B0339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3634D4A922A2740C002B0339 /* Main.storyboard */; };
 		3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4AC22A2740C002B0339 /* budgetWizard.xcdatamodeld */; };
@@ -69,14 +66,11 @@
 		2201B8AC943000A1A1111100 /* Pods-budgetWizard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetWizard.debug.xcconfig"; path = "Target Support Files/Pods-budgetWizard/Pods-budgetWizard.debug.xcconfig"; sourceTree = "<group>"; };
 		36224FFB22C45CAA00DABF62 /* ProxyBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyBudget.swift; sourceTree = "<group>"; };
 		36224FFD22C74E7900DABF62 /* ProxyExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyExpense.swift; sourceTree = "<group>"; };
-		36224FFF22CA091D00DABF62 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		3622500F22D1A6FC00DABF62 /* ExpenseCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategories.swift; sourceTree = "<group>"; };
 		3622501822D94B0000DABF62 /* SummaryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPickerView.swift; sourceTree = "<group>"; };
-		3622501A22D94BF400DABF62 /* SummaryViewGraphs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewGraphs.swift; sourceTree = "<group>"; };
 		3622501C22D94D1000DABF62 /* SummaryViewColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewColors.swift; sourceTree = "<group>"; };
 		3622501F22D9713C00DABF62 /* ExpenseValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseValidation.swift; sourceTree = "<group>"; };
 		3622502122D9717900DABF62 /* ExpensePickerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensePickerViews.swift; sourceTree = "<group>"; };
-		3622502F22DAD71F00DABF62 /* SummaryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionView.swift; sourceTree = "<group>"; };
 		3634D4A222A2740C002B0339 /* budgetWizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetWizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3634D4A522A2740C002B0339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3634D4AA22A2740C002B0339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -282,7 +276,6 @@
 				3622500D22CDFADC00DABF62 /* Expense Table Custom Cell */,
 				3622500822CCAD5700DABF62 /* Globals */,
 				368160BD22DF2E6700293766 /* MenuBar */,
-				3642FA9122E0509800FB757B /* SummaryOld */,
 				3642FA9222E050FF00FB757B /* SummaryCollectionCell */,
 				3622500722CCAD3000DABF62 /* Summary View Controller */,
 				3622500622CCAD1400DABF62 /* Persistent Service */,
@@ -312,16 +305,6 @@
 				3634D4CA22A2740F002B0339 /* Info.plist */,
 			);
 			path = budgetWizardUITests;
-			sourceTree = "<group>";
-		};
-		3642FA9122E0509800FB757B /* SummaryOld */ = {
-			isa = PBXGroup;
-			children = (
-				36224FFF22CA091D00DABF62 /* SummaryViewController.swift */,
-				3622502F22DAD71F00DABF62 /* SummaryCollectionView.swift */,
-				3622501A22D94BF400DABF62 /* SummaryViewGraphs.swift */,
-			);
-			path = SummaryOld;
 			sourceTree = "<group>";
 		};
 		3642FA9222E050FF00FB757B /* SummaryCollectionCell */ = {
@@ -576,10 +559,7 @@
 				369AB83E22B8DED200FD221E /* ExpenseTableViewController.swift in Sources */,
 				36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */,
 				36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */,
-				3622503022DAD71F00DABF62 /* SummaryCollectionView.swift in Sources */,
-				3622500022CA091D00DABF62 /* SummaryViewController.swift in Sources */,
 				369AB85722C213AF00FD221E /* Budget+CoreDataClass.swift in Sources */,
-				3622501B22D94BF400DABF62 /* SummaryViewGraphs.swift in Sources */,
 				3622501922D94B0000DABF62 /* SummaryPickerView.swift in Sources */,
 				3622502022D9713C00DABF62 /* ExpenseValidation.swift in Sources */,
 				36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */,

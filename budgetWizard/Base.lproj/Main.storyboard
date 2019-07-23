@@ -298,7 +298,7 @@
             </objects>
             <point key="canvasLocation" x="3028.985507246377" y="-871.20535714285711"/>
         </scene>
-        <!--Item-->
+        <!--Summary-->
         <scene sceneID="1kN-eg-Tnu">
             <objects>
                 <viewController id="foL-yG-jaU" customClass="Summary2ViewController" customModule="budgetWizard" customModuleProvider="target" sceneMemberID="viewController">
@@ -408,7 +408,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QTr-CT-l0f"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="9m1-3Z-z2Y"/>
+                    <tabBarItem key="tabBarItem" title="Summary" image="pieChart" id="9m1-3Z-z2Y"/>
                     <connections>
                         <outlet property="collectionView" destination="4E0-ZL-296" id="45O-Bn-oPA"/>
                         <outlet property="selectedBudgetTxtField" destination="xuZ-jF-g5B" id="pLO-Tc-tp9"/>
@@ -417,55 +417,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OPM-PT-j7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4078.2608695652175" y="164.73214285714286"/>
-        </scene>
-        <!--Summary-->
-        <scene sceneID="OAM-Gh-jBW">
-            <objects>
-                <viewController id="SFD-bL-r1d" customClass="SummaryViewController" customModule="budgetWizard" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EuU-XH-Lwq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ysl-Ki-bKQ">
-                                <rect key="frame" x="20" y="64" width="374" height="70.666666666666686"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select A Budget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt9-Zb-vfc">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="28.666666666666668"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select A Budget" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Av-1g-WHy">
-                                        <rect key="frame" x="0.0" y="37.666666666666671" width="374" height="33"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFa-xW-raN" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="193" width="374" height="544"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="top" secondItem="p15-Zp-E7b" secondAttribute="top" constant="20" id="GLf-Tf-GUG"/>
-                            <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="WUG-il-Iuo"/>
-                            <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="Ysl-Ki-bKQ" secondAttribute="trailing" constant="20" id="irF-bp-MU7"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="p15-Zp-E7b"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Summary" image="pieChart" selectedImage="pieChart" id="hv6-2w-ezP"/>
-                    <connections>
-                        <outlet property="pieChart" destination="gFa-xW-raN" id="JQJ-DL-rbj"/>
-                        <outlet property="selectedBudgetTxtField" destination="3Av-1g-WHy" id="rbt-H1-jDH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CaD-Af-yWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3128.985507246377" y="327.45535714285711"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vit-9U-zMh">
@@ -478,7 +429,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="N7E-F5-bfk" kind="relationship" relationship="viewControllers" id="mAD-Gi-9gw"/>
-                        <segue destination="SFD-bL-r1d" kind="relationship" relationship="viewControllers" id="Ymx-6A-tc1"/>
                         <segue destination="foL-yG-jaU" kind="relationship" relationship="viewControllers" id="bdK-wP-BiH"/>
                     </connections>
                 </tabBarController>
