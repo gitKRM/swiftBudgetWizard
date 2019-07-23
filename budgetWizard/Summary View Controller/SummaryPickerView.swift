@@ -33,10 +33,7 @@ extension Summary2ViewController: UIPickerViewDelegate, UIPickerViewDataSource, 
     @objc func closePicker(){
         view.endEditing(true)
         returnFromFilter(indexPath: menuBar.originalMenuIndex!)
-        //--Shift horisontal bar to correct location
-        
     }
-    
     
     //MARK: PickerView Protocols
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -56,16 +53,18 @@ extension Summary2ViewController: UIPickerViewDelegate, UIPickerViewDataSource, 
         return pickerData[component][row]
     }
     
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        if (component == 0){
-//            budget = budgets[row]
-//            selectedBudgetTxtField.text = pickerData[component][row] + " | " + pickerData[1][selectedCategoryRow]
-//            selectedBudgetRow = row
-//        }else{
-//            selectedBudgetTxtField.text = pickerData[0][selectedBudgetRow] + " | " + pickerData[component][row]
-//            selectedCategoryRow = row
-//        }
-//        updateGraph()
-//    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if (component == 0){
+            SummaryChartsCollectionCell.budget = budgets[row]
+            selectedBudgetTxtField.text = pickerData[component][row] + " | " + pickerData[1][selectedCategoryRow]
+            selectedBudgetRow = row
+        }else{
+            selectedBudgetTxtField.text = pickerData[0][selectedBudgetRow] + " | " + pickerData[component][row]
+            selectedCategoryRow = row
+        }
+        cell?.selectedBudgetTxtField = selectedBudgetTxtField.text
+        cell!.updateGraph()
+        
+    }
 }
 

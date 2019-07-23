@@ -12,9 +12,12 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
     //MARK: Properties
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var selectedBudgetTxtField: UITextField!
-    
-    //var pickerData: [[String]] = [[String]]()
-    var pickerData: [[String]] = [["test1","test2","test3"],["One","Two","Three"]]
+    var budgets = [Budget]()
+    var budgetItems: [String] = []
+    var selectedBudgetRow = 0
+    var selectedCategoryRow = 0
+    var pickerData: [[String]] = [[String]]()
+    var cell: SummaryChartsCollectionCell?
     
     lazy var menuBar: MenuBar = {
         let mb = MenuBar()
@@ -26,6 +29,7 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        LoadBudgets()
         UIColor.loadColors()
         selectedBudgetTxtField.delegate = self
         createBudgetPickerView()
@@ -66,24 +70,24 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let ci = cellId[indexPath.item]
        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as! SummaryChartsCollectionCell
+        cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as? SummaryChartsCollectionCell
         
-        cell.backgroundColor = UIColor.darkGray
+        cell!.backgroundColor = UIColor.darkGray
         
         switch(ci){
         case "pieChart":
-            cell.setPieChart()
+            cell!.setPieChart()
             
         case "barChart":
-            cell.setBarChart()
+            cell!.setBarChart()
             
         case "lineChart":
-            cell.setLineChart()
+            cell!.setLineChart()
         default:
-            return cell
+            return cell!
         }            
         
-        return cell
+        return cell!
     }
 
     //:Mark Cell Sizing
@@ -136,6 +140,27 @@ class Summary2ViewController: UIViewController, UICollectionViewDelegate, UIColl
         default:
             menuBar.horizontalBarLeftAnchor?.constant = 0.0
         }
+    }
+    
+    //MARK:Load budgets
+    func LoadBudgets(){
+        budgetItems.removeAll()
+        self.budgets = GlobalBudget.getBudgets()!
+        
+        if (budgets.count > 0){
+            budgets.forEach{b in
+                budgetItems.append(b.budgetName!)
+            }
+            
+            pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
+            
+            selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
+            
+            SummaryChartsCollectionCell.budget = budgets[budgets.count-1]
+            //--New Picker Data for 2D array
+            pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
+        }
+        
     }
 }
 

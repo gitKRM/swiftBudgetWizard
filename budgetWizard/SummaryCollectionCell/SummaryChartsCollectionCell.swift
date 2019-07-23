@@ -14,6 +14,10 @@ class SummaryChartsCollectionCell: UICollectionViewCell {
     @IBOutlet weak var pieChart: PieChartView!
     @IBOutlet weak var barChart: BarChartView!
     @IBOutlet weak var lineChart: LineChartView!
+    var selectedBudgetTxtField: String?
+    var expenseTotal = Decimal()
+    var expenses = [Expenses]()
+    static var budget: Budget?
     
     func setPieChart() {
         
@@ -71,4 +75,65 @@ class SummaryChartsCollectionCell: UICollectionViewCell {
         
         lineChartDataSet.colors = UIColor.getColors().shuffled()
     }
+    
+    //MARK: Charts loaded from db
+    func updateGraph(){
+        getExpenses()
+        
+        var pieChartDataEntries = [PieChartDataEntry]()
+        expenseTotal = 0
+        expenses.forEach{e in
+            let entry = PieChartDataEntry(value: e.amount as! Double)
+            entry.label = e.expenseName
+            expenseTotal += e.amount as Decimal
+            pieChartDataEntries.append(entry)
+        }
+        
+        pieChart.transparentCircleColor = UIColor.clear
+        //pieChart.usePercentValuesEnabled = true
+        pieChart.holeRadiusPercent = 0.4
+        
+        let attribute = [ NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 18.0)! ]
+        
+        pieChart.centerAttributedText = NSAttributedString(string: CustomNumberFormatter.getNumberFormattedAsCurrency(closure: CustomNumberFormatter.convertDecimalToNSDecimal(decimal:), decimal: expenseTotal)!, attributes: attribute)
+        
+        pieChart.legend.textColor = UIColor.black
+        
+        updateChartData(pieChartDataEntries: pieChartDataEntries)
+        
+    }
+    
+    func updateChartData(pieChartDataEntries: [PieChartDataEntry]){
+        
+        let dataSet = PieChartDataSet(entries: pieChartDataEntries, label: nil)
+        dataSet.valueColors = [UIColor.black]
+        dataSet.valueFont = UIFont.systemFont(ofSize: 17)
+        
+        dataSet.xValuePosition = PieChartDataSet.ValuePosition.outsideSlice
+        
+        let chartData = PieChartData(dataSet: dataSet)
+        let format = NumberFormatter()
+        format.numberStyle = .currency
+        let formatter = DefaultValueFormatter(formatter: format)
+        chartData.setValueFormatter(formatter)
+        
+        dataSet.colors = UIColor.getColors().shuffled()
+        
+        pieChart.data = chartData
+    }
+    
+    func getExpenses(){
+        if !selectedBudgetTxtField!.isEmpty{
+            let split = selectedBudgetTxtField?.split(separator: "|")
+            let category = String(split![1].trimmingCharacters(in: .whitespaces))
+            
+            if (SummaryChartsCollectionCell.budget != nil){
+                expenses.removeAll()
+                expenses = PersistenceService.getExpensesFromCategory(budget: SummaryChartsCollectionCell.budget!, category: category)!
+            }
+        }
+    }
+    
+    
+    
 }
