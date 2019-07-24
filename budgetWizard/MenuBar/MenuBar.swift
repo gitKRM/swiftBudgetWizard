@@ -87,6 +87,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         }, completion: nil)
 
         summaryController?.scrollToMenuIndex(menuIndex: indexPath.item)
+        
     }
     
     //MARK:Cells
