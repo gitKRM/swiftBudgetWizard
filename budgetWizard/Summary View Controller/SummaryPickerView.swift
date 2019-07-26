@@ -41,6 +41,11 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        if (pickerData.isEmpty){
+            return 0
+        }
+        
         if component == 0{
             return pickerData[0].count
         }else{

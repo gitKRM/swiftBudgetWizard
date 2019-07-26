@@ -29,13 +29,19 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        LoadBudgets()
+        
         UIColor.loadColors()
         selectedBudgetTxtField.delegate = self
         createBudgetPickerView()
         createBudgetPickerToolBar()
         setupMenuBar()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        LoadBudgets()
+        selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
+        SummaryViewController.cell!.updatePieChart()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -96,7 +102,7 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
         super.viewDidLayoutSubviews()
         
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
-            layout.itemSize = CGSize(width: view.frame.width, height: view.frame.height)
+            layout.itemSize = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
             layout.minimumLineSpacing = 0
             layout.invalidateLayout()
         }

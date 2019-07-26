@@ -19,6 +19,7 @@ class SummaryChartsCollectionCell: UICollectionViewCell {
     var expenses = [Expenses]()
     static var budget: Budget?
     
+    
     func setLineChart(){
 
         var dataEntries: [ChartDataEntry] = []
@@ -59,7 +60,7 @@ class SummaryChartsCollectionCell: UICollectionViewCell {
         
         pieChart.centerAttributedText = NSAttributedString(string: CustomNumberFormatter.getNumberFormattedAsCurrency(closure: CustomNumberFormatter.convertDecimalToNSDecimal(decimal:), decimal: expenseTotal)!, attributes: attribute)
         
-        pieChart.legend.textColor = UIColor.black
+        pieChart.legend.textColor = UIColor.white
         
         updateChartData(pieChartDataEntries: pieChartDataEntries)
         
@@ -84,111 +85,91 @@ class SummaryChartsCollectionCell: UICollectionViewCell {
         pieChart.data = chartData
     }
     
+    
+    //***************** BAR CHART START ***********************************
+    
+    func setup(){
+        barChart.chartDescription?.enabled = false
+        barChart.dragEnabled = true
+        barChart.setScaleEnabled(true)
+        barChart.pinchZoomEnabled = false
+        
+        barChart.drawBarShadowEnabled = false
+        barChart.drawValueAboveBarEnabled = false
+        barChart.maxVisibleCount = 60
+        
+        let xAxis = barChart.xAxis
+        xAxis.labelPosition = .bottom
+        barChart.rightAxis.enabled = false
+        xAxis.labelFont = .systemFont(ofSize: 12)
+        xAxis.granularity = 1
+        xAxis.labelCount = 7 //--max label count = 25
+        
+        let leftAxisFormatter = NumberFormatter()
+        leftAxisFormatter.minimumFractionDigits = 0
+        leftAxisFormatter.maximumFractionDigits = 1
+        leftAxisFormatter.negativePrefix = " $"
+        leftAxisFormatter.positivePrefix = " $"
+        
+        let leftAxis = barChart.leftAxis
+        leftAxis.labelFont = .systemFont(ofSize: 12)
+        leftAxis.labelCount = 7 //-- max count = 25
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: leftAxisFormatter)
+        leftAxis.labelPosition = .outsideChart
+        leftAxis.spaceTop = 0.15
+        leftAxis.axisMinimum = 0
+        
+        let rightAxis = barChart.rightAxis
+        rightAxis.labelFont = .systemFont(ofSize: 12)
+        rightAxis.labelCount = 7
+        rightAxis.valueFormatter = leftAxis.valueFormatter
+        rightAxis.spaceTop = 0.15
+        rightAxis.axisMinimum = 0
+        
+        let legend = barChart.legend
+        legend.horizontalAlignment = .left
+        legend.verticalAlignment = .center
+        legend.orientation = .horizontal
+        legend.drawInside = false
+        legend.form = .circle
+        legend.formSize = 9
+        legend.font = .systemFont(ofSize: 11)
+        legend.xEntrySpace = 4
+        
+    }
+    
     func updateBarChart(){
-//        getExpenses()
-//
-//        var barChartDataEntries = [BarChartDataEntry]()
-//        expenseTotal = 0
-//
-//        for i in 0..<expenses.count {
-//            let dataEntry = BarChartDataEntry(x: Double(i), y: Double(truncating: expenses[i].amount), data: expenses[i].expenseName)
-//            barChartDataEntries.append(dataEntry)
-//        }
-//
-//        let chartDataSet = BarChartDataSet(entries: barChartDataEntries, label: nil)
-//        let chartData = BarChartData(dataSet: chartDataSet)
-//        barChart.data = chartData
+        setup()
+        getExpenses()
         
+        let yVals = (0..<expenses.count).map { (i) -> BarChartDataEntry in
+            
+            return BarChartDataEntry(x: Double(i), y: Double(truncating: expenses[i].amount))
+            
+            }
+        let dataSet = BarChartDataSet(entries: yVals, label: "Test Label")
+        dataSet.colors = UIColor.getColors()
+        dataSet.drawValuesEnabled = false
         
-        var months: [String]!
-        
-        
-        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
-        
-        setChart(dataPoints: months, values: unitsSold)
-        
+        let data = BarChartData(dataSet: dataSet)
+        data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
+        data.barWidth = 0.9
+        barChart.data = data
         
     }
     
     
     func setChart(dataPoints: [String], values: [Double]) {
     
-        barChart.noDataText = "Chart No DataText"
         
-        barChart.chartDescription?.enabled = true
-        barChart.dragEnabled = false
-        barChart.setScaleEnabled(true)
-        barChart.pinchZoomEnabled = false
-        barChart.drawBarShadowEnabled = false
-        barChart.drawValueAboveBarEnabled = true
-        barChart.maxVisibleCount = 60
-        barChart.setVisibleXRangeMaximum(20)
-        barChart.extraRightOffset=CGFloat(24)
-        barChart.isUserInteractionEnabled = false
-        barChart.legend.enabled=true
-        barChart.fitBars = true
-        
-        let xAxis = barChart.xAxis
-        xAxis.labelPosition = .top
-        //xAxis.labelFont =  UIFont(name: "Lato-Regular", size: 11)!
-        xAxis.drawAxisLineEnabled = true
-        xAxis.drawGridLinesEnabled = true
-        xAxis.granularity = 1
-        xAxis.enabled=true
-        xAxis.forceLabelsEnabled = true
-        
-        //
-        let leftAxis = barChart.leftAxis
-        //leftAxis.labelFont =  UIFont(name: "Lato-Regular", size: 10)!
-        leftAxis.drawAxisLineEnabled = true
-        leftAxis.drawGridLinesEnabled = true
-        leftAxis.axisMinimum = 0
-        leftAxis.enabled=true
-        
-        
-        let rightAxis = barChart.rightAxis
-        //rightAxis.labelFont =  UIFont(name: "Lato-Regular", size: 10)!
-        rightAxis.drawAxisLineEnabled = true
-        rightAxis.drawGridLinesEnabled = true
-        rightAxis.axisMinimum = 0
-        rightAxis.enabled = true
-        
-        setChartDataWithValues(values: values, labels: dataPoints)
         
     }
     
-    func setChartDataWithValues(values:[Double], labels:[String]) {
-        
-        let yVals = (0..<values.count).map { (i) -> BarChartDataEntry in
-            
-            let val = values[i]
-            
-            return BarChartDataEntry(x: Double(i), y: val, data: labels[i])
-        }
-        
-        let barChartDataSet = BarChartDataSet(entries: yVals, label: "MF")
-        
-        barChartDataSet.colors = UIColor.getColors()
-        
-        
-        let data = BarChartData(dataSet: barChartDataSet)
-        //data.setValueFont(UIFont(name:"Lato-Regular", size:10)!)
-        data.setDrawValues(true)
-        
-        let xAxis = barChart?.xAxis
-        xAxis?.setLabelCount(values.count, force: false)
-        xAxis?.valueFormatter=IndexAxisValueFormatter(values: labels )
-        
-        barChart?.data = data
-        
-    }
-    
-    
+    //***************** BAR CHART END ***********************************
     
     
     func getExpenses(){
-        if !SummaryChartsCollectionCell.selectedBudgetTxtField!.isEmpty{
+        if ((SummaryChartsCollectionCell.selectedBudgetTxtField) != nil) && !SummaryChartsCollectionCell.selectedBudgetTxtField!.isEmpty{
             let split = SummaryChartsCollectionCell.selectedBudgetTxtField?.split(separator: "|")
             let category = String(split![1].trimmingCharacters(in: .whitespaces))
             
