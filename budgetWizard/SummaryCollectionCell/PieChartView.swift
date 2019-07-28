@@ -1,19 +1,37 @@
 //
-//  SummaryViewControllerGraphs.swift
+//  PieChartView.swift
 //  budgetWizard
 //
-//  Created by Kent McNamara on 13/07/19.
+//  Created by Kent McNamara on 28/07/19.
 //  Copyright © 2019 Kent McNamara. All rights reserved.
 //
 
 import Foundation
 import Charts
 
-extension SummaryViewController{
+extension SummaryChartsCollectionCell{
     
-    func updateGraph(){
-        getExpenses()
+    func initChartValues(){
+        let legend = pieChart.legend
+        legend.horizontalAlignment = .right
+        legend.verticalAlignment = .top
+        legend.orientation = .vertical
+        legend.xEntrySpace = 7
+        legend.yEntrySpace = 0
+        legend.yOffset = 0
         
+        pieChart.setExtraOffsets(left: 10, top: 0, right: 10, bottom: 0)
+        
+        pieChart.entryLabelColor = .white
+        pieChart.entryLabelFont = .systemFont(ofSize: 14, weight: .bold)
+        
+        pieChart.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
+        
+    }
+    
+    func updatePieChart(){
+        getExpenses()
+        initChartValues()
         var pieChartDataEntries = [PieChartDataEntry]()
         expenseTotal = 0
         expenses.forEach{e in
@@ -31,7 +49,7 @@ extension SummaryViewController{
         
         pieChart.centerAttributedText = NSAttributedString(string: CustomNumberFormatter.getNumberFormattedAsCurrency(closure: CustomNumberFormatter.convertDecimalToNSDecimal(decimal:), decimal: expenseTotal)!, attributes: attribute)
         
-        pieChart.legend.textColor = UIColor.black
+        pieChart.legend.textColor = UIColor.white
         
         updateChartData(pieChartDataEntries: pieChartDataEntries)
         
@@ -39,9 +57,13 @@ extension SummaryViewController{
     
     func updateChartData(pieChartDataEntries: [PieChartDataEntry]){
         
-        let dataSet = PieChartDataSet(entries: pieChartDataEntries, label: nil)
+        let budgetName = SummaryChartsCollectionCell.budget?.budgetName
+        
+        let dataSet = PieChartDataSet(entries: pieChartDataEntries, label: [budgetName,"budget"].compactMap{ $0 }.joined(separator: " "))
         dataSet.valueColors = [UIColor.black]
-        dataSet.valueFont = UIFont.systemFont(ofSize: 17)
+        dataSet.valueFont = UIFont.systemFont(ofSize: 14)
+        dataSet.valueLineColor = .white
+        dataSet.sliceSpace = 2
         
         dataSet.xValuePosition = PieChartDataSet.ValuePosition.outsideSlice
         
@@ -56,36 +78,6 @@ extension SummaryViewController{
         pieChart.data = chartData
     }
     
-    func getExpenses(){
-        if !selectedBudgetTxtField.text!.isEmpty{
-            let split = selectedBudgetTxtField.text?.split(separator: "|")
-            let category = String(split![1].trimmingCharacters(in: .whitespaces))
-            
-            if (budget != nil){
-                expenses.removeAll()
-                expenses = PersistenceService.getExpensesFromCategory(budget: budget!, category: category)!
-            }
-        }
-    }
+    
     
 }
-
-
-//let colours = [UIColor.red, UIColor.green, UIColor.yellow, UIColor.blue]
-//        let colours = [UIColor(named: "MyPeach"), UIColor(named: "MyLime"), UIColor(named: "MyRed"), UIColor(named: "MyBlue")]
-
-//dataSet.colors = colors as! [NSUIColor]
-
-//        var colors: [UIColor] = []
-//
-//        for _ in 0..<pieChartDataEntries.count {
-//            let red = Double(arc4random_uniform(256))
-//            let green = Double(arc4random_uniform(256))
-//            let blue = Double(arc4random_uniform(256))
-//
-//            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
-//            colors.append(color)
-//        }
-//
-//        dataSet.colors = colors
-

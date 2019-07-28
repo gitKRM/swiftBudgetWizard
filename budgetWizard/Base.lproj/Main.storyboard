@@ -57,7 +57,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vr8-Ad-G8Z">
                                             <rect key="frame" x="133" y="66" width="220" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                             <state key="normal" title="Add Edit Expense">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -81,7 +81,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.21960784310000001" green="0.82352941180000006" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="addEditExpense" destination="vr8-Ad-G8Z" id="tdr-p0-IBY"/>
@@ -299,56 +299,126 @@
             <point key="canvasLocation" x="3028.985507246377" y="-871.20535714285711"/>
         </scene>
         <!--Summary-->
-        <scene sceneID="OAM-Gh-jBW">
+        <scene sceneID="1kN-eg-Tnu">
             <objects>
-                <viewController id="SFD-bL-r1d" customClass="SummaryViewController" customModule="budgetWizard" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EuU-XH-Lwq">
+                <viewController id="foL-yG-jaU" customClass="SummaryViewController" customModule="budgetWizard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DiS-GZ-SO1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMy-Lk-gQm" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="229" width="374" height="544"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4E0-ZL-296">
+                                <rect key="frame" x="0.0" y="135" width="414" height="658"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ysl-Ki-bKQ">
-                                <rect key="frame" x="20" y="64" width="374" height="70.666666666666686"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select A Budget" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt9-Zb-vfc">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="28.666666666666668"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select A Budget" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Av-1g-WHy">
-                                        <rect key="frame" x="0.0" y="37.666666666666671" width="374" height="33"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="kEq-Ha-ZRh">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pieChart" id="P1J-h3-Jvu" customClass="SummaryChartsCollectionCell" customModule="budgetWizard" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQl-Yb-vGX" customClass="PieChartView" customModule="Charts">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="UQl-Yb-vGX" secondAttribute="bottom" id="R1p-Ca-HYk"/>
+                                            <constraint firstItem="UQl-Yb-vGX" firstAttribute="top" secondItem="P1J-h3-Jvu" secondAttribute="top" id="Sg9-Uw-Pj2"/>
+                                            <constraint firstAttribute="trailing" secondItem="UQl-Yb-vGX" secondAttribute="trailing" id="YN3-qe-dJO"/>
+                                            <constraint firstItem="UQl-Yb-vGX" firstAttribute="leading" secondItem="P1J-h3-Jvu" secondAttribute="leading" id="gZA-Zh-8vJ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="pieChart" destination="UQl-Yb-vGX" id="Wc8-Va-BJ9"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="barChart" id="2xh-IW-Mzy" customClass="SummaryChartsCollectionCell" customModule="budgetWizard" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50.666666666666664" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXt-uC-Avo" customClass="BarChartView" customModule="Charts">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="hXt-uC-Avo" secondAttribute="bottom" id="Ftg-xD-sRU"/>
+                                            <constraint firstItem="hXt-uC-Avo" firstAttribute="leading" secondItem="2xh-IW-Mzy" secondAttribute="leading" id="gVV-ak-sdf"/>
+                                            <constraint firstAttribute="trailing" secondItem="hXt-uC-Avo" secondAttribute="trailing" id="jEn-xK-DGh"/>
+                                            <constraint firstItem="hXt-uC-Avo" firstAttribute="top" secondItem="2xh-IW-Mzy" secondAttribute="top" id="mtE-pE-2Gm"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="barChart" destination="hXt-uC-Avo" id="Bgl-oQ-tiP"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lineChart" id="RIl-b6-q4d" customClass="SummaryChartsCollectionCell" customModule="budgetWizard" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="101.33333333333333" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPH-Xh-OwV" customClass="LineChartView" customModule="Charts">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="EPH-Xh-OwV" firstAttribute="leading" secondItem="RIl-b6-q4d" secondAttribute="leading" id="LCn-FB-REi"/>
+                                            <constraint firstItem="EPH-Xh-OwV" firstAttribute="top" secondItem="RIl-b6-q4d" secondAttribute="top" id="LRL-tO-BTL"/>
+                                            <constraint firstAttribute="trailing" secondItem="EPH-Xh-OwV" secondAttribute="trailing" id="PAo-Bq-z5y"/>
+                                            <constraint firstAttribute="bottom" secondItem="EPH-Xh-OwV" secondAttribute="bottom" id="ntw-QV-GrM"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="lineChart" destination="EPH-Xh-OwV" id="p2s-er-YgU"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="foL-yG-jaU" id="PS9-0P-kg5"/>
+                                    <outlet property="delegate" destination="foL-yG-jaU" id="FOI-5R-jVS"/>
+                                </connections>
+                            </collectionView>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xuZ-jF-g5B">
+                                <rect key="frame" x="46" y="84" width="97" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="p15-Zp-E7b" firstAttribute="bottom" secondItem="HMy-Lk-gQm" secondAttribute="bottom" constant="40" id="3Gf-8K-5bM"/>
-                            <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="HMy-Lk-gQm" secondAttribute="trailing" constant="20" id="CK9-MA-sAz"/>
-                            <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="top" secondItem="p15-Zp-E7b" secondAttribute="top" constant="20" id="GLf-Tf-GUG"/>
-                            <constraint firstItem="Ysl-Ki-bKQ" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="WUG-il-Iuo"/>
-                            <constraint firstItem="p15-Zp-E7b" firstAttribute="trailing" secondItem="Ysl-Ki-bKQ" secondAttribute="trailing" constant="20" id="irF-bp-MU7"/>
-                            <constraint firstItem="HMy-Lk-gQm" firstAttribute="leading" secondItem="p15-Zp-E7b" secondAttribute="leading" constant="20" id="mry-dj-mIJ"/>
-                            <constraint firstItem="HMy-Lk-gQm" firstAttribute="top" secondItem="Ysl-Ki-bKQ" secondAttribute="bottom" constant="94.329999999999998" id="pK8-Z2-JxU"/>
+                            <constraint firstItem="4E0-ZL-296" firstAttribute="leading" secondItem="QTr-CT-l0f" secondAttribute="leading" id="QW0-4Q-VDu"/>
+                            <constraint firstItem="xuZ-jF-g5B" firstAttribute="leading" secondItem="QTr-CT-l0f" secondAttribute="leading" constant="46" id="c8V-mZ-pxg"/>
+                            <constraint firstItem="xuZ-jF-g5B" firstAttribute="top" secondItem="QTr-CT-l0f" secondAttribute="top" constant="40" id="hq3-oT-wGA"/>
+                            <constraint firstItem="QTr-CT-l0f" firstAttribute="bottom" secondItem="4E0-ZL-296" secondAttribute="bottom" constant="20" id="jeT-Gw-XFs"/>
+                            <constraint firstItem="QTr-CT-l0f" firstAttribute="trailing" secondItem="xuZ-jF-g5B" secondAttribute="trailing" constant="271" id="n1h-IZ-Cng"/>
+                            <constraint firstItem="4E0-ZL-296" firstAttribute="trailing" secondItem="QTr-CT-l0f" secondAttribute="trailing" id="sAs-DN-wPv"/>
+                            <constraint firstItem="4E0-ZL-296" firstAttribute="top" secondItem="xuZ-jF-g5B" secondAttribute="bottom" constant="21" id="wnI-Z9-EGi"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="p15-Zp-E7b"/>
+                        <viewLayoutGuide key="safeArea" id="QTr-CT-l0f"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Summary" image="pieChart" selectedImage="pieChart" id="hv6-2w-ezP"/>
+                    <tabBarItem key="tabBarItem" title="Summary" image="pieChart" id="9m1-3Z-z2Y"/>
                     <connections>
-                        <outlet property="pieChart" destination="HMy-Lk-gQm" id="8no-dn-H8R"/>
-                        <outlet property="selectedBudgetTxtField" destination="3Av-1g-WHy" id="NE7-xb-59B"/>
+                        <outlet property="collectionView" destination="4E0-ZL-296" id="45O-Bn-oPA"/>
+                        <outlet property="selectedBudgetTxtField" destination="xuZ-jF-g5B" id="pLO-Tc-tp9"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CaD-Af-yWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OPM-PT-j7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3128.985507246377" y="327.45535714285711"/>
+            <point key="canvasLocation" x="-4078.2608695652175" y="164.73214285714286"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vit-9U-zMh">
@@ -361,7 +431,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="N7E-F5-bfk" kind="relationship" relationship="viewControllers" id="mAD-Gi-9gw"/>
-                        <segue destination="SFD-bL-r1d" kind="relationship" relationship="viewControllers" id="Ymx-6A-tc1"/>
+                        <segue destination="foL-yG-jaU" kind="relationship" relationship="viewControllers" id="bdK-wP-BiH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vk-7Q-Hfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -439,9 +509,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.21960784310000001" green="0.82352941180000006" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.2196078431372549" green="0.82352941176470584" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="ExpenseAmount" destination="Xgs-Nb-IIK" id="zsa-yL-h54"/>

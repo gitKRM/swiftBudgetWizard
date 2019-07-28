@@ -32,8 +32,8 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
     
     @objc func closePicker(){
         view.endEditing(true)
+        returnFromFilter(indexPath: menuBar.originalMenuIndex!)
     }
-    
     
     //MARK: PickerView Protocols
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -41,6 +41,11 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        if (pickerData.isEmpty){
+            return 0
+        }
+        
         if component == 0{
             return pickerData[0].count
         }else{
@@ -55,14 +60,27 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (component == 0){
-            budget = budgets[row]
+            SummaryChartsCollectionCell.budget = budgets[row]
             selectedBudgetTxtField.text = pickerData[component][row] + " | " + pickerData[1][selectedCategoryRow]
-            selectedBudgetRow = row            
+            selectedBudgetRow = row
         }else{
             selectedBudgetTxtField.text = pickerData[0][selectedBudgetRow] + " | " + pickerData[component][row]
             selectedCategoryRow = row
         }
-        updateGraph()
+        SummaryChartsCollectionCell.selectedBudgetTxtField = selectedBudgetTxtField.text
+        
+        switch SummaryViewController.cell?.reuseIdentifier {
+        case "pieChart":
+            SummaryViewController.cell!.updatePieChart()
+            break
+        case "barChart":
+            SummaryViewController.cell!.updateBarChart()
+            break;
+        default:
+            SummaryViewController.cell!.setLineChart()
+        }
+        
+        
     }
 }
 
