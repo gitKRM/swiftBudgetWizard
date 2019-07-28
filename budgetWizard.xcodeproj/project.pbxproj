@@ -38,7 +38,11 @@
 		36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */; };
 		36D2DBE222DDBFB50010FC3D /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D2DBE122DDBFB50010FC3D /* MenuBar.swift */; };
 		36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D82D22ACC2B800800B38 /* BudgetTableViewCell.swift */; };
-		36FCBC0F22E9CC7100C05E98 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FCBC0E22E9CC7100C05E98 /* TestViewController.swift */; };
+		36FCBC1122ED455B00C05E98 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FCBC1022ED455B00C05E98 /* PieChartView.swift */; };
+		36FCBC1322ED528400C05E98 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FCBC1222ED528400C05E98 /* BarChartView.swift */; };
+		36FCBC1622ED8B5500C05E98 /* ExpenseAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FCBC1522ED8B5500C05E98 /* ExpenseAxisValueFormatter.swift */; };
+		36FCBC1922ED8F2400C05E98 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FCBC1822ED8F2400C05E98 /* BalloonMarker.swift */; };
+		36FCBC1B22ED8F5400C05E98 /* XYMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FCBC1A22ED8F5400C05E98 /* XYMarkerView.swift */; };
 		69AE717F0C0EE19E8AFF302F /* Pods_budgetWizardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C66F6EC4416026234BA08806 /* Pods_budgetWizardTests.framework */; };
 		840876C41A0EF5D5D49E8DD0 /* Pods_budgetWizard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 017EA958250387807524064A /* Pods_budgetWizard.framework */; };
 		FD926F5CCA2F967051B3FAA5 /* Pods_budgetWizardUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2C41C5742F5BD9CF292ECD /* Pods_budgetWizardUITests.framework */; };
@@ -102,7 +106,11 @@
 		36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		36D2DBE122DDBFB50010FC3D /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		36F4D82D22ACC2B800800B38 /* BudgetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewCell.swift; sourceTree = "<group>"; };
-		36FCBC0E22E9CC7100C05E98 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		36FCBC1022ED455B00C05E98 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
+		36FCBC1222ED528400C05E98 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		36FCBC1522ED8B5500C05E98 /* ExpenseAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseAxisValueFormatter.swift; sourceTree = "<group>"; };
+		36FCBC1822ED8F2400C05E98 /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
+		36FCBC1A22ED8F5400C05E98 /* XYMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XYMarkerView.swift; sourceTree = "<group>"; };
 		47AC8233C3961C960BCE5C57 /* Pods-budgetWizardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetWizardTests.debug.xcconfig"; path = "Target Support Files/Pods-budgetWizardTests/Pods-budgetWizardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B6928F02B4C84C80D9C5ED96 /* Pods-budgetWizard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetWizard.release.xcconfig"; path = "Target Support Files/Pods-budgetWizard/Pods-budgetWizard.release.xcconfig"; sourceTree = "<group>"; };
 		C66F6EC4416026234BA08806 /* Pods_budgetWizardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_budgetWizardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +277,8 @@
 		3634D4A422A2740C002B0339 /* budgetWizard */ = {
 			isa = PBXGroup;
 			children = (
+				36FCBC1722ED8F1400C05E98 /* Components */,
+				36FCBC1422ED8B3100C05E98 /* Formatters */,
 				3622500222CCABDF00DABF62 /* Budget View Controllers */,
 				3622500922CDF7F500DABF62 /* BudgetModel */,
 				3622500C22CDFAB900DABF62 /* Budget Table Custom Cell */,
@@ -287,7 +297,6 @@
 				3634D4B122A2740E002B0339 /* LaunchScreen.storyboard */,
 				3634D4B422A2740E002B0339 /* Info.plist */,
 				3634D4AC22A2740C002B0339 /* budgetWizard.xcdatamodeld */,
-				36FCBC0E22E9CC7100C05E98 /* TestViewController.swift */,
 			);
 			path = budgetWizard;
 			sourceTree = "<group>";
@@ -314,6 +323,8 @@
 			isa = PBXGroup;
 			children = (
 				3642FA9322E0516100FB757B /* SummaryChartsCollectionCell.swift */,
+				36FCBC1022ED455B00C05E98 /* PieChartView.swift */,
+				36FCBC1222ED528400C05E98 /* BarChartView.swift */,
 			);
 			path = SummaryCollectionCell;
 			sourceTree = "<group>";
@@ -324,6 +335,23 @@
 				36D2DBE122DDBFB50010FC3D /* MenuBar.swift */,
 			);
 			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		36FCBC1422ED8B3100C05E98 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				36FCBC1522ED8B5500C05E98 /* ExpenseAxisValueFormatter.swift */,
+			);
+			path = Formatters;
+			sourceTree = "<group>";
+		};
+		36FCBC1722ED8F1400C05E98 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				36FCBC1822ED8F2400C05E98 /* BalloonMarker.swift */,
+				36FCBC1A22ED8F5400C05E98 /* XYMarkerView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		6FBD610386E7F8621C02F842 /* Frameworks */ = {
@@ -557,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36FCBC1122ED455B00C05E98 /* PieChartView.swift in Sources */,
 				369AB84022BA242100FD221E /* ExpenseTableViewCell.swift in Sources */,
 				3622501022D1A6FC00DABF62 /* ExpenseCategories.swift in Sources */,
 				369AB83E22B8DED200FD221E /* ExpenseTableViewController.swift in Sources */,
@@ -565,15 +594,17 @@
 				369AB85722C213AF00FD221E /* Budget+CoreDataClass.swift in Sources */,
 				3622501922D94B0000DABF62 /* SummaryPickerView.swift in Sources */,
 				3622502022D9713C00DABF62 /* ExpenseValidation.swift in Sources */,
+				36FCBC1922ED8F2400C05E98 /* BalloonMarker.swift in Sources */,
+				36FCBC1B22ED8F5400C05E98 /* XYMarkerView.swift in Sources */,
 				36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */,
 				36D2DBE222DDBFB50010FC3D /* MenuBar.swift in Sources */,
+				36FCBC1322ED528400C05E98 /* BarChartView.swift in Sources */,
 				369AB85622C213AF00FD221E /* Expenses+CoreDataProperties.swift in Sources */,
 				368160BC22DF1A8300293766 /* SummaryViewController.swift in Sources */,
 				3642FA9422E0516100FB757B /* SummaryChartsCollectionCell.swift in Sources */,
 				369AB83622B23E7100FD221E /* CustomDateFormatter.swift in Sources */,
 				3622501D22D94D1000DABF62 /* SummaryViewColors.swift in Sources */,
 				3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */,
-				36FCBC0F22E9CC7100C05E98 /* TestViewController.swift in Sources */,
 				3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */,
 				369AB84422BA2E6200FD221E /* GlobalBudget.swift in Sources */,
 				369AB85822C213AF00FD221E /* Budget+CoreDataProperties.swift in Sources */,
@@ -582,6 +613,7 @@
 				3622502222D9717900DABF62 /* ExpensePickerViews.swift in Sources */,
 				3651169722A34E4A00827CA8 /* BudgetTableViewController.swift in Sources */,
 				369AB84222BA290900FD221E /* CustomNumberFormatter.swift in Sources */,
+				36FCBC1622ED8B5500C05E98 /* ExpenseAxisValueFormatter.swift in Sources */,
 				3651169922A354F800827CA8 /* ExpenseViewController.swift in Sources */,
 				36224FFE22C74E7900DABF62 /* ProxyExpense.swift in Sources */,
 			);
