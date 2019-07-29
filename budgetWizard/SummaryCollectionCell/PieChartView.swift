@@ -30,29 +30,30 @@ extension SummaryChartsCollectionCell{
     }
     
     func updatePieChart(){
-        getExpenses()
-        initChartValues()
-        var pieChartDataEntries = [PieChartDataEntry]()
-        expenseTotal = 0
-        expenses.forEach{e in
-            let entry = PieChartDataEntry(value: e.amount as! Double)
-            entry.label = e.expenseName
-            expenseTotal += e.amount as Decimal
-            pieChartDataEntries.append(entry)
+        if (pieChart != nil){
+            getExpenses()
+            initChartValues()
+            var pieChartDataEntries = [PieChartDataEntry]()
+            expenseTotal = 0
+            expenses.forEach{e in
+                let entry = PieChartDataEntry(value: e.amount as! Double)
+                entry.label = e.expenseName
+                expenseTotal += e.amount as Decimal
+                pieChartDataEntries.append(entry)
+            }
+            
+            pieChart.transparentCircleColor = UIColor.clear
+            //pieChart.usePercentValuesEnabled = true
+            pieChart.holeRadiusPercent = 0.4
+            
+            let attribute = [ NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 18.0)! ]
+            
+            pieChart.centerAttributedText = NSAttributedString(string: CustomNumberFormatter.getNumberFormattedAsCurrency(closure: CustomNumberFormatter.convertDecimalToNSDecimal(decimal:), decimal: expenseTotal)!, attributes: attribute)
+            
+            pieChart.legend.textColor = UIColor.white
+            
+            updateChartData(pieChartDataEntries: pieChartDataEntries)
         }
-        
-        pieChart.transparentCircleColor = UIColor.clear
-        //pieChart.usePercentValuesEnabled = true
-        pieChart.holeRadiusPercent = 0.4
-        
-        let attribute = [ NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 18.0)! ]
-        
-        pieChart.centerAttributedText = NSAttributedString(string: CustomNumberFormatter.getNumberFormattedAsCurrency(closure: CustomNumberFormatter.convertDecimalToNSDecimal(decimal:), decimal: expenseTotal)!, attributes: attribute)
-        
-        pieChart.legend.textColor = UIColor.white
-        
-        updateChartData(pieChartDataEntries: pieChartDataEntries)
-        
     }
     
     func updateChartData(pieChartDataEntries: [PieChartDataEntry]){
