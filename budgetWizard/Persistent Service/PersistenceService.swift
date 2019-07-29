@@ -77,7 +77,7 @@ class PersistenceService{
         budgetToEdit.setValue(budget.incomingCashFlow, forKey: "incomingCashFlow")
         budgetToEdit.setValue(budget.startDate, forKey: "startDate")
         budgetToEdit.setValue(budget.endDate, forKey: "endDate")
-        budgetToEdit.setValue(budget.expenses, forKey: "expenses")
+        budgetToEdit.setValue(existingBudget.expenses, forKey: "expenses")
        
         saveContext()
         return budgetToEdit as! Budget
