@@ -26,26 +26,14 @@ class ExpenseTableViewController: UITableViewController {
     //MARK: Get Expenses from DB
     func getExpenses(){
         expenses = PersistenceService.getExpenseAsArray(budget: budget)
-        
-//        if let existingExpenses = budget?.expenses{
-//            navigationItem.title = budget?.budgetName
-//            //let enumerator: NSEnumerator = budget!.expenses!.objectEnumerator()
-//            let enumerator: NSEnumerator = existingExpenses.objectEnumerator()
-//            while let value = enumerator.nextObject(){
-//                expenses.append(value as! Expenses)
-//            }
-//        }
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return expenses.count
     }
 
@@ -82,27 +70,11 @@ class ExpenseTableViewController: UITableViewController {
             PersistenceService.delete(expense: expense)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            
         }    
     }
     
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
     // MARK: - Navigation
     
     @IBAction func unwindToExpenseTableView(sender: UIStoryboardSegue){
@@ -130,7 +102,6 @@ class ExpenseTableViewController: UITableViewController {
         
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
