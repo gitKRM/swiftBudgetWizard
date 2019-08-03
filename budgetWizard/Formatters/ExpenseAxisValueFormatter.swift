@@ -13,15 +13,24 @@ class ExpenseAxisValueFormatter: NSObject, IAxisValueFormatter{
     
     weak var chart: BarLineChartViewBase?
     var expenses = [Expenses]()
+    var recurringExpenses = [RecurringExpense]()
     
-    init(chart: BarLineChartViewBase, expenses: [Expenses]){
+    init(chart: BarLineChartViewBase, expenses: [Expenses], recurringExpenses: [RecurringExpense]){
         self.chart = chart
         self.expenses = expenses
+        self.recurringExpenses = recurringExpenses
     }
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         let index = Int(value)
-        return expenses[index].expenseName
+        
+        if (expenses.count == 0){
+            return recurringExpenses[index].expenseName
+        }
+        if (index >= expenses.count){
+            return recurringExpenses[index - expenses.count].expenseName
+        }
+       return expenses[index].expenseName
     }
     
     

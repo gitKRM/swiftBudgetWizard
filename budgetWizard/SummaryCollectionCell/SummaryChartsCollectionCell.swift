@@ -17,6 +17,7 @@ class SummaryChartsCollectionCell: UICollectionViewCell {
     static var selectedBudgetTxtField: String?
     var expenseTotal = Decimal()
     var expenses = [Expenses]()
+    var recurringExpenses = [RecurringExpense]()
     static var budget: Budget?
     
     
@@ -48,11 +49,16 @@ class SummaryChartsCollectionCell: UICollectionViewCell {
             
             if (SummaryChartsCollectionCell.budget != nil){
                 expenses.removeAll()
-                expenses = PersistenceService.getExpensesFromCategory(budget: SummaryChartsCollectionCell.budget!, category: category)!
+                recurringExpenses.removeAll()
+                if (category == "Recurring" || category == "All"){
+                    recurringExpenses = PersistenceService.getRecurringExpenseAsArray()!
+                }
+                if (category != "Recurring"){
+                    expenses = PersistenceService.getExpensesFromCategory(budget: SummaryChartsCollectionCell.budget!, category: category)!
+                }
+                
             }
         }
     }
-    
-    
     
 }

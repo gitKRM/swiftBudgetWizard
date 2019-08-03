@@ -20,7 +20,7 @@ class ExpenseCategories{
                                                  "Pets","Savings","Vehicle"],
                                   "Wants":["Credit Cards","Loans","Personal","Sundry"]]
     
-    static let categoryWeights = ["All", "Necessity", "Commitments","Wants"]
+    static let categoryWeights = ["All","Recurring","Necessity","Commitments","Wants"]
    
     static func GetCategories()-> [String]{
         return categories

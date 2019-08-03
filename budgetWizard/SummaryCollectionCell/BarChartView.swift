@@ -20,7 +20,7 @@ extension SummaryChartsCollectionCell{
         xAxis.labelFont = .systemFont(ofSize: 10)
         xAxis.granularity = 1
         xAxis.labelCount = 7
-        xAxis.valueFormatter = ExpenseAxisValueFormatter(chart: barChart, expenses: expenses)
+        xAxis.valueFormatter = ExpenseAxisValueFormatter(chart: barChart, expenses: expenses, recurringExpenses: recurringExpenses)
         
         let leftAxisFormatter = NumberFormatter()
         leftAxisFormatter.minimumFractionDigits = 0
@@ -70,15 +70,29 @@ extension SummaryChartsCollectionCell{
     func updateBarChart(){
         setup()
         var index = -1
-        let yVals = (expenses).map { (i) -> BarChartDataEntry in
-            index+=1
-            return BarChartDataEntry(x: Double(index), y: Double(truncating: i.amount))
+//        let yVals = (expenses).map { (i) -> BarChartDataEntry in
+//            index+=1
+//            return BarChartDataEntry(x: Double(index), y: Double(truncating: i.amount))
+//        }
+        
+        var barChartDataEntries = [BarChartDataEntry]()
+        
+        expenses.forEach{e in
+            index += 1
+            let entry = BarChartDataEntry(x: Double(index), y: Double(truncating: e.amount))
+            barChartDataEntries.append(entry)
+        }
+        
+        recurringExpenses.forEach { r in
+            index += 1
+            let entry = BarChartDataEntry(x: Double(index), y: Double(truncating: r.amount))
+            barChartDataEntries.append(entry)
         }
         
         var dataSet: BarChartDataSet! = nil
         let budgetName = SummaryChartsCollectionCell.budget?.budgetName
         
-        dataSet = BarChartDataSet(entries: yVals, label: [budgetName,"budget"].compactMap{ $0 }.joined(separator: " "))
+        dataSet = BarChartDataSet(entries: barChartDataEntries, label: [budgetName,"budget"].compactMap{ $0 }.joined(separator: " "))
         dataSet.colors = UIColor.getColors()
         dataSet.drawValuesEnabled = false
         

@@ -42,6 +42,13 @@ extension SummaryChartsCollectionCell{
                 pieChartDataEntries.append(entry)
             }
             
+            recurringExpenses.forEach { r in
+                let entry = PieChartDataEntry(value: r.amount as! Double)
+                entry.label = r.expenseName
+                expenseTotal += r.amount as Decimal
+                pieChartDataEntries.append(entry)
+            }
+            
             pieChart.transparentCircleColor = UIColor.clear
             //pieChart.usePercentValuesEnabled = true
             pieChart.holeRadiusPercent = 0.4
