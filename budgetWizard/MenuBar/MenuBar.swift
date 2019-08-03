@@ -138,7 +138,6 @@ class MenuCell: UICollectionViewCell {
     }
     
     func SetupViews(){
-//        backgroundColor = UIColor(red: 67/255, green: 67/255, blue: 67/255, alpha: 1)
         backgroundColor = UIColor.black
     }
     

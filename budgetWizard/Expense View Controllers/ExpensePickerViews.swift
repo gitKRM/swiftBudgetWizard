@@ -82,10 +82,7 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
         expenseName.resignFirstResponder()
         return true
     }
-    //    func textFieldDidBeginEditing(_ textField: UITextField) {
-    //
-    //    }
-    
+ 
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         navigationItem.title = expenseName.text

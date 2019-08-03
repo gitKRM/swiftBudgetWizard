@@ -27,6 +27,7 @@ class BudgetViewController: UIViewController {
         static let endDateSelected = 4
     }
     
+    @IBOutlet weak var titleLabel: UILabel!
     var fieldsCompleted = Array(repeating: false, count: 4)
     
     //MARK: Private properties
@@ -59,6 +60,9 @@ class BudgetViewController: UIViewController {
             endDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MM/yyyy", date: selectedBudget.endDate)
             
             saveButton.isEnabled = true
+            titleLabel.text = "Edit \(selectedBudget.budgetName!)"
+        }else{
+            titleLabel.text = "Create New Budget"
         }
         
     }

@@ -55,7 +55,6 @@ class ExpenseViewController: UIViewController{
     
     //MARK: Set Gesture recogniser
     func initGestureRecogniser(){
-        //--Gesture recogniser associated to full view, closes of any keyboards when tapped
         let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(ExpenseViewController.viewTapped(gestureRecogniser:)))
         
         view.addGestureRecognizer(gestureRecogniser)
