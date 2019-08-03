@@ -15,6 +15,7 @@ class ExpenseTableViewCell: UITableViewCell {
     @IBOutlet weak var dayName: UILabel!
     @IBOutlet weak var dayNum: UILabel!
     @IBOutlet weak var monthName: UILabel!
+    @IBOutlet weak var recurringExpense: UILabel!
     
 
     override func awakeFromNib() {

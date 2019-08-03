@@ -19,9 +19,11 @@ class ExpenseViewController: UIViewController{
     @IBOutlet weak var recurringExpenseSwitch: UISwitch!
     @IBOutlet weak var frequency: UITextField!
     let categories = ExpenseCategories.GetCategories()
-    let frequencies = ["Weekly", "Forntightly", "Monthly"]
+    let frequencies = ["Weekly", "Fortnightly", "Monthly"]
     var createdExpense: ProxyExpense?
+    var createdRecurringExpense: ProxyRecurringExpense?
     var selectedExpense: Expenses?
+    var selectedRecurringExpense: RecurringExpense?
     
     var expenseDatePicker: UIDatePicker?
     
@@ -31,6 +33,7 @@ class ExpenseViewController: UIViewController{
         initDelegates()
         initPickers()
         loadExistingExpense()
+        loadExistingRecurringExpense()
         initGestureRecogniser()
     }
     
@@ -48,9 +51,21 @@ class ExpenseViewController: UIViewController{
             expenseName.text = selectedExpense.expenseName
             expenseDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MMM/yyyy", date: selectedExpense.expenseDate)
             amount.text = CustomNumberFormatter.getNumberAsString(number: selectedExpense.amount as NSDecimalNumber)
-            recurringExpenseSwitch.isOn = selectedExpense.isRecurring
-            frequency.text = selectedExpense.recurringFrequency
         }
+    }
+    
+    func loadExistingRecurringExpense(){
+        if let selectedRecurringExpense = selectedRecurringExpense{
+            categoryTextField.text = selectedRecurringExpense.expenseCategory
+            expenseName.text = selectedRecurringExpense.expenseName
+            expenseDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MMM/yyyy", date: selectedRecurringExpense.expenseDate)
+            amount.text = CustomNumberFormatter.getNumberAsString(number: selectedRecurringExpense.amount as NSDecimalNumber)
+            recurringExpenseSwitch.isOn = true
+            recurringExpenseSwitch.isEnabled = false
+            frequency.text = CustomNumberFormatter.getFrequencyAsString(intFrequency: selectedRecurringExpense.expenseFrequency)
+            frequency.isEnabled = true
+        }
+        
     }
     
     //MARK: Set Gesture recogniser
@@ -84,8 +99,6 @@ class ExpenseViewController: UIViewController{
     }
     
     
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
@@ -93,7 +106,11 @@ class ExpenseViewController: UIViewController{
             fatalError("Unrecognised button received")
         }
         
-        createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!, isRecurring: recurringExpenseSwitch.isOn, recurringFrequency: frequency.text!)
+        if (recurringExpenseSwitch.isOn){
+            createdRecurringExpense = ProxyRecurringExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!, expenseFrequency: CustomNumberFormatter.getStringFrequencyNumber(frequecny: frequency.text!))
+        }else{
+            createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!)
+        }
         
     }
     //-- Only allow for segue to continue if validation passes

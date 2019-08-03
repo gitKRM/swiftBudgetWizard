@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Budget" representedClassName="Budget" syncable="YES">
         <attribute name="budgetName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -12,12 +12,18 @@
         <attribute name="expenseCategory" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="expenseDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="expenseName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isRecurring" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="recurringFrequency" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="budget" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Budget" inverseName="expenses" inverseEntity="Budget" syncable="YES"/>
+    </entity>
+    <entity name="RecurringExpense" representedClassName="RecurringExpense" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="expenseCategory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="expenseDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="expenseFrequency" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="expenseName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Budget" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="Expenses" positionX="156.46875" positionY="-14.73046875" width="128" height="150"/>
+        <element name="Expenses" positionX="156.46875" positionY="-14.73046875" width="128" height="120"/>
+        <element name="RecurringExpense" positionX="45" positionY="27" width="128" height="120"/>
     </elements>
 </model>

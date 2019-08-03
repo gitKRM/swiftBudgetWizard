@@ -47,4 +47,32 @@ class CustomNumberFormatter{
         return numFormatter.string(from: number)
     }
     
+    static func getFrequencyAsString(intFrequency: Int16)-> String{
+        switch(intFrequency){
+        case 7:
+            return "Weekly"
+        case 14:
+            return "Fortnightly"
+        case 30:
+            return "Monthly"
+        default:
+            return ""
+        }
+    }
+    
+    static func getStringFrequencyNumber(frequecny: String)-> Int16{
+        
+        switch frequecny {
+        case "Weekly":
+            return 7
+        case "Fortnightly":
+            return 14
+        case "Monthly":
+            return 30
+        default:
+            return 0
+        }
+        
+    }
+    
 }

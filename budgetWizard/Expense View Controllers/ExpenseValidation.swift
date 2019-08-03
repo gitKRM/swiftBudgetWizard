@@ -37,6 +37,16 @@ extension ExpenseViewController{
             errorMsg += "\nInvalid Start Date"
         }
         
+        if (recurringExpenseSwitch.isOn){
+            if (frequency.text!.isEmpty){
+                if (errorMsg.isEmpty){
+                    errorMsg = "Expense Frequency Must Be Set"
+                }else{
+                    errorMsg = errorMsg + "Expense Frequency Must Be Set"
+                }
+            }
+        }
+        
         if (!errorMsg.isEmpty){
             let alert = UIAlertController(title: "Validation Error", message: errorMsg, preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)

@@ -20,7 +20,7 @@ class BudgetTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
         //getBudgets()
-        self.budgets = GlobalBudget.getBudgets()!
+        self.budgets = PersistenceService.getBudgets()!
     }
     
 

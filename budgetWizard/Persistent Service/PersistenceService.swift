@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import os.log
 
 class PersistenceService{
     
@@ -63,9 +64,18 @@ class PersistenceService{
         createdExpense.expenseCategory = expense.expenseCategory
         createdExpense.amount = expense.expenseAmount
         createdExpense.expenseDate = expense.expenseDate
-        createdExpense.isRecurring = expense.isRecurring!
-        createdExpense.recurringFrequency = expense.recurringFrequency
         createdExpense.budget = expense.budget
+        saveContext()
+        return createdExpense
+    }
+    
+    static func save(recurringExpense: ProxyRecurringExpense)-> RecurringExpense{
+        let createdExpense = RecurringExpense(context: context)
+        createdExpense.expenseName = recurringExpense.expenseName
+        createdExpense.expenseCategory = recurringExpense.expenseCategory
+        createdExpense.amount = recurringExpense.expenseAmount
+        createdExpense.expenseDate = recurringExpense.expenseDate
+        createdExpense.expenseFrequency = recurringExpense.expenseFrequency
         saveContext()
         return createdExpense
     }
@@ -90,13 +100,22 @@ class PersistenceService{
         expenseToEdit.setValue(expense.expenseCategory, forKey: "expenseCategory")
         expenseToEdit.setValue(expense.expenseAmount, forKey: "amount")
         expenseToEdit.setValue(expense.expenseDate, forKey: "expenseDate")
-        expenseToEdit.setValue(expense.isRecurring, forKey: "isRecurring")
-        expenseToEdit.setValue(expense.recurringFrequency, forKey: "recurringFrequency")
         expenseToEdit.setValue(expense.budget, forKey: "budget")
        
         saveContext()
         return expenseToEdit as! Expenses
+    }
+    
+    static func edit(recurringExpense: ProxyRecurringExpense, existingRecurringExpense: RecurringExpense)-> RecurringExpense{
+        let expenseToEdit = getItem(recurringExpense: existingRecurringExpense)
+        expenseToEdit.setValue(recurringExpense.expenseName, forKey: "expenseName")
+        expenseToEdit.setValue(recurringExpense.expenseCategory, forKey: "expenseCategory")
+        expenseToEdit.setValue(recurringExpense.expenseAmount, forKey: "amount")
+        expenseToEdit.setValue(recurringExpense.expenseDate, forKey: "expenseDate")
+        expenseToEdit.setValue(recurringExpense.expenseFrequency, forKey: "expenseFrequency")
         
+        saveContext()
+        return expenseToEdit as! RecurringExpense
     }
     
     //MARK: Delete
@@ -112,9 +131,16 @@ class PersistenceService{
         saveContext()
     }
     
+    static func delete(recurringExpense: RecurringExpense){
+        let expenseToDelete = getItem(recurringExpense: recurringExpense)
+        context.delete(expenseToDelete)
+        saveContext()
+    }
+    
     //MARK: Retrieve Object
     static func getItem(budget: Budget)-> NSManagedObject{
-        let fetchRequest = getFetchRequest(name: budget.budgetName!)
+        let predicate = NSPredicate(format: "budgetName = %@", budget.budgetName!)
+        let fetchRequest = getFetchRequest(entityName: "Budget", predicate: predicate)
         do
         {
             let fetcheddBudgets = try context.fetch(fetchRequest)
@@ -128,7 +154,8 @@ class PersistenceService{
     }
     
     static func getItem(name: String)-> Budget?{
-        let fetchRequest = getFetchRequest(name: name)
+        let predicate = NSPredicate(format: "budgetName = %@", name)
+        let fetchRequest = getFetchRequest(entityName: "Budget", predicate: predicate)
         do{
             let fetchedBudgets = try context.fetch(fetchRequest)
             let retrievedBudget = fetchedBudgets[0] as! NSManagedObject
@@ -139,15 +166,11 @@ class PersistenceService{
         }
     }
     
-    private static func getFetchRequest(name: String)-> NSFetchRequest<NSFetchRequestResult>{
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Budget")
-        fetchRequest.predicate = NSPredicate(format: "budgetName = %@", name)
-        return fetchRequest
-    }
-    
     static func getItem(expense: Expenses)-> NSManagedObject{
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expenses")
-        fetchRequest.predicate = NSPredicate(format: "expenseName = %@ AND amount = %@", expense.expenseName,expense.amount)
+        
+        let predicate = NSPredicate(format: "expenseName = %@ AND amount = %@", expense.expenseName,expense.amount)
+        let fetchRequest = getFetchRequest(entityName: "Expenses", predicate: predicate)
+        
         do{
             let fetchedExpense = try context.fetch(fetchRequest)
             let retrievedExpense = fetchedExpense[0] as! NSManagedObject
@@ -156,6 +179,51 @@ class PersistenceService{
         catch{
             fatalError("Error attempting to retrieve expense: \(String(describing: expense.expenseName))")
         }
+    }
+    
+    static func getItem(recurringExpense: RecurringExpense)-> NSManagedObject{
+        let predicate = NSPredicate(format: "expenseName = %@ AND amount = %@", recurringExpense.expenseName,recurringExpense.amount)
+        
+        let fetchRequest = getFetchRequest(entityName: "RecurringExpense", predicate: predicate)
+        
+        do{
+            let fetchRequest = try context.fetch(fetchRequest)
+            let retrievedExpense = fetchRequest[0] as! NSManagedObject
+            return retrievedExpense
+        }catch{
+            fatalError("Error attempting to retrieve recurring expense: \(String(describing: recurringExpense.expenseName))")
+        }
+    }
+    
+    private static func getFetchRequest(entityName: String, predicate: NSPredicate)-> NSFetchRequest<NSFetchRequestResult>{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        //fetchRequest.predicate = NSPredicate(format: "budgetName = %@", name)
+        fetchRequest.predicate = predicate
+        return fetchRequest
+    }
+    
+    static func getBudgets() -> [Budget]? {
+        
+        let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
+        
+        do{
+            let budget = try PersistenceService.context.fetch(fetchRequest)            
+            return budget
+        }catch{
+            os_log("Error getting budget information from DB", log: OSLog.default, type: .error)
+        }
+        return nil
+    }
+    
+    static func getRecurringExpenseAsArray()->[RecurringExpense]?{
+        let fetchRequest: NSFetchRequest<RecurringExpense> = RecurringExpense.fetchRequest()
+        do{
+            let expense = try PersistenceService.context.fetch(fetchRequest)
+            return expense
+        }catch{
+            os_log("Error getting recurring expenses", log: OSLog.default, type: .error)
+        }
+        return nil
     }
     
     static func getExpenseAsArray(budget: Budget?)->[Expenses] {

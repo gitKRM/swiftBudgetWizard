@@ -558,7 +558,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recurring" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFB-FZ-TFD">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFB-FZ-TFD">
                                             <rect key="frame" x="164" y="66" width="230" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -576,6 +576,7 @@
                                     <outlet property="dayName" destination="nvQ-3Y-Fvf" id="Ui9-9P-Bvb"/>
                                     <outlet property="dayNum" destination="Ykd-ys-rKF" id="zbn-kf-UZp"/>
                                     <outlet property="monthName" destination="9Ws-kc-c1E" id="VlF-Zx-rYu"/>
+                                    <outlet property="recurringExpense" destination="CFB-FZ-TFD" id="TUr-VY-5PE"/>
                                     <segue destination="LfO-kM-vR9" kind="show" identifier="EditExpense" id="tif-wq-NfQ"/>
                                 </connections>
                             </tableViewCell>

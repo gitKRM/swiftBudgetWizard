@@ -151,7 +151,7 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
     //MARK:Load budgets
     func LoadBudgets(){
         budgetItems.removeAll()
-        self.budgets = GlobalBudget.getBudgets()!
+        self.budgets = PersistenceService.getBudgets()!
         
         if (budgets.count > 0){
             budgets.forEach{b in
