@@ -17,6 +17,8 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
     var selectedBudgetRow = 0
     var selectedCategoryRow = 0
     var pickerData: [[String]] = [[String]]()
+    var budgetPicker = UIPickerView()
+    var currentPickerIndexPath: IndexPath!
     static var cell: SummaryChartsCollectionCell?
     
     lazy var menuBar: MenuBar = {
@@ -117,6 +119,11 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
     func scrollToMenuIndex(menuIndex: Int){
         if (menuIndex == 3) {
             selectedBudgetTxtField.becomeFirstResponder()
+            if (currentPickerIndexPath == nil){
+                budgetPicker.selectRow(budgets.count - 1, inComponent: 0, animated: true)
+            }else{
+                budgetPicker.selectRow(currentPickerIndexPath.row, inComponent: currentPickerIndexPath.section, animated: true)
+            }
             return
         }
         let indexPath = IndexPath(item: menuIndex, section: 0)
@@ -157,14 +164,12 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
             budgets.forEach{b in
                 budgetItems.append(b.budgetName!)
             }
-            
+                    
             pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
             
             selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
             SummaryChartsCollectionCell.selectedBudgetTxtField = selectedBudgetTxtField.text
             SummaryChartsCollectionCell.budget = budgets[budgets.count-1]
-            //--New Picker Data for 2D array
-            pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
         }
         
     }
