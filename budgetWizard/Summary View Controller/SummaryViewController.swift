@@ -42,8 +42,11 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         LoadBudgets()
-        selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
-        SummaryViewController.cell!.updatePieChart()
+        if (pickerData.count > 0){
+            selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
+            SummaryViewController.cell!.updatePieChart()
+        }
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -120,7 +123,10 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
         if (menuIndex == 3) {
             selectedBudgetTxtField.becomeFirstResponder()
             if (currentPickerIndexPath == nil){
-                budgetPicker.selectRow(budgets.count - 1, inComponent: 0, animated: true)
+                if (budgets.count > 0){
+                    budgetPicker.selectRow(budgets.count - 1, inComponent: 0, animated: true)
+                }
+                
             }else{
                 budgetPicker.selectRow(currentPickerIndexPath.row, inComponent: currentPickerIndexPath.section, animated: true)
             }
