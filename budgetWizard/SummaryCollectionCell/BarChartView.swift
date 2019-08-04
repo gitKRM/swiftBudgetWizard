@@ -14,7 +14,7 @@ extension SummaryChartsCollectionCell{
     func initBartChart(){
         getExpenses()
         UIColor.loadColors()
-        
+        barChart.doubleTapToZoomEnabled = false
         let xAxis = barChart.xAxis
         xAxis.labelPosition = .bottom
         xAxis.labelFont = .systemFont(ofSize: 10)

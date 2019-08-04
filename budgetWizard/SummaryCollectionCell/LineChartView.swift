@@ -16,7 +16,8 @@ extension SummaryChartsCollectionCell{
         lineChart.chartDescription?.enabled = false
         lineChart.dragEnabled = true
         lineChart.setScaleEnabled(true)
-        lineChart.pinchZoomEnabled = true
+        lineChart.pinchZoomEnabled = false
+        lineChart.doubleTapToZoomEnabled = false
         
         let xAxis = lineChart.xAxis
         xAxis.labelPosition = .bottom
@@ -41,7 +42,7 @@ extension SummaryChartsCollectionCell{
         ll1.labelPosition = .topRight
         ll1.valueFont = .systemFont(ofSize: 10)
         
-        let ll2 = ChartLimitLine(limit: 10, label: "Lower Limit")
+        let ll2 = ChartLimitLine(limit: 50, label: "Lower Limit")
         ll2.lineWidth = 4
         ll2.lineDashLengths = [5,5]
         ll2.labelPosition = .bottomRight
@@ -112,7 +113,7 @@ extension SummaryChartsCollectionCell{
                               ChartColorTemplates.colorFromString("#48FE00").cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         
-        dataSet.fillAlpha = 1
+        dataSet.fillAlpha = 0.6
         dataSet.fill = Fill(linearGradient: gradient, angle: 90)
         dataSet.drawFilledEnabled = true
         
