@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "budgetWizard/Summary View Controller/SummaryViewController.swift"
-            timestampString = "586608933.968726"
+            timestampString = "586609607.682698"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
             endingLineNumber = "45"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
