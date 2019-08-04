@@ -119,10 +119,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3RZ-GE-4RK">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="I13-6e-eHR">
                                 <rect key="frame" x="20" y="108" width="374" height="415.5"/>
                                 <subviews>
@@ -185,13 +181,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3RZ-GE-4RK" firstAttribute="leading" secondItem="Plp-jd-bx8" secondAttribute="leading" id="NII-ze-ejx"/>
                             <constraint firstItem="I13-6e-eHR" firstAttribute="top" secondItem="Plp-jd-bx8" secondAttribute="top" constant="20" id="OW5-y9-qaz"/>
-                            <constraint firstItem="Plp-jd-bx8" firstAttribute="bottom" secondItem="3RZ-GE-4RK" secondAttribute="bottom" id="T3T-F6-AXP"/>
                             <constraint firstItem="Plp-jd-bx8" firstAttribute="trailing" secondItem="I13-6e-eHR" secondAttribute="trailing" constant="20" id="Tqq-hJ-fRy"/>
                             <constraint firstItem="I13-6e-eHR" firstAttribute="leading" secondItem="Plp-jd-bx8" secondAttribute="leading" constant="20" id="cf4-4H-48h"/>
-                            <constraint firstItem="3RZ-GE-4RK" firstAttribute="top" secondItem="Plp-jd-bx8" secondAttribute="top" id="kqg-sJ-zeu"/>
-                            <constraint firstItem="Plp-jd-bx8" firstAttribute="trailing" secondItem="3RZ-GE-4RK" secondAttribute="trailing" id="mmC-Iv-EyD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Plp-jd-bx8"/>
                     </view>

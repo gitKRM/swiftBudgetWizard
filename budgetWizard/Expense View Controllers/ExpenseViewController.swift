@@ -35,6 +35,7 @@ class ExpenseViewController: UIViewController{
         loadExistingExpense()
         loadExistingRecurringExpense()
         initGestureRecogniser()
+        self.view.setGradientBackground(colour1: UIColor.white, colour2: UIColor(named: "MyBlue")!)
     }
     
     //MARK: Set Delegates

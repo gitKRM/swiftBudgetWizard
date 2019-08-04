@@ -1,9 +1,9 @@
 //
 //  XYMarkerView.swift
-//  ChartsDemo-iOS
+//  budgetWizard
 //
-//  Created by Jacob Christie on 2017-07-09.
-//  Copyright © 2017 jc. All rights reserved.
+//  Created by Kent McNamara on 19/06/19.
+//  Copyright © 2019 Kent McNamara. All rights reserved.
 //
 
 import Foundation

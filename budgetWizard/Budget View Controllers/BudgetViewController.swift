@@ -18,6 +18,7 @@ class BudgetViewController: UIViewController {
     @IBOutlet weak var incomingCashFlow: UITextField!
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
+    
     var createdBudget: ProxyBudget?
     var selectedBudget: Budget? //--Edit existing budget
     struct ActiveControl{
@@ -49,6 +50,7 @@ class BudgetViewController: UIViewController {
         endDate.delegate = self
         updateSaveButton()
         loadExistingBudget()
+        self.view.setGradientBackground(colour1: UIColor.white, colour2: UIColor(named: "MyBlue")!)
     }
     
     //MARK: Load existing budget
