@@ -85,15 +85,15 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
         switch(ci){
         case "pieChart":
             SummaryViewController.cell!.updatePieChart()
-            
+
         case "barChart":
             SummaryViewController.cell!.updateBarChart()
-            
+
         case "lineChart":
-            SummaryViewController.cell!.setLineChart()
+            SummaryViewController.cell!.updateLineChart()
         default:
             return SummaryViewController.cell!
-        }            
+        }
         
         return SummaryViewController.cell!
     }
@@ -127,9 +127,30 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
             return
         }
         let indexPath = IndexPath(item: menuIndex, section: 0)
+        
         //--Below, if animated is set to true, this will be a spring effect which will come
         //--across as jerky as the horizontal bar will bounce back and forth
         collectionView.scrollToItem(at: indexPath, at: [], animated: false)
+        
+        let ci = cellId[indexPath.item]
+        
+        SummaryViewController.cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as? SummaryChartsCollectionCell
+        
+        SummaryViewController.cell!.backgroundColor = UIColor.darkGray
+        
+        switch(ci){
+        case "pieChart":
+            SummaryViewController.cell!.updatePieChart()
+            
+        case "barChart":
+            SummaryViewController.cell!.updateBarChart()
+            
+        case "lineChart":
+            SummaryViewController.cell!.updateLineChart()
+        default:
+            return
+        }
+        
     }
     //--Update Menu Cell Image colour when scroll from swipe
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {

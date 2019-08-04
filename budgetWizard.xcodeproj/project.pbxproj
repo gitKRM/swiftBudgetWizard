@@ -17,6 +17,7 @@
 		36285EB722F5143800AED084 /* ProxyRecurringExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36285EB622F5143800AED084 /* ProxyRecurringExpense.swift */; };
 		36285EBA22F569E800AED084 /* RecurringExpense+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36285EB922F569E700AED084 /* RecurringExpense+CoreDataClass.swift */; };
 		36285EBB22F569E800AED084 /* RecurringExpense+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36285EB822F569E700AED084 /* RecurringExpense+CoreDataProperties.swift */; };
+		36285EBE22F67A0F00AED084 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36285EBD22F67A0F00AED084 /* LineChartView.swift */; };
 		3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4A522A2740C002B0339 /* AppDelegate.swift */; };
 		3634D4AB22A2740C002B0339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3634D4A922A2740C002B0339 /* Main.storyboard */; };
 		3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4AC22A2740C002B0339 /* budgetWizard.xcdatamodeld */; };
@@ -81,6 +82,7 @@
 		36285EB622F5143800AED084 /* ProxyRecurringExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyRecurringExpense.swift; sourceTree = "<group>"; };
 		36285EB822F569E700AED084 /* RecurringExpense+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecurringExpense+CoreDataProperties.swift"; path = "/Users/kent_mcn/Desktop/Xcode projects/budget wizard/budgetWizard/budgetWizard/ExpemseModel/RecurringExpense+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		36285EB922F569E700AED084 /* RecurringExpense+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecurringExpense+CoreDataClass.swift"; path = "/Users/kent_mcn/Desktop/Xcode projects/budget wizard/budgetWizard/budgetWizard/ExpemseModel/RecurringExpense+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		36285EBD22F67A0F00AED084 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		3634D4A222A2740C002B0339 /* budgetWizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetWizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3634D4A522A2740C002B0339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3634D4AA22A2740C002B0339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				3642FA9322E0516100FB757B /* SummaryChartsCollectionCell.swift */,
 				36FCBC1022ED455B00C05E98 /* PieChartView.swift */,
 				369997E322EDA7360089E943 /* BarChartView.swift */,
+				36285EBD22F67A0F00AED084 /* LineChartView.swift */,
 			);
 			path = SummaryCollectionCell;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */,
 				369997E422EDA7360089E943 /* BarChartView.swift in Sources */,
 				36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */,
+				36285EBE22F67A0F00AED084 /* LineChartView.swift in Sources */,
 				369AB85722C213AF00FD221E /* Budget+CoreDataClass.swift in Sources */,
 				3622501922D94B0000DABF62 /* SummaryPickerView.swift in Sources */,
 				3622502022D9713C00DABF62 /* ExpenseValidation.swift in Sources */,

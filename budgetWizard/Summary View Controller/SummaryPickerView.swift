@@ -76,8 +76,10 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
         case "barChart":
             SummaryViewController.cell!.updateBarChart()
             break;
+        case "lineChart":
+            SummaryViewController.cell!.updateLineChart()
         default:
-            SummaryViewController.cell!.setLineChart()
+            SummaryViewController.cell!.updatePieChart()
         }        
     }
 }

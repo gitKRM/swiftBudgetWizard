@@ -11,7 +11,7 @@ import Charts
 
 extension SummaryChartsCollectionCell{
     
-    func setup(){
+    func initBartChart(){
         getExpenses()
         UIColor.loadColors()
         
@@ -68,7 +68,7 @@ extension SummaryChartsCollectionCell{
     }
     
     func updateBarChart(){
-        setup()
+        initBartChart()
         var index = -1
 //        let yVals = (expenses).map { (i) -> BarChartDataEntry in
 //            index+=1
