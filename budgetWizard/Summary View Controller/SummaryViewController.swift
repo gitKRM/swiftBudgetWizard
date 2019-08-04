@@ -37,6 +37,7 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
         createBudgetPickerView()
         createBudgetPickerToolBar()
         setupMenuBar()
+        self.view.setGradientBackground(colour1: UIColor.white, colour2: UIColor(named: "MyBlue")!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,7 +84,7 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
        
         SummaryViewController.cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as? SummaryChartsCollectionCell
         
-        SummaryViewController.cell!.backgroundColor = UIColor.darkGray
+        SummaryViewController.cell!.setGradientBackground(colour1: UIColor.white, colour2: UIColor(named: "MyBlue")!)
         
         switch(ci){
         case "pieChart":
