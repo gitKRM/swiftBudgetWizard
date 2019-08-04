@@ -34,7 +34,7 @@ extension SummaryChartsCollectionCell{
         leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: leftAxisFormatter)
         leftAxis.labelPosition = .outsideChart
         leftAxis.spaceTop = 0.15
-        leftAxis.axisMinimum = 0 // FIXME: HUH?? this replaces startAtZero = YES
+        leftAxis.axisMinimum = 0 
         
         let rightAxis = barChart.rightAxis
         rightAxis.enabled = true
@@ -54,7 +54,6 @@ extension SummaryChartsCollectionCell{
         l.formSize = 9
         l.font = UIFont(name: "HelveticaNeue-Light", size: 11)!
         l.xEntrySpace = 4
-        //        barChart.legend = l
         
         let marker = XYMarkerView(color: UIColor(white: 180/250, alpha: 1),
                                   font: .systemFont(ofSize: 12),
@@ -70,10 +69,6 @@ extension SummaryChartsCollectionCell{
     func updateBarChart(){
         initBartChart()
         var index = -1
-//        let yVals = (expenses).map { (i) -> BarChartDataEntry in
-//            index+=1
-//            return BarChartDataEntry(x: Double(index), y: Double(truncating: i.amount))
-//        }
         
         var barChartDataEntries = [BarChartDataEntry]()
         

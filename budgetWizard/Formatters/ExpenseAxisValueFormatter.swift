@@ -23,15 +23,17 @@ class ExpenseAxisValueFormatter: NSObject, IAxisValueFormatter{
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         let index = Int(value)
-        
-        if (expenses.count == 0){
-            return recurringExpenses[index].expenseName
+        if (index >= 0){
+            if (expenses.count == 0){
+                return recurringExpenses[index].expenseName
+            }
+            if (index >= expenses.count && recurringExpenses.count > 0){
+                return recurringExpenses[index - expenses.count].expenseName
+            }
+            if (index <= expenses.count-1){
+                return expenses[index].expenseName
+            }
         }
-        if (index >= expenses.count){
-            return recurringExpenses[index - expenses.count].expenseName
-        }
-       return expenses[index].expenseName
+        return ""
     }
-    
-    
 }

@@ -58,10 +58,6 @@ extension SummaryChartsCollectionCell{
         
         lineChart.rightAxis.enabled = false
         
-//        let marker = BalloonMarker(color: UIColor(white: 180/255, alpha: 1),
-//                                   font: .systemFont(ofSize: 12),
-//                                   textColor: .white,
-//                                   insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))
         
         let marker = XYMarkerView(color: UIColor(white: 180/250, alpha: 1),
                                   font: .systemFont(ofSize: 12),
@@ -111,13 +107,13 @@ extension SummaryChartsCollectionCell{
         dataSet.formLineDashLengths = [5, 2.5]
         dataSet.formLineWidth = 1
         dataSet.formSize = 15
-        //#00ff0000
-        let gradientColors = [ChartColorTemplates.colorFromString("#f69206").cgColor,
-                              ChartColorTemplates.colorFromString("#5df606").cgColor]
+        
+        let gradientColors = [ChartColorTemplates.colorFromString("#A9F36A").cgColor,
+                              ChartColorTemplates.colorFromString("#48FE00").cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         
         dataSet.fillAlpha = 1
-        dataSet.fill = Fill(linearGradient: gradient, angle: 90) //.linearGradient(gradient, angle: 90)
+        dataSet.fill = Fill(linearGradient: gradient, angle: 90)
         dataSet.drawFilledEnabled = true
         
 
