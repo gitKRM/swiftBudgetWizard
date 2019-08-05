@@ -58,7 +58,7 @@ class ExpenseTableViewController: UITableViewController {
             cell.ExpenseAmount.text = CustomNumberFormatter.getNumberFormattedAsCurrency(amount: recurringExpense.amount)
             cell.Name.text = recurringExpense.expenseName
             cell.recurringExpense.text = "Recurring"
-            
+            cell.setCellBackgroundColor(color1: UIColor(named: "NiceBlue")!, color2: UIColor(named: "MyBlue")!)
         }
         else{
             let expense = expenses[indexPath.row]
@@ -68,6 +68,18 @@ class ExpenseTableViewController: UITableViewController {
             cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: expense.expenseDate)
             cell.ExpenseAmount.text = CustomNumberFormatter.getNumberFormattedAsCurrency(amount: expense.amount)
             cell.Name.text = expense.expenseName
+            
+            if (expense.expenseCategory != "Future Bill"){
+                cell.setCellBackgroundColor(color1: UIColor(named: "NiceBlue")!, color2: UIColor(named: "MyBlue")!)
+            }else{
+                if (!expense.payed){
+                    cell.setCellBackgroundColor(color1: UIColor(named: "Desert")!, color2: UIColor(named: "NiceBlue")!, color3: UIColor(named: "DarkLime")!)
+                }else{
+                    cell.setCellBackgroundColor(color1: UIColor(named: "MyGreen")!, color2: UIColor(named: "SkyBlue")!, color3: UIColor(named: "DarkLime")!)
+                }
+                
+            }
+            
         }
         return cell
     }
@@ -97,6 +109,49 @@ class ExpenseTableViewController: UITableViewController {
         }    
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: {(action, indexPath) in
+            
+            if (indexPath.section == 0){
+                let recurringExpense = self.recurringExpenses[indexPath.row]
+                self.recurringExpenses.remove(at: indexPath.row)
+                PersistenceService.delete(recurringExpense: recurringExpense)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }else{
+                let expense = self.expenses[indexPath.row]
+                self.expenses.remove(at: indexPath.row)
+                PersistenceService.delete(expense: expense)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+        })
+        
+        let pay = UITableViewRowAction(style: .default, title: "Pay", handler: {(action, indexPath) in
+            var expense = self.expenses[indexPath.row]
+            if (expense.expenseCategory != "Future Bill"){
+                return
+            }
+            
+            
+            let proxyExpense = ProxyExpense(expenseName: expense.expenseName, expenseAmount: expense.amount, expenseDate: expense.expenseDate, expenseCategory: expense.expenseCategory, payed: true, isRecurring: false)
+            
+            expense = PersistenceService.edit(expense: proxyExpense!, existingExpense: self.expenses[indexPath.row])
+            self.expenses[indexPath.row] = expense
+            tableView.reloadRows(at: [indexPath], with: .none)
+            
+            
+            //expense = PersistenceService.edit(expense: proxyExpense!, existingExpense: expense)
+            //tableView.reloadData()
+        })
+        
+        pay.backgroundColor = UIColor.green
+        return [pay,delete]
+    }
+    
+    @objc func updateSelectedExpensePayed(){
+        
+    }
 
     // MARK: - Navigation
     

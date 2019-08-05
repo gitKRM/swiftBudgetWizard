@@ -100,8 +100,10 @@ class PersistenceService{
         expenseToEdit.setValue(expense.expenseCategory, forKey: "expenseCategory")
         expenseToEdit.setValue(expense.expenseAmount, forKey: "amount")
         expenseToEdit.setValue(expense.expenseDate, forKey: "expenseDate")
+        expenseToEdit.setValue(expense.payed, forKey: "payed")
+        expenseToEdit.setValue(expense.isRecurring, forKey: "isRecurring")
         expenseToEdit.setValue(expense.budget, forKey: "budget")
-       
+        
         saveContext()
         return expenseToEdit as! Expenses
     }
