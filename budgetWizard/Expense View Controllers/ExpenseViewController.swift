@@ -108,7 +108,7 @@ class ExpenseViewController: UIViewController{
         }
         
         if (recurringExpenseSwitch.isOn){
-            createdRecurringExpense = ProxyRecurringExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!, expenseFrequency: CustomNumberFormatter.getStringFrequencyNumber(frequecny: frequency.text!))
+            createdRecurringExpense = ProxyRecurringExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!, expenseFrequency: CustomNumberFormatter.getStringFrequencyNumber(frequecny: frequency.text!))            
         }else{
             createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!, payed: false, isRecurring: false)
         }

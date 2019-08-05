@@ -130,7 +130,7 @@ class ExpenseTableViewController: UITableViewController {
         
         let pay = UITableViewRowAction(style: .default, title: "Pay", handler: {(action, indexPath) in
             let expense = self.expenses[indexPath.row]
-            if (expense.expenseCategory != "Future Bill"){
+            if (expense.expenseCategory != "Future Bill" || expense.payed){
                 return
             }
             
