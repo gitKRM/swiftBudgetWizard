@@ -245,6 +245,8 @@ class PersistenceService{
         switch (category){
         case "All":
             return getExpenseAsArray(budget: budget)
+        case "Future Bill":
+            return filterExpenseOnCategory(budget: budget, category: "Future Bill")
         case "Necessity":
             return filterExpenseOnCategory(budget: budget, category: "Necessity")
         case "Commitments":

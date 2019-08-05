@@ -25,14 +25,5 @@ class ExpenseTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    func setCellBackgroundColor(color1: UIColor, color2: UIColor){
-        
-        self.setGradientBackground(colour1: color1, colour2: color2)
-    }
-    
-    func setCellBackgroundColor(color1: UIColor, color2: UIColor, color3: UIColor){
-        self.setGradientBackground(colour1: color1, colour2: color2, colour3: color3)
-    }
 
 }
