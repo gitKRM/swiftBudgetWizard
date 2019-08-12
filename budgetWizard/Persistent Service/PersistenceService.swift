@@ -64,6 +64,7 @@ class PersistenceService{
         createdExpense.expenseCategory = expense.expenseCategory
         createdExpense.amount = expense.expenseAmount
         createdExpense.expenseDate = expense.expenseDate
+        createdExpense.isRecurring = expense.isRecurring!
         createdExpense.budget = expense.budget
         saveContext()
         return createdExpense

@@ -135,7 +135,7 @@ class ExpenseTableViewController: UITableViewController {
             else{
                 //--Creating new
                 let expense = PersistenceService.save(expense: proxyExpense)
-                let indexPath = IndexPath(row: expenses.count, section: 1)
+                let indexPath = IndexPath(row: expenses.count, section: 0)
                 expenses.append(expense)
                 tableView.insertRows(at: [indexPath], with: .automatic)
                 tableView.reloadRows(at: [indexPath], with: .automatic)
