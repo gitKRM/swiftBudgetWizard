@@ -69,17 +69,6 @@ class PersistenceService{
         return createdExpense
     }
     
-    static func save(recurringExpense: ProxyRecurringExpense)-> RecurringExpense{
-        let createdExpense = RecurringExpense(context: context)
-        createdExpense.expenseName = recurringExpense.expenseName
-        createdExpense.expenseCategory = recurringExpense.expenseCategory
-        createdExpense.amount = recurringExpense.expenseAmount
-        createdExpense.expenseDate = recurringExpense.expenseDate
-        createdExpense.expenseFrequency = recurringExpense.expenseFrequency
-        saveContext()
-        return createdExpense
-    }
-    
     //MARK: Edit
     static func edit(budget: ProxyBudget, existingBudget: Budget)-> Budget{
         let budgetToEdit = getItem(budget: existingBudget)
@@ -108,18 +97,6 @@ class PersistenceService{
         return expenseToEdit as! Expenses
     }
     
-    static func edit(recurringExpense: ProxyRecurringExpense, existingRecurringExpense: RecurringExpense)-> RecurringExpense{
-        let expenseToEdit = getItem(recurringExpense: existingRecurringExpense)
-        expenseToEdit.setValue(recurringExpense.expenseName, forKey: "expenseName")
-        expenseToEdit.setValue(recurringExpense.expenseCategory, forKey: "expenseCategory")
-        expenseToEdit.setValue(recurringExpense.expenseAmount, forKey: "amount")
-        expenseToEdit.setValue(recurringExpense.expenseDate, forKey: "expenseDate")
-        expenseToEdit.setValue(recurringExpense.expenseFrequency, forKey: "expenseFrequency")
-        
-        saveContext()
-        return expenseToEdit as! RecurringExpense
-    }
-    
     //MARK: Delete
     static func delete(budget: Budget){
         let budgetToDelete = getItem(budget: budget)
@@ -129,12 +106,6 @@ class PersistenceService{
     
     static func delete(expense: Expenses){
         let expenseToDelete = getItem(expense: expense)
-        context.delete(expenseToDelete)
-        saveContext()
-    }
-    
-    static func delete(recurringExpense: RecurringExpense){
-        let expenseToDelete = getItem(recurringExpense: recurringExpense)
         context.delete(expenseToDelete)
         saveContext()
     }
@@ -183,20 +154,6 @@ class PersistenceService{
         }
     }
     
-    static func getItem(recurringExpense: RecurringExpense)-> NSManagedObject{
-        let predicate = NSPredicate(format: "expenseName = %@ AND amount = %@", recurringExpense.expenseName,recurringExpense.amount)
-        
-        let fetchRequest = getFetchRequest(entityName: "RecurringExpense", predicate: predicate)
-        
-        do{
-            let fetchRequest = try context.fetch(fetchRequest)
-            let retrievedExpense = fetchRequest[0] as! NSManagedObject
-            return retrievedExpense
-        }catch{
-            fatalError("Error attempting to retrieve recurring expense: \(String(describing: recurringExpense.expenseName))")
-        }
-    }
-    
     private static func getFetchRequest(entityName: String, predicate: NSPredicate)-> NSFetchRequest<NSFetchRequestResult>{
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         //fetchRequest.predicate = NSPredicate(format: "budgetName = %@", name)
@@ -213,17 +170,6 @@ class PersistenceService{
             return budget
         }catch{
             os_log("Error getting budget information from DB", log: OSLog.default, type: .error)
-        }
-        return nil
-    }
-    
-    static func getRecurringExpenseAsArray()->[RecurringExpense]?{
-        let fetchRequest: NSFetchRequest<RecurringExpense> = RecurringExpense.fetchRequest()
-        do{
-            let expense = try PersistenceService.context.fetch(fetchRequest)
-            return expense
-        }catch{
-            os_log("Error getting recurring expenses", log: OSLog.default, type: .error)
         }
         return nil
     }

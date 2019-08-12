@@ -24,7 +24,7 @@ extension SummaryChartsCollectionCell{
         xAxis.labelFont = .systemFont(ofSize: 10)
         xAxis.granularity = 1
         xAxis.labelCount = 7
-        xAxis.valueFormatter = ExpenseAxisValueFormatter(chart: lineChart, expenses: expenses, recurringExpenses: recurringExpenses)
+        xAxis.valueFormatter = ExpenseAxisValueFormatter(chart: lineChart, expenses: expenses)
         
         // x-axis limit line
         let llXAxis = ChartLimitLine(limit: 10, label: "Index 10")
@@ -84,12 +84,6 @@ extension SummaryChartsCollectionCell{
         expenses.forEach{e in
             index += 1
             let entry = ChartDataEntry(x: Double(index), y: Double(truncating: e.amount))
-            lineChartDataEntries.append(entry)
-        }
-        
-        recurringExpenses.forEach { r in
-            index += 1
-            let entry = ChartDataEntry(x: Double(index), y: Double(truncating: r.amount))
             lineChartDataEntries.append(entry)
         }
         

@@ -14,7 +14,6 @@ class ExpenseTableViewController: UITableViewController {
 
     //MARK: Proeprties
     var expenses = [Expenses]()
-    var recurringExpenses = [RecurringExpense]()
     var expense: Expenses?
     var budget: Budget?
     let cellIdentifier = "ExpenseTableViewCell"
@@ -26,21 +25,16 @@ class ExpenseTableViewController: UITableViewController {
     
     //MARK: Get Expenses from DB
     func getExpenses(){
-        recurringExpenses = PersistenceService.getRecurringExpenseAsArray()!
         expenses = PersistenceService.getExpenseAsArray(budget: budget)
     }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == 0){
-            return recurringExpenses.count
-        }else{
-            return expenses.count
-        }
+        return expenses.count
     }
 
     
@@ -49,39 +43,28 @@ class ExpenseTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ExpenseTableViewCell else{
             fatalError("Unidentified cell")
         }
-        if (indexPath.section == 0){
-            let recurringExpense = recurringExpenses[indexPath.row]
-            
-            cell.dayName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: recurringExpense.expenseDate)
-            cell.dayNum.text = String(describing: CustomDateFormatter.getDayName(date: recurringExpense.expenseDate))
-            cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: recurringExpense.expenseDate)
-            cell.ExpenseAmount.text = CustomNumberFormatter.getNumberFormattedAsCurrency(amount: recurringExpense.amount)
-            cell.Name.text = recurringExpense.expenseName
-            cell.recurringExpense.text = "Recurring"
+       
+        let expense = expenses[indexPath.row]
+        
+        cell.dayName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: expense.expenseDate)
+        cell.dayNum.text = String(describing: CustomDateFormatter.getDayName(date: expense.expenseDate))
+        cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: expense.expenseDate)
+        cell.ExpenseAmount.text = CustomNumberFormatter.getNumberFormattedAsCurrency(amount: expense.amount)
+        cell.Name.text = expense.expenseName
+        cell.recurringExpense.text = expense.isRecurring ? "Recurring" : ""
+        if (expense.expenseCategory != "Future Bill"){
             cell.setGradientBackground(colour1: UIColor(named: "NiceBlue")!, colour2: UIColor(named: "MyBlue")!)
-        }
-        else{
-            let expense = expenses[indexPath.row]
-            
-            cell.dayName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: expense.expenseDate)
-            cell.dayNum.text = String(describing: CustomDateFormatter.getDayName(date: expense.expenseDate))
-            cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: expense.expenseDate)
-            cell.ExpenseAmount.text = CustomNumberFormatter.getNumberFormattedAsCurrency(amount: expense.amount)
-            cell.Name.text = expense.expenseName
-            
-            if (expense.expenseCategory != "Future Bill"){
-                cell.setGradientBackground(colour1: UIColor(named: "NiceBlue")!, colour2: UIColor(named: "MyBlue")!)
-            }else
+        }else
+        {
+            if (!expense.payed){
+                cell.setGradientBackground(colour1: UIColor(named: "Desert")!, colour2: UIColor(named: "NiceBlue")!, colour3: UIColor(named: "DarkLime")!)
+            }
+            else
             {
-                if (!expense.payed){
-                    cell.setGradientBackground(colour1: UIColor(named: "Desert")!, colour2: UIColor(named: "NiceBlue")!, colour3: UIColor(named: "DarkLime")!)
-                }
-                else
-                {
-                    cell.setGradientBackground(colour1: UIColor(named: "MyGreen")!, colour2: UIColor(named: "SkyBlue")!, colour3: UIColor(named: "DarkLime")!)
-                }
+                cell.setGradientBackground(colour1: UIColor(named: "MyGreen")!, colour2: UIColor(named: "SkyBlue")!, colour3: UIColor(named: "DarkLime")!)
             }
         }
+        
         return cell
     }
     
@@ -93,17 +76,10 @@ class ExpenseTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if (indexPath.section == 0){
-                let recurringExpense = recurringExpenses[indexPath.row]
-                recurringExpenses.remove(at: indexPath.row)
-                PersistenceService.delete(recurringExpense: recurringExpense)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }else{
-                let expense = expenses[indexPath.row]
-                expenses.remove(at: indexPath.row)
-                PersistenceService.delete(expense: expense)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
+            let expense = expenses[indexPath.row]
+            expenses.remove(at: indexPath.row)
+            PersistenceService.delete(expense: expense)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             
         } else if editingStyle == .insert {
             
@@ -114,17 +90,10 @@ class ExpenseTableViewController: UITableViewController {
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: {(action, indexPath) in
             
-            if (indexPath.section == 0){
-                let recurringExpense = self.recurringExpenses[indexPath.row]
-                self.recurringExpenses.remove(at: indexPath.row)
-                PersistenceService.delete(recurringExpense: recurringExpense)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }else{
-                let expense = self.expenses[indexPath.row]
-                self.expenses.remove(at: indexPath.row)
-                PersistenceService.delete(expense: expense)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
+            let expense = self.expenses[indexPath.row]
+            self.expenses.remove(at: indexPath.row)
+            PersistenceService.delete(expense: expense)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             
         })
         
@@ -150,21 +119,6 @@ class ExpenseTableViewController: UITableViewController {
     
     // MARK: - Navigation
     @IBAction func unwindToExpenseTableView(sender: UIStoryboardSegue){
-        
-        if let sourceViewController = sender.source as? ExpenseViewController, let
-            proxyRecurringExpense = sourceViewController.createdRecurringExpense{
-            
-            if let selectedExpense = tableView.indexPathForSelectedRow{
-                let recurringExpense = PersistenceService.edit(recurringExpense: proxyRecurringExpense, existingRecurringExpense: recurringExpenses[selectedExpense.row])
-                recurringExpenses[selectedExpense.row] = recurringExpense
-                tableView.reloadRows(at: [selectedExpense], with: .none)
-            }else{
-                let expense = PersistenceService.save(recurringExpense: proxyRecurringExpense)
-                let indexPath = IndexPath(row: recurringExpenses.count, section: 0)
-                recurringExpenses.append(expense)
-                tableView.insertRows(at: [indexPath], with: .automatic)
-            }
-        }
     
         if let sourceViewController = sender.source as? ExpenseViewController, let
             proxyExpense = sourceViewController.createdExpense{
@@ -206,15 +160,9 @@ class ExpenseTableViewController: UITableViewController {
             guard let indexPath = tableView.indexPath(for: selectedExpenseCell) else{
                 fatalError("Could not determine index path for selected cell")
             }
-            if (indexPath.section == 0){
-                let selectedRecurringExpense = recurringExpenses[indexPath.row]
-                expenseViewController.selectedRecurringExpense = selectedRecurringExpense
-            }else{
-                let selectedExpense = expenses[indexPath.row]
-                expenseViewController.selectedExpense = selectedExpense
-            }
+            let selectedExpense = expenses[indexPath.row]
+            expenseViewController.selectedExpense = selectedExpense
             break
-            
         default:
             fatalError("Unknown segue identifier \(String(describing: segue.identifier))")
                 break

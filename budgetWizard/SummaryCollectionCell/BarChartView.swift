@@ -20,7 +20,7 @@ extension SummaryChartsCollectionCell{
         xAxis.labelFont = .systemFont(ofSize: 10)
         xAxis.granularity = 1
         xAxis.labelCount = 7
-        xAxis.valueFormatter = ExpenseAxisValueFormatter(chart: barChart, expenses: expenses, recurringExpenses: recurringExpenses)
+        xAxis.valueFormatter = ExpenseAxisValueFormatter(chart: barChart, expenses: expenses)
         
         let leftAxisFormatter = NumberFormatter()
         leftAxisFormatter.minimumFractionDigits = 0
@@ -75,12 +75,6 @@ extension SummaryChartsCollectionCell{
         expenses.forEach{e in
             index += 1
             let entry = BarChartDataEntry(x: Double(index), y: Double(truncating: e.amount))
-            barChartDataEntries.append(entry)
-        }
-        
-        recurringExpenses.forEach { r in
-            index += 1
-            let entry = BarChartDataEntry(x: Double(index), y: Double(truncating: r.amount))
             barChartDataEntries.append(entry)
         }
         

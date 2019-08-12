@@ -21,9 +21,7 @@ class ExpenseViewController: UIViewController{
     let categories = ExpenseCategories.GetCategories()
     let frequencies = ["Weekly", "Fortnightly", "Monthly"]
     var createdExpense: ProxyExpense?
-    var createdRecurringExpense: ProxyRecurringExpense?
     var selectedExpense: Expenses?
-    var selectedRecurringExpense: RecurringExpense?
     
     var expenseDatePicker: UIDatePicker?
     
@@ -33,7 +31,6 @@ class ExpenseViewController: UIViewController{
         initDelegates()
         initPickers()
         loadExistingExpense()
-        loadExistingRecurringExpense()
         initGestureRecogniser()
         self.view.setGradientBackground(colour1: UIColor.white, colour2: UIColor(named: "MyBlue")!)
     }
@@ -53,20 +50,6 @@ class ExpenseViewController: UIViewController{
             expenseDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MMM/yyyy", date: selectedExpense.expenseDate)
             amount.text = CustomNumberFormatter.getNumberAsString(number: selectedExpense.amount as NSDecimalNumber)
         }
-    }
-    
-    func loadExistingRecurringExpense(){
-        if let selectedRecurringExpense = selectedRecurringExpense{
-            categoryTextField.text = selectedRecurringExpense.expenseCategory
-            expenseName.text = selectedRecurringExpense.expenseName
-            expenseDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MMM/yyyy", date: selectedRecurringExpense.expenseDate)
-            amount.text = CustomNumberFormatter.getNumberAsString(number: selectedRecurringExpense.amount as NSDecimalNumber)
-            recurringExpenseSwitch.isOn = true
-            recurringExpenseSwitch.isEnabled = false
-            frequency.text = CustomNumberFormatter.getFrequencyAsString(intFrequency: selectedRecurringExpense.expenseFrequency)
-            frequency.isEnabled = true
-        }
-        
     }
     
     //MARK: Set Gesture recogniser
@@ -107,12 +90,7 @@ class ExpenseViewController: UIViewController{
             fatalError("Unrecognised button received")
         }
         
-        if (recurringExpenseSwitch.isOn){
-            createdRecurringExpense = ProxyRecurringExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!, expenseFrequency: CustomNumberFormatter.getStringFrequencyNumber(frequecny: frequency.text!))            
-        }else{
-            createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!, payed: false, isRecurring: false)
-        }
-        
+        createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!, payed: false, isRecurring: recurringExpenseSwitch.isOn)
     }
     //-- Only allow for segue to continue if validation passes
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {

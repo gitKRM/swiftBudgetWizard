@@ -2,7 +2,7 @@
 //  Expenses+CoreDataClass.swift
 //  
 //
-//  Created by Kent McNamara on 5/08/19.
+//  Created by Kent McNamara on 12/08/19.
 //
 //
 

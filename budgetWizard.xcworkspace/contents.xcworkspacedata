@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/kent_mcn/Desktop/Xcode projects/budget wizard/budgetWizard/budgetWizard/ExpemseModel/RecurringExpense+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/kent_mcn/Desktop/Xcode projects/budget wizard/budgetWizard/budgetWizard/ExpemseModel/RecurringExpense+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:/Users/kent_mcn/Desktop/Xcode projects/budget wizard/budgetWizard/budgetWizard/ExpemseModel/Expenses+CoreDataClass.swift">
    </FileRef>
    <FileRef
