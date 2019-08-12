@@ -36,11 +36,27 @@ class CustomDateFormatter{
         return calendar.component(.day, from: passedIndate as Date)
     }
     
-    static func addDayMonthToCurrentDate(originalDate: Date, day: Int, month: Int)-> Date{
-        var comp = DateComponents()
-        comp.day = day
-        comp.month = month
-        return Calendar.current.date(byAdding: comp, to: originalDate)!
+    static func addDayMonthToCurrentDate(expense: Expenses)-> Date{
+        let comp = getDateComponent(expense: expense)
+        return Calendar.current.date(byAdding: comp, to: expense.expenseDate as Date)!
     }
     
+    static func getDateComponent(expense: Expenses)-> DateComponents{
+        var comp = DateComponents()
+        switch(expense.expenseCategory){
+        case "Weekly":
+            comp.day = 7
+            break
+        case "Fortnightly":
+            comp.day = 14
+            break
+        case "Monthly":
+            comp.month = 1
+            break
+        default:
+            comp.day = 0
+            break
+        }        
+        return comp
+    }
 }

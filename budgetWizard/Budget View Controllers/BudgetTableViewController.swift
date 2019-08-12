@@ -125,6 +125,13 @@ class BudgetTableViewController: UITableViewController {
             }else {
                 //Add new budget
                 let budget = PersistenceService.save(budget: proxyBudget)
+                //save recurring expenses against budget if any exist
+                let expenses = PersistenceService.getRecurringExpenses()
+                expenses.forEach { e in
+                    let proxyExpense = ProxyExpense(expenseName: e.expenseName, expenseAmount: e.amount, expenseDate: CustomDateFormatter.addDayMonthToCurrentDate(expense: e) as NSDate, expenseCategory: e.expenseCategory, payed: e.payed, isRecurring: true)
+                    proxyExpense!.addBudget(budget: budget)
+                    _ = PersistenceService.save(expense: proxyExpense!)
+                }
                 let indexPath = IndexPath(row: budgets.count, section: 0)
                 budgets.append(budget)
                 tableView.insertRows(at: [indexPath], with: .automatic)

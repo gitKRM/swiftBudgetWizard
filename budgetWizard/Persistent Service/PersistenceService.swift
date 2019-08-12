@@ -157,7 +157,6 @@ class PersistenceService{
     
     private static func getFetchRequest(entityName: String, predicate: NSPredicate)-> NSFetchRequest<NSFetchRequestResult>{
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        //fetchRequest.predicate = NSPredicate(format: "budgetName = %@", name)
         fetchRequest.predicate = predicate
         return fetchRequest
     }
@@ -178,13 +177,31 @@ class PersistenceService{
     static func getExpenseAsArray(budget: Budget?)->[Expenses] {
         var expenses = [Expenses]()
         if let existingExpenses = budget?.expenses{
-            
-            //let enumerator: NSEnumerator = budget!.expenses!.objectEnumerator()
             let enumerator: NSEnumerator = existingExpenses.objectEnumerator()
             while let value = enumerator.nextObject(){
                 expenses.append(value as! Expenses)
             }
         }
+        return expenses
+    }
+    
+    static func getRecurringExpenses()->[Expenses]{
+        let budgets = getBudgets()
+        var expenses = [Expenses]()
+        let budget: Budget
+        if (budgets!.count > 1){
+            budget = (budgets?[budgets!.count-2])!
+        }else{
+            budget = budgets!.last!
+        }
+        
+        budget.expenses?.forEach{ e in
+            let expense = e as! Expenses
+            if (expense.expenseCategory == "Recurring"){
+                expenses.append(expense)
+            }
+        }
+        
         return expenses
     }
     

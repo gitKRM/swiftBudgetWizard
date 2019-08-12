@@ -183,13 +183,6 @@
 			path = "Budget View Controllers";
 			sourceTree = "<group>";
 		};
-		3622500322CCAC4300DABF62 /* Custom Formatters */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Custom Formatters";
-			sourceTree = "<group>";
-		};
 		3622500622CCAD1400DABF62 /* Persistent Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,7 +276,6 @@
 				3622500222CCABDF00DABF62 /* Budget View Controllers */,
 				3622500922CDF7F500DABF62 /* BudgetModel */,
 				3622500C22CDFAB900DABF62 /* Budget Table Custom Cell */,
-				3622500322CCAC4300DABF62 /* Custom Formatters */,
 				3622500122CCAB1E00DABF62 /* Expense View Controllers */,
 				3622500B22CDF89000DABF62 /* ExpemseModel */,
 				3622500D22CDFADC00DABF62 /* Expense Table Custom Cell */,
