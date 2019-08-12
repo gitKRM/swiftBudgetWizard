@@ -90,7 +90,8 @@ class ExpenseViewController: UIViewController{
             fatalError("Unrecognised button received")
         }
         
-        createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!, payed: false, isRecurring: recurringExpenseSwitch.isOn)
+        let categoryTxt = recurringExpenseSwitch.isOn ? "Recurring" : categoryTextField.text!
+        createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTxt, payed: false, isRecurring: recurringExpenseSwitch.isOn)
     }
     //-- Only allow for segue to continue if validation passes
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
