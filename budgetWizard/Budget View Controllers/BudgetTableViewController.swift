@@ -128,6 +128,7 @@ class BudgetTableViewController: UITableViewController {
                 let indexPath = IndexPath(row: budgets.count, section: 0)
                 budgets.append(budget)
                 tableView.insertRows(at: [indexPath], with: .automatic)
+                tableView.reloadRows(at: [indexPath], with: .automatic)
             }
             
         }
