@@ -49,6 +49,9 @@ class ExpenseViewController: UIViewController{
             expenseName.text = selectedExpense.expenseName
             expenseDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MMM/yyyy", date: selectedExpense.expenseDate)
             amount.text = CustomNumberFormatter.getNumberAsString(number: selectedExpense.amount as NSDecimalNumber)
+            recurringExpenseSwitch.isOn = selectedExpense.frequency > 0
+            frequency.text = getFrequencyAsString(freq: Int(selectedExpense.frequency))
+            frequency.isEnabled = selectedExpense.frequency > 0
         }
     }
     
@@ -89,9 +92,36 @@ class ExpenseViewController: UIViewController{
             fatalError("Unrecognised button received")
         }
         
-        let categoryTxt = recurringExpenseSwitch.isOn ? "Recurring" : categoryTextField.text!
-        createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTxt, payed: false, isRecurring: recurringExpenseSwitch.isOn)
+        let categoryTxt = recurringExpenseSwitch.isOn ? categoryTextField.text! + "/" + "Recurring" : categoryTextField.text!
+        createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTxt, payed: false, isRecurring: recurringExpenseSwitch.isOn, frequency: getFrequencyAsInt())
     }
+    
+    func getFrequencyAsInt()-> Int16{
+        switch(frequency.text!){
+        case "Weekly":
+            return 7
+        case "Fortnightly":
+            return 14
+        case "Monthly":
+            return 30
+        default:
+            return 0
+        }
+    }
+    
+    func getFrequencyAsString(freq: Int)-> String{
+        switch freq {
+        case 7:
+            return "Weekly"
+        case 14:
+            return "Fortnightly"
+        case 30:
+            return "Monthly"
+        default:
+            return ""
+        }
+    }
+    
     //-- Only allow for segue to continue if validation passes
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (validateForSave()){

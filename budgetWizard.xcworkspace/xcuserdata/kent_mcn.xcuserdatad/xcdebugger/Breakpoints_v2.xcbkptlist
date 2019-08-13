@@ -25,28 +25,44 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "budgetWizard/Persistent Service/PersistenceService.swift"
-            timestampString = "587294516.1528701"
+            filePath = "budgetWizard/Expense View Controllers/ExpenseTableViewController.swift"
+            timestampString = "587378793.97917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "getRecurringExpenses()"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "getExpenses()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "budgetWizard/Persistent Service/PersistenceService.swift"
+            timestampString = "587378793.979257"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "getExpenseAsArray(budget:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "budgetWizard/Budget View Controllers/BudgetTableViewController.swift"
-            timestampString = "587294516.1529551"
+            timestampString = "587378793.9793299"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "unwindToBudgetTableView(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -57,13 +73,91 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "budgetWizard/Formatters/CustomDateFormatter.swift"
-            timestampString = "587294600.7001131"
+            filePath = "budgetWizard/Budget View Controllers/BudgetTableViewController.swift"
+            timestampString = "587378793.9793971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "addDayMonthToCurrentDate(expense:)"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "prepare(for:sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "budgetWizard.BudgetTableViewController.prepare(for: __C.UIStoryboardSegue, sender: Swift.Optional&lt;Any&gt;) -&gt; ()"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/Budget%20View%20Controllers/BudgetTableViewController.swift"
+                  timestampString = "587377534.088733"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "704">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "budgetWizard.BudgetTableViewController.prepare(for: __C.UIStoryboardSegue, sender: Swift.Optional&lt;Any&gt;) -&gt; ()"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/Budget%20View%20Controllers/BudgetTableViewController.swift"
+                  timestampString = "587377534.091442"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "1010">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "budgetWizard.BudgetTableViewController.prepare(for: __C.UIStoryboardSegue, sender: Swift.Optional&lt;Any&gt;) -&gt; ()"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/Budget%20View%20Controllers/BudgetTableViewController.swift"
+                  timestampString = "587377534.093932"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "1166">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "budgetWizard.BudgetTableViewController.prepare(for: __C.UIStoryboardSegue, sender: Swift.Optional&lt;Any&gt;) -&gt; ()"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/Budget%20View%20Controllers/BudgetTableViewController.swift"
+                  timestampString = "587377534.096572"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "3454">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "budgetWizard/Persistent Service/PersistenceService.swift"
+            timestampString = "587378793.979459"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "edit(expense:existingExpense:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +167,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "budgetWizard/Formatters/CustomDateFormatter.swift"
-            timestampString = "587294602.240146"
+            filePath = "budgetWizard/Expense View Controllers/ExpenseViewController.swift"
+            timestampString = "587378793.979522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "addDayMonthToCurrentDate(expense:)"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,14 +183,76 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "budgetWizard/Formatters/CustomDateFormatter.swift"
-            timestampString = "587294603.932107"
+            filePath = "budgetWizard/Expense View Controllers/ExpenseViewController.swift"
+            timestampString = "587378793.979584"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "getDateComponent(expense:)"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "getFrequencyAsInt()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "budgetWizard.ExpenseViewController.getFrequencyAsInt() -&gt; Swift.Int16"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/Expense%20View%20Controllers/ExpenseViewController.swift"
+                  timestampString = "587377952.531525"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "54">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "budgetWizard.ExpenseViewController.getFrequencyAsInt() -&gt; Swift.Int16"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/Expense%20View%20Controllers/ExpenseViewController.swift"
+                  timestampString = "587377952.535574"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "352">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "budgetWizard.ExpenseViewController.getFrequencyAsInt() -&gt; Swift.Int16"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/Expense%20View%20Controllers/ExpenseViewController.swift"
+                  timestampString = "587377952.539108"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "670">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "budgetWizard.ExpenseViewController.getFrequencyAsInt() -&gt; Swift.Int16"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/Expense%20View%20Controllers/ExpenseViewController.swift"
+                  timestampString = "587377952.54257"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "830">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

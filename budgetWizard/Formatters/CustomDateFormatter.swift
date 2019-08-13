@@ -43,14 +43,14 @@ class CustomDateFormatter{
     
     static func getDateComponent(expense: Expenses)-> DateComponents{
         var comp = DateComponents()
-        switch(expense.expenseCategory){
-        case "Weekly":
+        switch(expense.frequency){
+        case 7:
             comp.day = 7
             break
-        case "Fortnightly":
+        case 14:
             comp.day = 14
             break
-        case "Monthly":
+        case 30:
             comp.month = 1
             break
         default:

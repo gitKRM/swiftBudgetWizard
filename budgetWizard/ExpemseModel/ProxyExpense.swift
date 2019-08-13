@@ -17,8 +17,9 @@ class ProxyExpense: NSObject{
     var budget: Budget?
     var payed: Bool?
     var isRecurring: Bool?
+    var frequency: Int16?
     
-    init?(expenseName: String, expenseAmount: NSDecimalNumber, expenseDate: NSDate?, expenseCategory: String, payed: Bool?, isRecurring: Bool?){
+    init?(expenseName: String, expenseAmount: NSDecimalNumber, expenseDate: NSDate?, expenseCategory: String, payed: Bool?, isRecurring: Bool?, frequency: Int16){
         
         guard !expenseName.isEmpty else{
             return nil
@@ -46,6 +47,8 @@ class ProxyExpense: NSObject{
         if (payed != nil){
             self.payed = payed
         }
+        
+        self.frequency = frequency
     }
     
     func setPayed(payed: Bool){

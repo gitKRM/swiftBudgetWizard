@@ -65,6 +65,7 @@ class PersistenceService{
         createdExpense.amount = expense.expenseAmount
         createdExpense.expenseDate = expense.expenseDate
         createdExpense.isRecurring = expense.isRecurring!
+        createdExpense.frequency = expense.frequency!
         createdExpense.budget = expense.budget
         saveContext()
         return createdExpense
@@ -92,6 +93,7 @@ class PersistenceService{
         expenseToEdit.setValue(expense.expenseDate, forKey: "expenseDate")
         expenseToEdit.setValue(expense.payed, forKey: "payed")
         expenseToEdit.setValue(expense.isRecurring, forKey: "isRecurring")
+        expenseToEdit.setValue(expense.frequency, forKey: "frequency")
         expenseToEdit.setValue(expense.budget, forKey: "budget")
         
         saveContext()
@@ -142,7 +144,7 @@ class PersistenceService{
     
     static func getItem(expense: Expenses)-> NSManagedObject{
         
-        let predicate = NSPredicate(format: "expenseName = %@ AND amount = %@", expense.expenseName,expense.amount)
+        let predicate = NSPredicate(format: "expenseName = %@ AND amount = %@ AND expenseDate = %@", expense.expenseName,expense.amount, expense.expenseDate)
         let fetchRequest = getFetchRequest(entityName: "Expenses", predicate: predicate)
         
         do{

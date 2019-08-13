@@ -19,7 +19,6 @@ class BudgetTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
-        //getBudgets()
         self.budgets = PersistenceService.getBudgets()!
     }
     
@@ -128,7 +127,7 @@ class BudgetTableViewController: UITableViewController {
                 //save recurring expenses against budget if any exist
                 let expenses = PersistenceService.getRecurringExpenses()
                 expenses.forEach { e in
-                    let proxyExpense = ProxyExpense(expenseName: e.expenseName, expenseAmount: e.amount, expenseDate: CustomDateFormatter.addDayMonthToCurrentDate(expense: e) as NSDate, expenseCategory: e.expenseCategory, payed: e.payed, isRecurring: true)
+                    let proxyExpense = ProxyExpense(expenseName: e.expenseName, expenseAmount: e.amount, expenseDate: CustomDateFormatter.addDayMonthToCurrentDate(expense: e) as NSDate, expenseCategory: e.expenseCategory, payed: e.payed, isRecurring: true, frequency: e.frequency)
                     proxyExpense!.addBudget(budget: budget)
                     _ = PersistenceService.save(expense: proxyExpense!)
                 }
