@@ -92,8 +92,17 @@ class ExpenseViewController: UIViewController{
             fatalError("Unrecognised button received")
         }
         
-        let categoryTxt = recurringExpenseSwitch.isOn ? categoryTextField.text! + "/" + "Recurring" : categoryTextField.text!
-        createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTxt, payed: false, isRecurring: recurringExpenseSwitch.isOn, frequency: getFrequencyAsInt())
+        let categoryTxt = recurringExpenseSwitch.isOn ? "Recurring-" + categoryTextField.text! : categoryTextField.text!
+        
+        var split = categoryTxt.split(separator: "-")
+        var actualCategory = ""
+        if (split.count >= 2){
+            actualCategory = String(split[1].trimmingCharacters(in: .whitespaces))
+        }else{
+            actualCategory = categoryTxt
+        }
+        
+        createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: actualCategory, payed: false, isRecurring: recurringExpenseSwitch.isOn, frequency: getFrequencyAsInt())
     }
     
     func getFrequencyAsInt()-> Int16{

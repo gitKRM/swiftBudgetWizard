@@ -199,7 +199,7 @@ class PersistenceService{
         
         budget.expenses?.forEach{ e in
             let expense = e as! Expenses
-            if (expense.expenseCategory == "Recurring"){
+            if (expense.isRecurring){
                 expenses.append(expense)
             }
         }
@@ -230,8 +230,12 @@ class PersistenceService{
         var expenses = [Expenses]()
         budget.expenses?.forEach{e in
             if let expense = e as? Expenses{
-                if (ExpenseCategories.categoryWeightsDict[category]?.contains(expense.expenseCategory))!{
+                if (category == "Recurring" && expense.isRecurring){
                     expenses.append(expense)
+                }else{
+                    if (ExpenseCategories.categoryWeightsDict[category]?.contains(expense.expenseCategory))!{
+                        expenses.append(expense)
+                    }
                 }
             }
         }

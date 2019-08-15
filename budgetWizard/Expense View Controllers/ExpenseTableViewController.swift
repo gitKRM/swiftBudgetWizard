@@ -123,15 +123,17 @@ class ExpenseTableViewController: UITableViewController {
         if let sourceViewController = sender.source as? ExpenseViewController, let
             proxyExpense = sourceViewController.createdExpense{
             
+            //--Add budget to proxy expense
+            proxyExpense.addBudget(budget: budget!)
+            
             //--Editing
             if let selectedExpense = tableView.indexPathForSelectedRow{
                 let expense = PersistenceService.edit(expense: proxyExpense, existingExpense: expenses[selectedExpense.row])
                 expenses[selectedExpense.row] = expense
-                tableView.reloadRows(at: [selectedExpense], with: .none)
+                tableView.reloadRows(at: [selectedExpense], with: .automatic)
             }
             else{
-                //--Add budget to proxy expense
-                proxyExpense.addBudget(budget: budget!)
+                
                 //--Creating new
                 let expense = PersistenceService.save(expense: proxyExpense)
                 let indexPath = IndexPath(row: expenses.count, section: 0)

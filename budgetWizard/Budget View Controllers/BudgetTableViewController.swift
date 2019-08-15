@@ -64,6 +64,7 @@ class BudgetTableViewController: UITableViewController {
             budgets.remove(at: indexPath.row)
             PersistenceService.delete(budget: budget)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         } else if editingStyle == .insert {
           
         }    
