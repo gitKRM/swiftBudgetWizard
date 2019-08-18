@@ -140,7 +140,6 @@ class ExpenseTableViewController: UITableViewController {
                 
                 tableView.insertRows(at: [indexPath], with: .automatic)
                 tableView.reloadRows(at: [indexPath], with: .automatic)
-                tableView.reloadData()
             }
             
         }
