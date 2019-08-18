@@ -48,6 +48,12 @@ extension SummaryChartsCollectionCell{
         ll2.labelPosition = .bottomRight
         ll2.valueFont = .systemFont(ofSize: 10)
         
+        let leftAxisFormatter = NumberFormatter()
+        leftAxisFormatter.minimumFractionDigits = 0
+        leftAxisFormatter.maximumFractionDigits = 1
+        leftAxisFormatter.negativePrefix = " $"
+        leftAxisFormatter.positivePrefix = " $"
+        
         let leftAxis = lineChart.leftAxis
         leftAxis.removeAllLimitLines()
         leftAxis.addLimitLine(ll1)
@@ -56,6 +62,7 @@ extension SummaryChartsCollectionCell{
         leftAxis.axisMinimum = 0
         leftAxis.gridLineDashLengths = [5, 5]
         leftAxis.drawLimitLinesBehindDataEnabled = true
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: leftAxisFormatter)
         
         lineChart.rightAxis.enabled = false
         

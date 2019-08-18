@@ -21,7 +21,7 @@ class ExpenseAxisValueFormatter: NSObject, IAxisValueFormatter{
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         let index = Int(value)
-        if (index >= 0){
+        if (index >= 0 && index <= expenses.count-1){
             return expenses[index].expenseName
         }
         return ""
