@@ -15,6 +15,7 @@ class BudgetTableViewController: UITableViewController {
     //MARK: Properties
     var budgets = [Budget]()
     var budget: Budget?
+    let cellIdentifier = "BudgetTableViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class BudgetTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "BudgetTableViewCell"
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BudgetTableViewCell else{
             fatalError("Could not downcast custom cell to BudgetViewTableCell")
         }

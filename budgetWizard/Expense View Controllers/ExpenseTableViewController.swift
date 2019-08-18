@@ -138,8 +138,10 @@ class ExpenseTableViewController: UITableViewController {
                 let indexPath = IndexPath(row: expenses.count, section: 0)
                 expenses.append(expense)
                 
-                tableView.insertRows(at: [indexPath], with: .automatic)
-                tableView.reloadRows(at: [indexPath], with: .automatic)
+                //tableView.insertRows(at: [indexPath], with: .automatic)
+                //tableView.reloadRows(at: [indexPath], with: .automatic)
+                
+                tableView.reloadData()
             }
             
         }
