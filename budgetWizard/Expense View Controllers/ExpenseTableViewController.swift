@@ -43,7 +43,7 @@ class ExpenseTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ExpenseTableViewCell else{
             fatalError("Unidentified cell")
         }
-       
+        
         let expense = expenses[indexPath.row]
         
         cell.dayName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: expense.expenseDate)
@@ -133,13 +133,14 @@ class ExpenseTableViewController: UITableViewController {
                 tableView.reloadRows(at: [selectedExpense], with: .automatic)
             }
             else{
-                
                 //--Creating new
                 let expense = PersistenceService.save(expense: proxyExpense)
                 let indexPath = IndexPath(row: expenses.count, section: 0)
                 expenses.append(expense)
+                
                 tableView.insertRows(at: [indexPath], with: .automatic)
                 tableView.reloadRows(at: [indexPath], with: .automatic)
+                tableView.reloadData()
             }
             
         }
