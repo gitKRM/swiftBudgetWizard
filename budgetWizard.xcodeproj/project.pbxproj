@@ -14,6 +14,8 @@
 		3622501D22D94D1000DABF62 /* SummaryViewColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622501C22D94D1000DABF62 /* SummaryViewColors.swift */; };
 		3622502022D9713C00DABF62 /* ExpenseValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622501F22D9713C00DABF62 /* ExpenseValidation.swift */; };
 		3622502222D9717900DABF62 /* ExpensePickerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3622502122D9717900DABF62 /* ExpensePickerViews.swift */; };
+		36246DBA22F6E40D005BF014 /* CustomGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36246DB922F6E40D005BF014 /* CustomGradient.swift */; };
+		36285EBE22F67A0F00AED084 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36285EBD22F67A0F00AED084 /* LineChartView.swift */; };
 		3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4A522A2740C002B0339 /* AppDelegate.swift */; };
 		3634D4AB22A2740C002B0339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3634D4A922A2740C002B0339 /* Main.storyboard */; };
 		3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3634D4AC22A2740C002B0339 /* budgetWizard.xcdatamodeld */; };
@@ -26,14 +28,13 @@
 		3651169722A34E4A00827CA8 /* BudgetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */; };
 		3651169922A354F800827CA8 /* ExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3651169822A354F800827CA8 /* ExpenseViewController.swift */; };
 		368160BC22DF1A8300293766 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368160BB22DF1A8300293766 /* SummaryViewController.swift */; };
+		3685327023028F3A0049E6F5 /* Expenses+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3685326F23028F3A0049E6F5 /* Expenses+CoreDataProperties.swift */; };
+		3685327223028F3E0049E6F5 /* Expenses+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3685327123028F3E0049E6F5 /* Expenses+CoreDataClass.swift */; };
 		369997E422EDA7360089E943 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369997E322EDA7360089E943 /* BarChartView.swift */; };
 		369AB83622B23E7100FD221E /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB83522B23E7100FD221E /* CustomDateFormatter.swift */; };
 		369AB83E22B8DED200FD221E /* ExpenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB83D22B8DED200FD221E /* ExpenseTableViewController.swift */; };
 		369AB84022BA242100FD221E /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB83F22BA242100FD221E /* ExpenseTableViewCell.swift */; };
 		369AB84222BA290900FD221E /* CustomNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB84122BA290900FD221E /* CustomNumberFormatter.swift */; };
-		369AB84422BA2E6200FD221E /* GlobalBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB84322BA2E6200FD221E /* GlobalBudget.swift */; };
-		369AB85522C213AF00FD221E /* Expenses+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB85122C213AF00FD221E /* Expenses+CoreDataClass.swift */; };
-		369AB85622C213AF00FD221E /* Expenses+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB85222C213AF00FD221E /* Expenses+CoreDataProperties.swift */; };
 		369AB85722C213AF00FD221E /* Budget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB85322C213AF00FD221E /* Budget+CoreDataClass.swift */; };
 		369AB85822C213AF00FD221E /* Budget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AB85422C213AF00FD221E /* Budget+CoreDataProperties.swift */; };
 		36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */; };
@@ -76,6 +77,8 @@
 		3622501C22D94D1000DABF62 /* SummaryViewColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewColors.swift; sourceTree = "<group>"; };
 		3622501F22D9713C00DABF62 /* ExpenseValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseValidation.swift; sourceTree = "<group>"; };
 		3622502122D9717900DABF62 /* ExpensePickerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensePickerViews.swift; sourceTree = "<group>"; };
+		36246DB922F6E40D005BF014 /* CustomGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradient.swift; sourceTree = "<group>"; };
+		36285EBD22F67A0F00AED084 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		3634D4A222A2740C002B0339 /* budgetWizard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetWizard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3634D4A522A2740C002B0339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3634D4AA22A2740C002B0339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -94,14 +97,13 @@
 		3651169622A34E4A00827CA8 /* BudgetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTableViewController.swift; sourceTree = "<group>"; };
 		3651169822A354F800827CA8 /* ExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewController.swift; sourceTree = "<group>"; };
 		368160BB22DF1A8300293766 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		3685326F23028F3A0049E6F5 /* Expenses+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Expenses+CoreDataProperties.swift"; path = "/Users/kent_mcn/Desktop/Xcode projects/budget wizard/budgetWizard/budgetWizard/ExpemseModel/Expenses+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		3685327123028F3E0049E6F5 /* Expenses+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Expenses+CoreDataClass.swift"; path = "/Users/kent_mcn/Desktop/Xcode projects/budget wizard/budgetWizard/budgetWizard/ExpemseModel/Expenses+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		369997E322EDA7360089E943 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		369AB83522B23E7100FD221E /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		369AB83D22B8DED200FD221E /* ExpenseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewController.swift; sourceTree = "<group>"; };
 		369AB83F22BA242100FD221E /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		369AB84122BA290900FD221E /* CustomNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNumberFormatter.swift; sourceTree = "<group>"; };
-		369AB84322BA2E6200FD221E /* GlobalBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBudget.swift; sourceTree = "<group>"; };
-		369AB85122C213AF00FD221E /* Expenses+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expenses+CoreDataClass.swift"; sourceTree = "<group>"; };
-		369AB85222C213AF00FD221E /* Expenses+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expenses+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		369AB85322C213AF00FD221E /* Budget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataClass.swift"; sourceTree = "<group>"; };
 		369AB85422C213AF00FD221E /* Budget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		36B6294B22ABA3CC00BD5343 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
@@ -181,15 +183,6 @@
 			path = "Budget View Controllers";
 			sourceTree = "<group>";
 		};
-		3622500322CCAC4300DABF62 /* Custom Formatters */ = {
-			isa = PBXGroup;
-			children = (
-				369AB84122BA290900FD221E /* CustomNumberFormatter.swift */,
-				369AB83522B23E7100FD221E /* CustomDateFormatter.swift */,
-			);
-			path = "Custom Formatters";
-			sourceTree = "<group>";
-		};
 		3622500622CCAD1400DABF62 /* Persistent Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,14 +201,6 @@
 			path = "Summary View Controller";
 			sourceTree = "<group>";
 		};
-		3622500822CCAD5700DABF62 /* Globals */ = {
-			isa = PBXGroup;
-			children = (
-				369AB84322BA2E6200FD221E /* GlobalBudget.swift */,
-			);
-			path = Globals;
-			sourceTree = "<group>";
-		};
 		3622500922CDF7F500DABF62 /* BudgetModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,9 +214,9 @@
 		3622500B22CDF89000DABF62 /* ExpemseModel */ = {
 			isa = PBXGroup;
 			children = (
+				3685327123028F3E0049E6F5 /* Expenses+CoreDataClass.swift */,
+				3685326F23028F3A0049E6F5 /* Expenses+CoreDataProperties.swift */,
 				36224FFD22C74E7900DABF62 /* ProxyExpense.swift */,
-				369AB85222C213AF00FD221E /* Expenses+CoreDataProperties.swift */,
-				369AB85122C213AF00FD221E /* Expenses+CoreDataClass.swift */,
 			);
 			path = ExpemseModel;
 			sourceTree = "<group>";
@@ -250,6 +235,14 @@
 				369AB83F22BA242100FD221E /* ExpenseTableViewCell.swift */,
 			);
 			path = "Expense Table Custom Cell";
+			sourceTree = "<group>";
+		};
+		36246DB822F6E3EF005BF014 /* Gradient */ = {
+			isa = PBXGroup;
+			children = (
+				36246DB922F6E40D005BF014 /* CustomGradient.swift */,
+			);
+			path = Gradient;
 			sourceTree = "<group>";
 		};
 		3634D49922A2740C002B0339 = {
@@ -277,16 +270,15 @@
 		3634D4A422A2740C002B0339 /* budgetWizard */ = {
 			isa = PBXGroup;
 			children = (
+				36246DB822F6E3EF005BF014 /* Gradient */,
 				36FCBC1722ED8F1400C05E98 /* Components */,
 				36FCBC1422ED8B3100C05E98 /* Formatters */,
 				3622500222CCABDF00DABF62 /* Budget View Controllers */,
 				3622500922CDF7F500DABF62 /* BudgetModel */,
 				3622500C22CDFAB900DABF62 /* Budget Table Custom Cell */,
-				3622500322CCAC4300DABF62 /* Custom Formatters */,
 				3622500122CCAB1E00DABF62 /* Expense View Controllers */,
 				3622500B22CDF89000DABF62 /* ExpemseModel */,
 				3622500D22CDFADC00DABF62 /* Expense Table Custom Cell */,
-				3622500822CCAD5700DABF62 /* Globals */,
 				368160BD22DF2E6700293766 /* MenuBar */,
 				3642FA9222E050FF00FB757B /* SummaryCollectionCell */,
 				3622500722CCAD3000DABF62 /* Summary View Controller */,
@@ -325,6 +317,7 @@
 				3642FA9322E0516100FB757B /* SummaryChartsCollectionCell.swift */,
 				36FCBC1022ED455B00C05E98 /* PieChartView.swift */,
 				369997E322EDA7360089E943 /* BarChartView.swift */,
+				36285EBD22F67A0F00AED084 /* LineChartView.swift */,
 			);
 			path = SummaryCollectionCell;
 			sourceTree = "<group>";
@@ -340,6 +333,8 @@
 		36FCBC1422ED8B3100C05E98 /* Formatters */ = {
 			isa = PBXGroup;
 			children = (
+				369AB83522B23E7100FD221E /* CustomDateFormatter.swift */,
+				369AB84122BA290900FD221E /* CustomNumberFormatter.swift */,
 				36FCBC1522ED8B5500C05E98 /* ExpenseAxisValueFormatter.swift */,
 			);
 			path = Formatters;
@@ -585,13 +580,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36246DBA22F6E40D005BF014 /* CustomGradient.swift in Sources */,
 				36FCBC1122ED455B00C05E98 /* PieChartView.swift in Sources */,
 				369AB84022BA242100FD221E /* ExpenseTableViewCell.swift in Sources */,
 				3622501022D1A6FC00DABF62 /* ExpenseCategories.swift in Sources */,
 				369AB83E22B8DED200FD221E /* ExpenseTableViewController.swift in Sources */,
 				36B6294C22ABA3CC00BD5343 /* PersistenceService.swift in Sources */,
+				3685327223028F3E0049E6F5 /* Expenses+CoreDataClass.swift in Sources */,
 				369997E422EDA7360089E943 /* BarChartView.swift in Sources */,
 				36F4D82E22ACC2B800800B38 /* BudgetTableViewCell.swift in Sources */,
+				36285EBE22F67A0F00AED084 /* LineChartView.swift in Sources */,
 				369AB85722C213AF00FD221E /* Budget+CoreDataClass.swift in Sources */,
 				3622501922D94B0000DABF62 /* SummaryPickerView.swift in Sources */,
 				3622502022D9713C00DABF62 /* ExpenseValidation.swift in Sources */,
@@ -599,19 +597,17 @@
 				36FCBC1B22ED8F5400C05E98 /* XYMarkerView.swift in Sources */,
 				36224FFC22C45CAA00DABF62 /* ProxyBudget.swift in Sources */,
 				36D2DBE222DDBFB50010FC3D /* MenuBar.swift in Sources */,
-				369AB85622C213AF00FD221E /* Expenses+CoreDataProperties.swift in Sources */,
 				368160BC22DF1A8300293766 /* SummaryViewController.swift in Sources */,
 				3642FA9422E0516100FB757B /* SummaryChartsCollectionCell.swift in Sources */,
 				369AB83622B23E7100FD221E /* CustomDateFormatter.swift in Sources */,
 				3622501D22D94D1000DABF62 /* SummaryViewColors.swift in Sources */,
 				3634D4A622A2740C002B0339 /* AppDelegate.swift in Sources */,
 				3634D4AE22A2740C002B0339 /* budgetWizard.xcdatamodeld in Sources */,
-				369AB84422BA2E6200FD221E /* GlobalBudget.swift in Sources */,
 				369AB85822C213AF00FD221E /* Budget+CoreDataProperties.swift in Sources */,
 				3634D4DB22A2A1DD002B0339 /* BudgetViewController.swift in Sources */,
-				369AB85522C213AF00FD221E /* Expenses+CoreDataClass.swift in Sources */,
 				3622502222D9717900DABF62 /* ExpensePickerViews.swift in Sources */,
 				3651169722A34E4A00827CA8 /* BudgetTableViewController.swift in Sources */,
+				3685327023028F3A0049E6F5 /* Expenses+CoreDataProperties.swift in Sources */,
 				369AB84222BA290900FD221E /* CustomNumberFormatter.swift in Sources */,
 				36FCBC1622ED8B5500C05E98 /* ExpenseAxisValueFormatter.swift in Sources */,
 				3651169922A354F800827CA8 /* ExpenseViewController.swift in Sources */,

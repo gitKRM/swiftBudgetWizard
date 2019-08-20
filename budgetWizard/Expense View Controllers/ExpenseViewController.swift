@@ -19,7 +19,7 @@ class ExpenseViewController: UIViewController{
     @IBOutlet weak var recurringExpenseSwitch: UISwitch!
     @IBOutlet weak var frequency: UITextField!
     let categories = ExpenseCategories.GetCategories()
-    let frequencies = ["Weekly", "Forntightly", "Monthly"]
+    let frequencies = ["Weekly", "Fortnightly", "Monthly"]
     var createdExpense: ProxyExpense?
     var selectedExpense: Expenses?
     
@@ -32,6 +32,7 @@ class ExpenseViewController: UIViewController{
         initPickers()
         loadExistingExpense()
         initGestureRecogniser()
+        self.view.setGradientBackground(colour1: UIColor.white, colour2: UIColor(named: "MyBlue")!)
     }
     
     //MARK: Set Delegates
@@ -48,8 +49,9 @@ class ExpenseViewController: UIViewController{
             expenseName.text = selectedExpense.expenseName
             expenseDate.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "dd/MMM/yyyy", date: selectedExpense.expenseDate)
             amount.text = CustomNumberFormatter.getNumberAsString(number: selectedExpense.amount as NSDecimalNumber)
-            recurringExpenseSwitch.isOn = selectedExpense.isRecurring
-            frequency.text = selectedExpense.recurringFrequency
+            recurringExpenseSwitch.isOn = selectedExpense.frequency > 0
+            frequency.text = getFrequencyAsString(freq: Int(selectedExpense.frequency))
+            frequency.isEnabled = selectedExpense.frequency > 0
         }
     }
     
@@ -83,9 +85,6 @@ class ExpenseViewController: UIViewController{
         }
     }
     
-    
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
@@ -93,9 +92,45 @@ class ExpenseViewController: UIViewController{
             fatalError("Unrecognised button received")
         }
         
-        createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: categoryTextField.text!, isRecurring: recurringExpenseSwitch.isOn, recurringFrequency: frequency.text!)
+        let categoryTxt = recurringExpenseSwitch.isOn ? "Recurring-" + categoryTextField.text! : categoryTextField.text!
         
+        var split = categoryTxt.split(separator: "-")
+        var actualCategory = ""
+        if (split.count >= 2){
+            actualCategory = String(split[1].trimmingCharacters(in: .whitespaces))
+        }else{
+            actualCategory = categoryTxt
+        }
+        
+        createdExpense = ProxyExpense(expenseName: expenseName.text!, expenseAmount: (Decimal(string: amount.text!) as NSDecimalNumber?)!, expenseDate: expenseDatePicker?.date as NSDate?, expenseCategory: actualCategory, payed: false, isRecurring: recurringExpenseSwitch.isOn, frequency: getFrequencyAsInt())
     }
+    
+    func getFrequencyAsInt()-> Int16{
+        switch(frequency.text!){
+        case "Weekly":
+            return 7
+        case "Fortnightly":
+            return 14
+        case "Monthly":
+            return 30
+        default:
+            return 0
+        }
+    }
+    
+    func getFrequencyAsString(freq: Int)-> String{
+        switch freq {
+        case 7:
+            return "Weekly"
+        case 14:
+            return "Fortnightly"
+        case 30:
+            return "Monthly"
+        default:
+            return ""
+        }
+    }
+    
     //-- Only allow for segue to continue if validation passes
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (validateForSave()){

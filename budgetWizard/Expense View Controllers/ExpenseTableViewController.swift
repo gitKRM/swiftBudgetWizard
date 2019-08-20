@@ -16,11 +16,11 @@ class ExpenseTableViewController: UITableViewController {
     var expenses = [Expenses]()
     var expense: Expenses?
     var budget: Budget?
+    let cellIdentifier = "ExpenseTableViewCell"
    
     override func viewDidLoad() {
         super.viewDidLoad()
         getExpenses()
-
     }
     
     //MARK: Get Expenses from DB
@@ -39,11 +39,11 @@ class ExpenseTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "ExpenseTableViewCell"
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ExpenseTableViewCell else{
             fatalError("Unidentified cell")
         }
-
+        
         let expense = expenses[indexPath.row]
         
         cell.dayName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "EEEE", date: expense.expenseDate)
@@ -51,13 +51,24 @@ class ExpenseTableViewController: UITableViewController {
         cell.monthName.text = CustomDateFormatter.getDatePropertyAsString(formatSpecifier: "LLLL", date: expense.expenseDate)
         cell.ExpenseAmount.text = CustomNumberFormatter.getNumberFormattedAsCurrency(amount: expense.amount)
         cell.Name.text = expense.expenseName
+        cell.recurringExpense.text = expense.isRecurring ? "Recurring" : ""
+        if (expense.expenseCategory != "Future Bill"){
+            cell.setGradientBackground(colour1: UIColor(named: "NiceBlue")!, colour2: UIColor(named: "MyBlue")!)
+        }else
+        {
+            if (!expense.payed){
+                cell.setGradientBackground(colour1: UIColor(named: "Desert")!, colour2: UIColor(named: "NiceBlue")!, colour3: UIColor(named: "DarkLime")!)
+            }
+            else
+            {
+                cell.setGradientBackground(colour1: UIColor(named: "MyGreen")!, colour2: UIColor(named: "SkyBlue")!, colour3: UIColor(named: "DarkLime")!)
+            }
+        }
         
         return cell
     }
     
 
-    
-    // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -69,15 +80,46 @@ class ExpenseTableViewController: UITableViewController {
             expenses.remove(at: indexPath.row)
             PersistenceService.delete(expense: expense)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
         } else if editingStyle == .insert {
             
         }    
     }
     
-
-    // MARK: - Navigation
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: {(action, indexPath) in
+            
+            let expense = self.expenses[indexPath.row]
+            self.expenses.remove(at: indexPath.row)
+            PersistenceService.delete(expense: expense)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+        })
+        
+        let pay = UITableViewRowAction(style: .default, title: "Pay", handler: {(action, indexPath) in
+            let expense = self.expenses[indexPath.row]
+            if (expense.expenseCategory != "Future Bill" || expense.payed){
+                return
+            }
+            
+            let proxyExpense = ProxyExpense(expenseName: expense.expenseName, expenseAmount: expense.amount, expenseDate: expense.expenseDate, expenseCategory: expense.expenseCategory, payed: true, isRecurring: false, frequency: expense.frequency)
+            
+            proxyExpense!.addBudget(budget: self.budget!)
+            
+            let editedExpense = PersistenceService.edit(expense: proxyExpense!, existingExpense: self.expenses[indexPath.row])
+            self.expenses[indexPath.row] = editedExpense
+            tableView.reloadRows(at: [indexPath], with: .none)
+      
+        })
+        
+        pay.backgroundColor = UIColor.green
+        return [pay,delete]
+    }
     
+    // MARK: - Navigation
     @IBAction func unwindToExpenseTableView(sender: UIStoryboardSegue){
+    
         if let sourceViewController = sender.source as? ExpenseViewController, let
             proxyExpense = sourceViewController.createdExpense{
             
@@ -88,16 +130,20 @@ class ExpenseTableViewController: UITableViewController {
             if let selectedExpense = tableView.indexPathForSelectedRow{
                 let expense = PersistenceService.edit(expense: proxyExpense, existingExpense: expenses[selectedExpense.row])
                 expenses[selectedExpense.row] = expense
-                tableView.reloadRows(at: [selectedExpense], with: .none)
+                tableView.reloadRows(at: [selectedExpense], with: .automatic)
             }
             else{
                 //--Creating new
                 let expense = PersistenceService.save(expense: proxyExpense)
                 let indexPath = IndexPath(row: expenses.count, section: 0)
                 expenses.append(expense)
-                tableView.insertRows(at: [indexPath], with: .automatic)
+                
+                //tableView.insertRows(at: [indexPath], with: .automatic)
+                //tableView.reloadRows(at: [indexPath], with: .automatic)
+                
+                tableView.reloadData()
             }
-        
+            
         }
         
     }
@@ -121,7 +167,6 @@ class ExpenseTableViewController: UITableViewController {
             let selectedExpense = expenses[indexPath.row]
             expenseViewController.selectedExpense = selectedExpense
             break
-            
         default:
             fatalError("Unknown segue identifier \(String(describing: segue.identifier))")
                 break

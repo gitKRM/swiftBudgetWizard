@@ -10,17 +10,18 @@ import Foundation
 
 class ExpenseCategories{
     
-    static var categories = ["Credit Cards", "Food", "Future Bill", "Future Goal", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
+    static var categories = ["Credit Cards", "Food", "Future Bill", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
     
     static let categoryWeightsDict = ["All":["Credit Cards", "Food", "Future Bill",
-                                 "Future Goal", "Kids", "Insurance", "Loans", "Medical","Mortgage", "Personal", "Pets", "Rates", "Rent","Savings", "Sundry", "Utilities", "Vehicle"],
+                                 "Kids", "Insurance", "Loans", "Medical","Mortgage", "Personal", "Pets", "Rates", "Rent","Savings", "Sundry", "Utilities", "Vehicle"],
                                    "Necessity":["Food","Insurance","Medical","Mortgage",
                                                 "Rates","Rent","Utilities"],
-                                  "Commitments":["Future Bill","Future Goal","Kids",
-                                                 "Pets","Savings","Vehicle"],
+                                  "Commitments":["Kids","Pets","Savings","Vehicle"],
+                                  "Future Bill":["Future Bill"],
+                                  "Recurring":["Recurring"],
                                   "Wants":["Credit Cards","Loans","Personal","Sundry"]]
     
-    static let categoryWeights = ["All", "Necessity", "Commitments","Wants"]
+    static let categoryWeights = ["All","Commitments","Future Bill","Necessity","Recurring","Wants"]
    
     static func GetCategories()-> [String]{
         return categories

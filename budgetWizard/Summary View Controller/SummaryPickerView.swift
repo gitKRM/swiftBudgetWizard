@@ -12,8 +12,7 @@ import UIKit
 extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     
     //MARK: Picker View
-    func createBudgetPickerView(){
-        let budgetPicker = UIPickerView()
+    func createBudgetPickerView(){        
         budgetPicker.delegate = self
         budgetPicker.dataSource = self
         selectedBudgetTxtField.inputView = budgetPicker
@@ -59,6 +58,7 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        currentPickerIndexPath = IndexPath(item: row, section: component)
         if (component == 0){
             SummaryChartsCollectionCell.budget = budgets[row]
             selectedBudgetTxtField.text = pickerData[component][row] + " | " + pickerData[1][selectedCategoryRow]
@@ -76,11 +76,11 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, U
         case "barChart":
             SummaryViewController.cell!.updateBarChart()
             break;
+        case "lineChart":
+            SummaryViewController.cell!.updateLineChart()
         default:
-            SummaryViewController.cell!.setLineChart()
-        }
-        
-        
+            SummaryViewController.cell!.updatePieChart()
+        }        
     }
 }
 

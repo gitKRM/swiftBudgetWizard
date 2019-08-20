@@ -11,7 +11,7 @@ import Charts
 
 extension SummaryChartsCollectionCell{
     
-    func initChartValues(){
+    func initPieChart(){
         let legend = pieChart.legend
         legend.horizontalAlignment = .right
         legend.verticalAlignment = .top
@@ -32,7 +32,7 @@ extension SummaryChartsCollectionCell{
     func updatePieChart(){
         if (pieChart != nil){
             getExpenses()
-            initChartValues()
+            initPieChart()
             var pieChartDataEntries = [PieChartDataEntry]()
             expenseTotal = 0
             expenses.forEach{e in
@@ -40,7 +40,7 @@ extension SummaryChartsCollectionCell{
                 entry.label = e.expenseName
                 expenseTotal += e.amount as Decimal
                 pieChartDataEntries.append(entry)
-            }
+            }                       
             
             pieChart.transparentCircleColor = UIColor.clear
             //pieChart.usePercentValuesEnabled = true

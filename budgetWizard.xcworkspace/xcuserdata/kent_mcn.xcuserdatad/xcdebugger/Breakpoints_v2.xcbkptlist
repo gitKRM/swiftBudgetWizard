@@ -2,4 +2,198 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "budgetWizard/Budget View Controllers/BudgetTableViewController.swift"
+            timestampString = "587809445.796731"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "unwindToBudgetTableView(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "budgetWizard/Budget View Controllers/BudgetTableViewController.swift"
+            timestampString = "587809445.7968481"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "budgetWizard/Budget View Controllers/BudgetTableViewController.swift"
+            timestampString = "587809445.796939"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "tableView(_:commit:forRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "budgetWizard/Budget View Controllers/BudgetTableViewController.swift"
+            timestampString = "587809445.7970231"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "unwindToBudgetTableView(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "budgetWizard/Expense View Controllers/ExpenseTableViewController.swift"
+            timestampString = "587809445.797101"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "unwindToExpenseTableView(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "budgetWizard/Expense View Controllers/ExpenseTableViewController.swift"
+            timestampString = "587809445.797179"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "budgetWizard/SummaryCollectionCell/BarChartView.swift"
+            timestampString = "587802401.33318"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "updateBarChart()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "budgetWizard.SummaryChartsCollectionCell.updateBarChart() -&gt; ()"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/SummaryCollectionCell/BarChartView.swift"
+                  timestampString = "587801907.98665"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "129">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (budgetWizard.Expenses) -&gt; () in budgetWizard.SummaryChartsCollectionCell.updateBarChart() -&gt; ()"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/SummaryCollectionCell/BarChartView.swift"
+                  timestampString = "587801907.989558"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "121">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "budgetWizard/SummaryCollectionCell/LineChartView.swift"
+            timestampString = "587809445.797292"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "updateLineChart()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "budgetWizard.SummaryChartsCollectionCell.updateLineChart() -&gt; ()"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/SummaryCollectionCell/LineChartView.swift"
+                  timestampString = "587801918.1549079"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (budgetWizard.Expenses) -&gt; () in budgetWizard.SummaryChartsCollectionCell.updateLineChart() -&gt; ()"
+                  moduleName = "budgetWizard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kent_mcn/Desktop/Xcode%20projects/budget%20wizard/budgetWizard/budgetWizard/SummaryCollectionCell/LineChartView.swift"
+                  timestampString = "587801918.1578389"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "121">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

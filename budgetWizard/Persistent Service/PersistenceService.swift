@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import os.log
 
 class PersistenceService{
     
@@ -64,7 +65,7 @@ class PersistenceService{
         createdExpense.amount = expense.expenseAmount
         createdExpense.expenseDate = expense.expenseDate
         createdExpense.isRecurring = expense.isRecurring!
-        createdExpense.recurringFrequency = expense.recurringFrequency
+        createdExpense.frequency = expense.frequency!
         createdExpense.budget = expense.budget
         saveContext()
         return createdExpense
@@ -90,13 +91,13 @@ class PersistenceService{
         expenseToEdit.setValue(expense.expenseCategory, forKey: "expenseCategory")
         expenseToEdit.setValue(expense.expenseAmount, forKey: "amount")
         expenseToEdit.setValue(expense.expenseDate, forKey: "expenseDate")
+        expenseToEdit.setValue(expense.payed, forKey: "payed")
         expenseToEdit.setValue(expense.isRecurring, forKey: "isRecurring")
-        expenseToEdit.setValue(expense.recurringFrequency, forKey: "recurringFrequency")
+        expenseToEdit.setValue(expense.frequency, forKey: "frequency")
         expenseToEdit.setValue(expense.budget, forKey: "budget")
-       
+        
         saveContext()
         return expenseToEdit as! Expenses
-        
     }
     
     //MARK: Delete
@@ -114,7 +115,8 @@ class PersistenceService{
     
     //MARK: Retrieve Object
     static func getItem(budget: Budget)-> NSManagedObject{
-        let fetchRequest = getFetchRequest(name: budget.budgetName!)
+        let predicate = NSPredicate(format: "budgetName = %@", budget.budgetName!)
+        let fetchRequest = getFetchRequest(entityName: "Budget", predicate: predicate)
         do
         {
             let fetcheddBudgets = try context.fetch(fetchRequest)
@@ -128,7 +130,8 @@ class PersistenceService{
     }
     
     static func getItem(name: String)-> Budget?{
-        let fetchRequest = getFetchRequest(name: name)
+        let predicate = NSPredicate(format: "budgetName = %@", name)
+        let fetchRequest = getFetchRequest(entityName: "Budget", predicate: predicate)
         do{
             let fetchedBudgets = try context.fetch(fetchRequest)
             let retrievedBudget = fetchedBudgets[0] as! NSManagedObject
@@ -139,15 +142,11 @@ class PersistenceService{
         }
     }
     
-    private static func getFetchRequest(name: String)-> NSFetchRequest<NSFetchRequestResult>{
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Budget")
-        fetchRequest.predicate = NSPredicate(format: "budgetName = %@", name)
-        return fetchRequest
-    }
-    
     static func getItem(expense: Expenses)-> NSManagedObject{
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expenses")
-        fetchRequest.predicate = NSPredicate(format: "expenseName = %@ AND amount = %@", expense.expenseName,expense.amount)
+        
+        let predicate = NSPredicate(format: "expenseName = %@ AND amount = %@ AND expenseDate = %@", expense.expenseName,expense.amount, expense.expenseDate)
+        let fetchRequest = getFetchRequest(entityName: "Expenses", predicate: predicate)
+        
         do{
             let fetchedExpense = try context.fetch(fetchRequest)
             let retrievedExpense = fetchedExpense[0] as! NSManagedObject
@@ -158,11 +157,28 @@ class PersistenceService{
         }
     }
     
+    private static func getFetchRequest(entityName: String, predicate: NSPredicate)-> NSFetchRequest<NSFetchRequestResult>{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        fetchRequest.predicate = predicate
+        return fetchRequest
+    }
+    
+    static func getBudgets() -> [Budget]? {
+        
+        let fetchRequest: NSFetchRequest<Budget> = Budget.fetchRequest()
+        
+        do{
+            let budget = try PersistenceService.context.fetch(fetchRequest)            
+            return budget
+        }catch{
+            os_log("Error getting budget information from DB", log: OSLog.default, type: .error)
+        }
+        return nil
+    }
+    
     static func getExpenseAsArray(budget: Budget?)->[Expenses] {
         var expenses = [Expenses]()
         if let existingExpenses = budget?.expenses{
-            
-            //let enumerator: NSEnumerator = budget!.expenses!.objectEnumerator()
             let enumerator: NSEnumerator = existingExpenses.objectEnumerator()
             while let value = enumerator.nextObject(){
                 expenses.append(value as! Expenses)
@@ -171,10 +187,34 @@ class PersistenceService{
         return expenses
     }
     
+    static func getRecurringExpenses()->[Expenses]{
+        let budgets = getBudgets()
+        var expenses = [Expenses]()
+        let budget: Budget
+        if (budgets!.count > 1){
+            budget = (budgets?[budgets!.count-2])!
+        }else{
+            budget = budgets!.last!
+        }
+        
+        budget.expenses?.forEach{ e in
+            let expense = e as! Expenses
+            if (expense.isRecurring){
+                expenses.append(expense)
+            }
+        }
+        
+        return expenses
+    }
+    
     static func getExpensesFromCategory(budget: Budget, category: String)-> [Expenses]?{     
         switch (category){
         case "All":
             return getExpenseAsArray(budget: budget)
+        case "Future Bill":
+            return filterExpenseOnCategory(budget: budget, category: "Future Bill")
+        case "Recurring":
+            return filterExpenseOnCategory(budget: budget, category: "Recurring")
         case "Necessity":
             return filterExpenseOnCategory(budget: budget, category: "Necessity")
         case "Commitments":
@@ -190,8 +230,12 @@ class PersistenceService{
         var expenses = [Expenses]()
         budget.expenses?.forEach{e in
             if let expense = e as? Expenses{
-                if (ExpenseCategories.categoryWeightsDict[category]?.contains(expense.expenseCategory))!{
+                if (category == "Recurring" && expense.isRecurring){
                     expenses.append(expense)
+                }else{
+                    if (ExpenseCategories.categoryWeightsDict[category]?.contains(expense.expenseCategory))!{
+                        expenses.append(expense)
+                    }
                 }
             }
         }

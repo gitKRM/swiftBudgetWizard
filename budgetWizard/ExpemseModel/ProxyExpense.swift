@@ -14,11 +14,12 @@ class ProxyExpense: NSObject{
     var expenseAmount: NSDecimalNumber
     var expenseDate: NSDate
     var expenseCategory: String
-    var isRecurring: Bool?
-    var recurringFrequency: String?
     var budget: Budget?
+    var payed: Bool?
+    var isRecurring: Bool?
+    var frequency: Int16?
     
-    init?(expenseName: String, expenseAmount: NSDecimalNumber, expenseDate: NSDate?, expenseCategory: String, isRecurring: Bool, recurringFrequency: String){
+    init?(expenseName: String, expenseAmount: NSDecimalNumber, expenseDate: NSDate?, expenseCategory: String, payed: Bool?, isRecurring: Bool?, frequency: Int16){
         
         guard !expenseName.isEmpty else{
             return nil
@@ -40,8 +41,18 @@ class ProxyExpense: NSObject{
         self.expenseAmount = expenseAmount
         self.expenseDate = eDate
         self.expenseCategory = expenseCategory
-        self.isRecurring = isRecurring
-        self.recurringFrequency = recurringFrequency
+        if (isRecurring != nil){
+            self.isRecurring = isRecurring
+        }
+        if (payed != nil){
+            self.payed = payed
+        }
+        
+        self.frequency = frequency
+    }
+    
+    func setPayed(payed: Bool){
+        self.payed = payed
     }
     
     func addBudget(budget: Budget){

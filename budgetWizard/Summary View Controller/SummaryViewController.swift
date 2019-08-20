@@ -17,6 +17,8 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
     var selectedBudgetRow = 0
     var selectedCategoryRow = 0
     var pickerData: [[String]] = [[String]]()
+    var budgetPicker = UIPickerView()
+    var currentPickerIndexPath: IndexPath!
     static var cell: SummaryChartsCollectionCell?
     
     lazy var menuBar: MenuBar = {
@@ -35,13 +37,17 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
         createBudgetPickerView()
         createBudgetPickerToolBar()
         setupMenuBar()
+        self.view.setGradientBackground(colour1: UIColor.white, colour2: UIColor(named: "MyBlue")!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         LoadBudgets()
-        selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
-        SummaryViewController.cell!.updatePieChart()
+        if (pickerData.count > 0){
+            selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
+            SummaryViewController.cell!.updatePieChart()
+        }
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -78,20 +84,20 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
        
         SummaryViewController.cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as? SummaryChartsCollectionCell
         
-        SummaryViewController.cell!.backgroundColor = UIColor.darkGray
+        SummaryViewController.cell!.setGradientBackground(colour1: UIColor.white, colour2: UIColor(named: "MyBlue")!)
         
         switch(ci){
         case "pieChart":
             SummaryViewController.cell!.updatePieChart()
-            
+
         case "barChart":
             SummaryViewController.cell!.updateBarChart()
-            
+
         case "lineChart":
-            SummaryViewController.cell!.setLineChart()
+            SummaryViewController.cell!.updateLineChart()
         default:
             return SummaryViewController.cell!
-        }            
+        }
         
         return SummaryViewController.cell!
     }
@@ -117,12 +123,41 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
     func scrollToMenuIndex(menuIndex: Int){
         if (menuIndex == 3) {
             selectedBudgetTxtField.becomeFirstResponder()
+            if (currentPickerIndexPath == nil){
+                if (budgets.count > 0){
+                    budgetPicker.selectRow(budgets.count - 1, inComponent: 0, animated: true)
+                }
+                
+            }else{
+                budgetPicker.selectRow(currentPickerIndexPath.row, inComponent: currentPickerIndexPath.section, animated: true)
+            }
             return
         }
         let indexPath = IndexPath(item: menuIndex, section: 0)
+        
         //--Below, if animated is set to true, this will be a spring effect which will come
         //--across as jerky as the horizontal bar will bounce back and forth
         collectionView.scrollToItem(at: indexPath, at: [], animated: false)
+        
+        let ci = cellId[indexPath.item]
+        
+        SummaryViewController.cell = collectionView.dequeueReusableCell(withReuseIdentifier: ci, for: indexPath) as? SummaryChartsCollectionCell
+        
+        SummaryViewController.cell!.backgroundColor = UIColor.darkGray
+        
+        switch(ci){
+        case "pieChart":
+            SummaryViewController.cell!.updatePieChart()
+            
+        case "barChart":
+            SummaryViewController.cell!.updateBarChart()
+            
+        case "lineChart":
+            SummaryViewController.cell!.updateLineChart()
+        default:
+            return
+        }
+        
     }
     //--Update Menu Cell Image colour when scroll from swipe
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -151,20 +186,18 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
     //MARK:Load budgets
     func LoadBudgets(){
         budgetItems.removeAll()
-        self.budgets = GlobalBudget.getBudgets()!
+        self.budgets = PersistenceService.getBudgets()!
         
         if (budgets.count > 0){
             budgets.forEach{b in
                 budgetItems.append(b.budgetName!)
             }
-            
+                    
             pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
             
             selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
             SummaryChartsCollectionCell.selectedBudgetTxtField = selectedBudgetTxtField.text
             SummaryChartsCollectionCell.budget = budgets[budgets.count-1]
-            //--New Picker Data for 2D array
-            pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
         }
         
     }

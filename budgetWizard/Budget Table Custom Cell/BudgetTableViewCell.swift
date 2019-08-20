@@ -23,6 +23,7 @@ class BudgetTableViewCell : UITableViewCell{
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: true)
+        self.setGradientBackground(colour1: UIColor(named: "NiceBlue")!, colour2: UIColor(named: "MyBlue")!)
     }
     
 }

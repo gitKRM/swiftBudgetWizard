@@ -15,12 +15,12 @@ class BudgetTableViewController: UITableViewController {
     //MARK: Properties
     var budgets = [Budget]()
     var budget: Budget?
+    let cellIdentifier = "BudgetTableViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
-        //getBudgets()
-        self.budgets = GlobalBudget.getBudgets()!
+        self.budgets = PersistenceService.getBudgets()!
     }
     
 
@@ -34,7 +34,7 @@ class BudgetTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "BudgetTableViewCell"
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BudgetTableViewCell else{
             fatalError("Could not downcast custom cell to BudgetViewTableCell")
         }
@@ -64,7 +64,8 @@ class BudgetTableViewController: UITableViewController {
             let budget = budgets[indexPath.row]
             budgets.remove(at: indexPath.row)
             PersistenceService.delete(budget: budget)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            //tableView.reloadRows(at: [indexPath], with: .automatic)
         } else if editingStyle == .insert {
           
         }    
@@ -125,9 +126,17 @@ class BudgetTableViewController: UITableViewController {
             }else {
                 //Add new budget
                 let budget = PersistenceService.save(budget: proxyBudget)
+                //save recurring expenses against budget if any exist
+                let expenses = PersistenceService.getRecurringExpenses()
+                expenses.forEach { e in
+                    let proxyExpense = ProxyExpense(expenseName: e.expenseName, expenseAmount: e.amount, expenseDate: CustomDateFormatter.addDayMonthToCurrentDate(expense: e) as NSDate, expenseCategory: e.expenseCategory, payed: e.payed, isRecurring: true, frequency: e.frequency)
+                    proxyExpense!.addBudget(budget: budget)
+                    _ = PersistenceService.save(expense: proxyExpense!)
+                }
                 let indexPath = IndexPath(row: budgets.count, section: 0)
                 budgets.append(budget)
                 tableView.insertRows(at: [indexPath], with: .automatic)
+                tableView.reloadRows(at: [indexPath], with: .automatic)
             }
             
         }
