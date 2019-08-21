@@ -59,4 +59,11 @@ class CustomDateFormatter{
         }        
         return comp
     }
+    
+    static func getCurrentDate()-> String{
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter.string(from: currentDate)
+    }
 }
