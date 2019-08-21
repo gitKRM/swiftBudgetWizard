@@ -19,11 +19,13 @@ class ExpenseViewController: UIViewController{
     @IBOutlet weak var recurringExpenseSwitch: UISwitch!
     @IBOutlet weak var frequency: UITextField!
     let categories = ExpenseCategories.GetCategories()
-    let frequencies = ["Weekly", "Fortnightly", "Monthly"]
+    let frequencies = ["Select Frequency","Weekly", "Fortnightly", "Monthly"]
     var createdExpense: ProxyExpense?
     var selectedExpense: Expenses?
+    var selectedFrequency = ""
     
     var expenseDatePicker: UIDatePicker?
+   
     
     //MARK: View loading
     override func viewDidLoad() {
@@ -33,6 +35,7 @@ class ExpenseViewController: UIViewController{
         loadExistingExpense()
         initGestureRecogniser()
         self.view.setGradientBackground(colour1: UIColor.white, colour2: UIColor(named: "MyBlue")!)
+        expenseDate.text = CustomDateFormatter.getCurrentDate()
     }
     
     //MARK: Set Delegates
@@ -148,10 +151,14 @@ class ExpenseViewController: UIViewController{
     @IBAction func switchToggled(_ sender: UISwitch) {
         if (sender.isOn){
             frequency.isEnabled = true
+            frequency.text = selectedFrequency
+            frequency.becomeFirstResponder()
         }else{
             frequency.text = ""
             frequency.isEnabled = false
         }
     }
+    
+    
 }
 

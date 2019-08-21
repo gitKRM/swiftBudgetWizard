@@ -10,7 +10,7 @@ import Foundation
 
 class ExpenseCategories{
     
-    static var categories = ["Credit Cards", "Food", "Future Bill", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
+    static var categories = ["Select Category","Credit Cards", "Food", "Future Bill", "Kids", "Insurance", "Loans", "Medical", "Mortgage", "Personal", "Pets", "Rates", "Rent", "Savings", "Sundry", "Utilities", "Vehicle"]
     
     static let categoryWeightsDict = ["All":["Credit Cards", "Food", "Future Bill",
                                  "Kids", "Insurance", "Loans", "Medical","Mortgage", "Personal", "Pets", "Rates", "Rent","Savings", "Sundry", "Utilities", "Vehicle"],

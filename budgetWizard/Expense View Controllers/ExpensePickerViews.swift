@@ -70,9 +70,10 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (frequency.isFirstResponder){
-            frequency.text = frequencies[row]
+            frequency.text = row == 0 ? "" : frequencies[row]
+            selectedFrequency = frequency.text!
         }else{
-            categoryTextField.text = categories[row]
+            categoryTextField.text = row == 0 ? "" : categories[row]
         }
     }
     
@@ -84,7 +85,6 @@ extension ExpenseViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPi
     }
  
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         navigationItem.title = expenseName.text
     }
     
