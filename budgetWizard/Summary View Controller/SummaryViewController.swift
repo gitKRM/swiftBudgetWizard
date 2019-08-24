@@ -193,7 +193,7 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
                 budgetItems.append(b.budgetName!)
             }
                     
-            pickerData = [budgetItems,ExpenseCategories.GetCategoryWeights()]
+            pickerData = [budgetItems,ExpenseCategories.GetCategories()]
             
             selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
             SummaryChartsCollectionCell.selectedBudgetTxtField = selectedBudgetTxtField.text

@@ -15,7 +15,7 @@ extension SummaryChartsCollectionCell{
         let legend = pieChart.legend
         legend.horizontalAlignment = .right
         legend.verticalAlignment = .top
-        legend.orientation = .vertical
+        legend.orientation = .horizontal
         legend.xEntrySpace = 7
         legend.yEntrySpace = 0
         legend.yOffset = 0

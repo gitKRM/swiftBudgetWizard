@@ -207,33 +207,23 @@ class PersistenceService{
         return expenses
     }
     
-    static func getExpensesFromCategory(budget: Budget, category: String)-> [Expenses]?{     
-        switch (category){
-        case "All":
-            return getExpenseAsArray(budget: budget)
-        case "Future Bill":
-            return filterExpenseOnCategory(budget: budget, category: "Future Bill")
-        case "Recurring":
-            return filterExpenseOnCategory(budget: budget, category: "Recurring")
-        case "Necessity":
-            return filterExpenseOnCategory(budget: budget, category: "Necessity")
-        case "Commitments":
-            return filterExpenseOnCategory(budget: budget, category: "Commitments")
-        case "Wants":
-            return filterExpenseOnCategory(budget: budget, category: "Wants")
-        default:
-            return nil
-        }
+    static func getExpensesFromCategory(budget: Budget, category: String)-> [Expenses]?{
+        
+        return filterExpenseOnCategory(budget: budget, category: category)
     }
     
     private static func filterExpenseOnCategory(budget: Budget, category: String)-> [Expenses]{
         var expenses = [Expenses]()
         budget.expenses?.forEach{e in
             if let expense = e as? Expenses{
-                if (category == "Recurring" && expense.isRecurring){
+                if (category == "All"){
                     expenses.append(expense)
-                }else{
-                    if (ExpenseCategories.categoryWeightsDict[category]?.contains(expense.expenseCategory))!{
+                }
+                else{
+                    if (category == "Recurring" && expense.isRecurring){
+                        expenses.append(expense)
+                    }
+                    if (expense.expenseCategory == category){
                         expenses.append(expense)
                     }
                 }
