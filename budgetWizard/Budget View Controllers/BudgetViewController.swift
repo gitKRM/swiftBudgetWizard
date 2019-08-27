@@ -21,15 +21,8 @@ class BudgetViewController: UIViewController {
     
     var createdBudget: ProxyBudget?
     var selectedBudget: Budget? //--Edit existing budget
-//    struct ActiveControl{
-//        static let nameTextFieldSelected = 1
-//        static let incomeCashFlowSelected = 2
-//        static let startDateSelected = 3
-//        static let endDateSelected = 4
-//    }
     
     @IBOutlet weak var titleLabel: UILabel!
-    var fieldsCompleted = Array(repeating: false, count: 4)
     
     //MARK: Private properties
     private var startDatePicker: UIDatePicker?
@@ -49,10 +42,10 @@ class BudgetViewController: UIViewController {
         startDate.delegate = self
         endDate.delegate = self
         updateSaveButton()
-        loadExistingBudget()
-        self.view.setGradientBackground(colour1: UIColor.white, colour2: UIColor(named: "MyBlue")!)
         startDate.text = CustomDateFormatter.getCurrentDate()
         endDate.text = CustomDateFormatter.getCurrentDate()
+        loadExistingBudget()
+        self.view.setGradientBackground(colour1: UIColor.white, colour2: UIColor(named: "MyBlue")!)
     }
     
     //MARK: Load existing budget

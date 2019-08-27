@@ -43,7 +43,6 @@ extension SummaryChartsCollectionCell{
             }                       
             
             pieChart.transparentCircleColor = UIColor.clear
-            //pieChart.usePercentValuesEnabled = true
             pieChart.holeRadiusPercent = 0.4
             
             let attribute = [ NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 18.0)! ]

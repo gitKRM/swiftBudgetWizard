@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import os.log
 
 extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     

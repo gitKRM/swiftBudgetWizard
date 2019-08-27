@@ -43,11 +43,6 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         LoadBudgets()
-        if (pickerData.count > 0){
-            selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
-            SummaryViewController.cell!.updatePieChart()
-        }
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -125,7 +120,7 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
             selectedBudgetTxtField.becomeFirstResponder()
             if (currentPickerIndexPath == nil){
                 if (budgets.count > 0){
-                    budgetPicker.selectRow(budgets.count - 1, inComponent: 0, animated: true)
+                    budgetPicker.selectRow(selectedBudgetRow, inComponent: 0, animated: true)
                 }
                 
             }else{
@@ -195,9 +190,9 @@ class SummaryViewController: UIViewController, UICollectionViewDelegate, UIColle
                     
             pickerData = [budgetItems,ExpenseCategories.GetCategories()]
             
-            selectedBudgetTxtField.text = pickerData[0][budgetItems.count-1] + " | " + pickerData[1][0]
+            selectedBudgetTxtField.text = pickerData[0][selectedBudgetRow] + " | " + pickerData[1][selectedCategoryRow]
             SummaryChartsCollectionCell.selectedBudgetTxtField = selectedBudgetTxtField.text
-            SummaryChartsCollectionCell.budget = budgets[budgets.count-1]
+            SummaryChartsCollectionCell.budget = budgets[selectedBudgetRow]
         }
         
     }
